@@ -1,5 +1,3 @@
 # cellsociety 
 
-Duke CompSci 308 Cell Society Project
-
-Brian was here ;)
+Duuuuuke CompSci 308 Cell Society Project
