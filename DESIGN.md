@@ -7,7 +7,7 @@ A cell will know the state of all the cells around it and be able to update its 
 
 The majority of the design will be closed to the user other than selecting the type of model to run and the specifications for running that model. Another programmer would be able to add a new type of cell situation to model but would not be able to change the upper framework that runs the simulation for the cell situation.
 
-#Overview
+##Overview
 ### Classes
 The fundamental unit in the simulation is `Cell`. In the `Cell` class, the variables are its neighbors (kept in an `ArrayList`), its current state and future state (because of the need to update for the next round) and its UI component object of type `CellGraphic`. Its methods, besides getters and setters, include a `checkChangeState` method that returns whether the current cell needs to change its state. The class `Cell` is abstract, so for each algorithm, there would be another cell class that extends `Cell` in that algorithm package. The extended subclass would override the `checkChangeState` method because of the algorithmic difference.
 
