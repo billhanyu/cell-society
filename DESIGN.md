@@ -23,11 +23,16 @@ The fundamental unit in the simulation is `Cell`. In the `Cell` class, the varia
 
 `Decoder` is the tool class for decoding XML files. It will have a String attribute `fileName` and when `decodeXML` method is called, it reads from the XML file and returns the parameters read from the file in the form of an object.
 
+![struct1](data/design/struct1.jpg)
+![struct2](data/design/struct2.jpg)
+
 
 ## User Interface
 There will be two main scenes in the program: the welcome scene and the simulation scene. The welcome scene lets the user choose a simulation from a dropdown menu. A dropdown menu is chosen because later we might add more kinds of simulation. Then we won’t need to worry about the layout. After the user clicks to select one of the simulation algorithms. The scene switches to the simulation scene, where there is a grid, control buttons (start, step, stop, reset), a label prompt, and other controls unique to each algorithm. There will also be a button for the user to switch to another kind of simulation.
 
 An error popup scene will also be implemented for all kinds of error notifications. This will likely be a separate stage where it will disappear after the user clicks ‘OK’.
+
+![ui](data/design/ui.jpg)
 
 ## Design Details
 When the Main.java file is run, a stage will be created that displays a window prompting the user to select a situation model to simulate from a drop down menu. In this new window, the user will be able to choose the dimensions of the grid or number of cells and their size. There will be buttons allowing the user to step through the simulation or run the simulation at a specified step speed.
