@@ -1,5 +1,7 @@
 package grid;
 
-public class Builder {
+public abstract class Builder {
+	
+	public abstract void init();
 
 }
