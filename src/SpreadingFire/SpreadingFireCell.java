@@ -28,6 +28,10 @@ public class SpreadingFireCell extends Cell{
 			}
 		}
 	}
+	
+	public void setProbCatch(double pc){
+		probCatch = pc;
+	}
 
 	private boolean checkIfFlamable(){
 		return Math.random() < probCatch;

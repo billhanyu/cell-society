@@ -39,6 +39,9 @@ public abstract class Cell {
 	public void updateState(){
 		currState = futureState;
 	}
+	public GridPosition getGridPosition(){
+		return gridPos;
+	}
 	
 	public abstract void checkChangeState();
 
