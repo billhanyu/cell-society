@@ -1,10 +1,13 @@
 package main;
 
+import grid.Builder;
+import grid.Runner;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import ui.StartScene;
 
 /**
  * This is the main program.
@@ -21,6 +24,10 @@ public class Main extends Application {
     private Stage stage;
     private KeyFrame frame;
     private Timeline animation;
+    
+    private Runner runner;
+    private Builder builder;
+    //TODO: initialize these two
 
     /**
      * Set things up at the beginning.
@@ -28,20 +35,23 @@ public class Main extends Application {
     @Override
     public void start (Stage s) {
     	this.stage = s;
-        s.setTitle("Cell Society");
-        s.show();
+        stage.setTitle("Cell Society");
+        stage.show();
+        
+        StartScene start = new StartScene(SIZE, SIZE);
+        stage.setScene(start.initScene());
 
         // sets the program loop
-        KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
+        frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
                                       e -> this.step(SECOND_DELAY));
-        Timeline animation = new Timeline();
+        animation = new Timeline();
         animation.setCycleCount(Timeline.INDEFINITE);
         animation.getKeyFrames().add(frame);
         animation.play();
     }
 
     public void step (double elapsedTime) {
-    	
+    	runner.update();
     }
 
 	/**
