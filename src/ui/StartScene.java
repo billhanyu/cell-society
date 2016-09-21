@@ -21,8 +21,9 @@ public class StartScene extends ProgScene {
 	private String goString = "Go";
 	private EventHandler<ActionEvent> exitAction;
 
-	public StartScene(double width, double height) {
+	public StartScene(double width, double height, EventHandler<ActionEvent> exitAction) {
 		super(width, height);
+		this.exitAction = exitAction;
 	}
 
 	@Override

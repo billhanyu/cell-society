@@ -27,6 +27,13 @@ public class Main extends Application {
     private Timeline animation;
     
     private Runner runner;
+    
+    class ExitAction implements EventHandler<ActionEvent> {
+		@Override
+		public void handle(ActionEvent event) {
+			stage.close();
+		}
+    }
 
     /**
      * Set things up at the beginning.
@@ -45,7 +52,7 @@ public class Main extends Application {
         animation.getKeyFrames().add(frame);
         animation.play();
         
-        stage.setScene(new StartScene(SIZE, SIZE).initScene());
+        stage.setScene(new StartScene(SIZE, SIZE, new ExitAction()).initScene());
     }
 
     public void step (double elapsedTime) {
