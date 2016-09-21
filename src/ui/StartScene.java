@@ -69,8 +69,11 @@ public class StartScene extends ProgScene {
 	private Button initGoButton() {
 		Button go = new Button(goString);
 		go.setOnAction(e->{
-			//TODO: present error when algorithm is null;
-			if (algorithm == null) return;
+			if (algorithm == null) {
+				ErrorPop pop = new ErrorPop(300, 200, "Please select a simulation");
+				pop.popup();
+				return;
+			}
 			System.out.println(algorithm);
 		});
 		return go;
