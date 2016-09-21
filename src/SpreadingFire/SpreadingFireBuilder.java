@@ -1,15 +1,18 @@
 package SpreadingFire;
 
-import java.util.ArrayList;
-
 import cell.Cell;
 import grid.Builder;
+import grid.CellGraphic;
+
 
 public class SpreadingFireBuilder extends Builder{
 
 	@Override
-	public void init(ArrayList<Cell> sfAL ){
-		// create the visual grid
+	protected CellGraphic buildCellGraphic(Cell c) {
+		// TODO return a CellGraphic with the right colors and shit based on what state the cell passed in is
+		return null;
 	}
+
+
 
 }

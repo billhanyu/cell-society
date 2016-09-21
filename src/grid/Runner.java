@@ -10,17 +10,17 @@ public abstract class Runner {
 	public ArrayList<Cell> getGrid(){
 		return grid;
 	}
-	
-	//TODO: figure out how to use Collections.unmodifiableList(getValues());
-	
-	//TODO: adding neighbors
-		
+				
 	public abstract void init(int rows, int cols);
 	
 	public void step(){
 		for(Cell c : grid){
 			c.checkChangeState();
 		}
+	}
+	
+	private void addNeighbors(){
+		// TODO this
 	}
 
 }
