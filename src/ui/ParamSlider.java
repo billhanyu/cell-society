@@ -1,0 +1,28 @@
+package ui;
+
+import javafx.scene.control.Slider;
+
+public class ParamSlider {
+	
+	private int min, max, value, increment;
+	
+	public void init(int min, int max, int value, int increment) {
+		this.min = min;
+		this.max = max;
+		this.value = value;
+		this.increment = increment;
+	}
+	
+	public Slider initSlider() {
+		Slider slider = new Slider();
+		slider.setMin(min);
+		slider.setMax(max);
+		slider.setValue(value);
+		slider.setShowTickLabels(true);
+		slider.setShowTickMarks(true);
+		slider.setMajorTickUnit(50);
+		slider.setMinorTickCount(5);
+		slider.setBlockIncrement(increment);
+		return slider;
+	}
+}
