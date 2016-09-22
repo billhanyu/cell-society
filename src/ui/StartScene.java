@@ -23,9 +23,8 @@ public class StartScene extends ProgScene {
 	private EventHandler<ActionEvent> exitAction;
 	private Initializer initializer;
 
-	public StartScene(double width, double height, 
-			EventHandler<ActionEvent> exitAction, Initializer initializer) {
-		super(width, height);
+	public StartScene(EventHandler<ActionEvent> exitAction, Initializer initializer) {
+		super();
 		this.exitAction = exitAction;
 		this.initializer = initializer;
 	}

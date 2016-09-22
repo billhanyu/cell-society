@@ -4,6 +4,7 @@ import cell.GridPosition;
 import grid.Builder;
 import grid.Parameters;
 import grid.Runner;
+import ui.SimulationPane;
 
 
 public class SpreadingFireBuilder extends Builder {
