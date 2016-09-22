@@ -31,4 +31,8 @@ public abstract class Builder {
 	
 	public abstract Runner init();
 	
+	protected abstract void initCells();
+	
+	protected abstract void initCellGrid();
+	
 }

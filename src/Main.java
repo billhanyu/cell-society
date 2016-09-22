@@ -1,7 +1,6 @@
 
 
 import grid.Initializer;
-import grid.Runner;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
