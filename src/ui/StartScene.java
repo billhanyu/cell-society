@@ -1,5 +1,6 @@
 package ui;
 
+import grid.Initializer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,10 +21,12 @@ public class StartScene extends ProgScene {
 	private String algorithm;
 	private String goString = "Go";
 	private EventHandler<ActionEvent> exitAction;
+	private Initializer initializer;
 
-	public StartScene(double width, double height, EventHandler<ActionEvent> exitAction) {
-		super(width, height);
+	public StartScene(EventHandler<ActionEvent> exitAction, Initializer initializer) {
+		super();
 		this.exitAction = exitAction;
+		this.initializer = initializer;
 	}
 
 	@Override
@@ -43,11 +46,11 @@ public class StartScene extends ProgScene {
 	private ComboBox<String> initComboBox() {
 		ObservableList<String> options = 
 				FXCollections.observableArrayList(
-						"Segregation",
-						"Predator-Prey",
-						"Fire",
-						"Game of Life"
-						);
+						Initializer.SEGREGATION,
+						Initializer.PRED_PREY,
+						Initializer.FIRE,
+						Initializer.LIFE
+				);
 		comboBox = new ComboBox<String>(options);
 		comboBox.setPromptText("Select a Simulation");
 		comboBox.setPrefWidth(200);
@@ -75,7 +78,7 @@ public class StartScene extends ProgScene {
 				pop.popup();
 				return;
 			}
-			System.out.println(algorithm);
+			initializer.initSimulation(algorithm);
 		});
 		return go;
 	}
