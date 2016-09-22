@@ -1,20 +1,23 @@
 package grid;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import cell.Cell;
 
 public abstract class Runner {
 	
-	protected ArrayList<Cell> grid;
+	protected List<Cell> cells;
+	protected List<CellGraphic> cellGrid;
 	
-	public ArrayList<Cell> getGrid(){
-		return grid;
+	public List<Cell> getGrid(){
+		return cells;
 	}
-				
-	public abstract void init(int rows, int cols);
 	
+	public void setCellGrid(List<CellGraphic>);
+					
 	public void step(){
-		for(Cell c : grid){
+		for(Cell c : cells){
 			c.checkChangeState();
 		}
 	}
@@ -22,5 +25,4 @@ public abstract class Runner {
 	private void addNeighbors(){
 		// TODO this
 	}
-
 }

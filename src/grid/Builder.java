@@ -17,11 +17,9 @@ public abstract class Builder {
 	
 	List<CellGraphic> visualGrid = new ArrayList<CellGraphic>();
 	
-	public void buildGrid(ArrayList<Cell> cellAL) {
+	public Runner init(int rows, int cols) {
 		//TODO: initialize CellGraphic corresponding to each Cell in cellAL passed by runner 
+		return null;
 	}
 	
-	protected abstract CellGraphic buildCellGraphic(Cell c);
-		//TODO: override this method to actually return a cellgraphic
-
 }
