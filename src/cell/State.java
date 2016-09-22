@@ -4,8 +4,8 @@ import javafx.scene.paint.Color;
 
 public class State {
 	
-	Color color;
-	String stateName;	
+	private Color color;
+	private String stateName;	
 	
 	public Color getColor() {
 		return color;
