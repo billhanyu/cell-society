@@ -1,15 +1,16 @@
 package grid;
 
 import java.util.List;
+import java.util.Map;
 
 import cell.Cell;
 
 public abstract class Runner {
 	
 	protected List<Cell> cells;
-	protected List<CellGraphic> cellGrid;
+	protected Map<Cell, CellGraphic> cellGrid;
 	
-	public Runner(List<Cell> cells, List<CellGraphic> cellGrid) {
+	public Runner(List<Cell> cells, Map<Cell, CellGraphic> cellGrid) {
 		this.cells = cells;
 		this.cellGrid = cellGrid;
 	}
@@ -18,7 +19,7 @@ public abstract class Runner {
 		return cells;
 	}
 	
-	public List<CellGraphic> getGraphics() {
+	public Map<Cell, CellGraphic> getGraphics() {
 		return cellGrid;
 	}
 	
@@ -26,14 +27,28 @@ public abstract class Runner {
 		this.cells = cells;
 	}
 	
-	public void setCellGrid(List<CellGraphic> list){
+	public void setCellGrid(Map<Cell, CellGraphic> list){
 		cellGrid = list;
 	}
-					
-	public void step(){
-		for(Cell c : cells){
+							
+	private void updateAllCellStates(){
+		for(Cell c : cells)
 			c.checkChangeState();
+		for(Cell c : cells)
+			c.updateState();
+	}
+	
+	private void updateCellGrid(){
+		for(Cell c: cells){
+			CellGraphic cg = cellGrid.get(c);
+			cg.setColor(c.getCurrState().getColor());
+			cellGrid.put(c, cg);
 		}
+	}
+	
+	public void step(){
+		updateAllCellStates();
+		updateCellGrid();
 	}
 	
 	private void addNeighbors(){

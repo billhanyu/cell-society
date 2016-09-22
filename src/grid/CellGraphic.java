@@ -1,6 +1,7 @@
 package grid;
 
 import cell.GridPosition;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
 public class CellGraphic {
@@ -10,6 +11,7 @@ public class CellGraphic {
 	private double width;
 	private double height;
 	private GridPosition gridPos;
+	private Color shapeColor;
 	
 	public CellGraphic(double x, double y, double width, double height) {
 		setPosition(x, y);
@@ -52,6 +54,10 @@ public class CellGraphic {
 
 	public void setHeight(double height) {
 		this.height = height;
+	}
+	
+	public void setColor(Color color){
+		//set color of shape to this
 	}
 
 	public GridPosition getGridPos() {
