@@ -1,15 +1,15 @@
-package Schilling;
+package schelling;
 
 import javafx.scene.paint.Color;
 import cell.Cell;
 import cell.State;
 
-public class SchillingCell extends Cell{
+public class SchellingCell extends Cell{
 
 	private double idealRatio; // between 0 and 1
-	private State personX = new State(Color.RED, "X");
-	private State personO = new State(Color.BLUE, "O");
-	private State vacant = new State(Color.GRAY, "VACANT");
+	public static State personX = new State(Color.RED, "X");
+	public static State personO = new State(Color.BLUE, "O");
+	public static State vacant = new State(Color.GRAY, "VACANT");
 
 	
 	@Override
@@ -27,7 +27,8 @@ public class SchillingCell extends Cell{
 	}
 
 	private void moveToEmptyCell(){
-		for(Cell option : getNeighbors()) //this will put into first open cell, not random, will cause bunching at top?
+		// TODO replace getNeighbors with a way to loop through all cells, not just neighbors
+		for(Cell option : getNeighbors())
 			if(option.getFutureState().equals(vacant)){
 				option.setFutureState(this.getCurrState());
 				this.setFutureState(vacant);
