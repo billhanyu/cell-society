@@ -19,4 +19,5 @@ public class SchellingSimulationFactory extends SimulationFactory {
         // TODO Auto-generated method stub
         return "SchellingSimulation";
     }
+
 }
