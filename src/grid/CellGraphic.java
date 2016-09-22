@@ -59,4 +59,12 @@ public class CellGraphic {
 	public void setColor(Color color){
 		//set color of shape to this
 	}
+
+	public GridPosition getGridPos() {
+		return gridPos;
+	}
+
+	public void setGridPos(GridPosition gridPos) {
+		this.gridPos = gridPos;
+	}
 }

@@ -15,11 +15,14 @@ public abstract class Builder {
 	private int numRows;
 	private int numCols;
 	
-	List<CellGraphic> visualGrid = new ArrayList<CellGraphic>();
+	protected List<Cell> cells;
+	protected List<CellGraphic> cellGrid;
 	
-	public Runner init(int rows, int cols) {
-		//TODO: initialize CellGraphic corresponding to each Cell in cellAL passed by runner 
-		return null;
+	public Builder() {
+		cells = new ArrayList<Cell>();
+		cellGrid = new ArrayList<CellGraphic>();
 	}
+	
+	public abstract Runner init(Parameters param);
 	
 }
