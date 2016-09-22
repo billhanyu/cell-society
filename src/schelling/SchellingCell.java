@@ -1,10 +1,10 @@
-package Schilling;
+package schelling;
 
 import javafx.scene.paint.Color;
 import cell.Cell;
 import cell.State;
 
-public class SchillingCell extends Cell{
+public class SchellingCell extends Cell{
 
 	private double idealRatio; // between 0 and 1
 	public static State personX = new State(Color.RED, "X");
