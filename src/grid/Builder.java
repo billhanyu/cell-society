@@ -1,7 +1,9 @@
 package grid;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cell.Cell;
 
@@ -16,11 +18,11 @@ public abstract class Builder {
 	private int numCols;
 	
 	protected List<Cell> cells;
-	protected List<CellGraphic> cellGrid;
+	protected Map<Cell, CellGraphic> cellGrid;
 	
 	public Builder() {
 		cells = new ArrayList<Cell>();
-		cellGrid = new ArrayList<CellGraphic>();
+		cellGrid = new HashMap<Cell, CellGraphic>();
 	}
 	
 	public abstract Runner init(Parameters param);
