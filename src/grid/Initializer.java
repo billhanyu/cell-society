@@ -4,10 +4,12 @@ import SpreadingFire.SFParameters;
 import SpreadingFire.SpreadingFireBuilder;
 import javafx.stage.Stage;
 import ui.ErrorPop;
+import ui.SimulationScene;
 
 public class Initializer {
 	private Stage stage;
-	public static final int SIZE = 680;
+	public static final int SCENE_WIDTH = 680;
+	public static final int SCENE_HEIGHT = 680;
 	public static final String SEGREGATION = "Segregation";
 	public static final String PRED_PREY = "Predator-Prey";
 	public static final String FIRE = "Fire";
@@ -50,5 +52,11 @@ public class Initializer {
 			ErrorPop error = new ErrorPop(300, 200, "Simulation Initializing Error");
 			error.popup();
 		}
+		initSimulationScene();
+	}
+	
+	private void initSimulationScene() {
+		SimulationScene scn = new SimulationScene(builder.getSimulationPane());
+		stage.setScene(scn.initScene());
 	}
 }

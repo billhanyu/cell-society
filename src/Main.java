@@ -53,8 +53,7 @@ public class Main extends Application {
         
         initializer = new Initializer(stage);
         
-        StartScene start = new StartScene(Initializer.SIZE, Initializer.SIZE, 
-        		new ExitAction(), initializer);
+        StartScene start = new StartScene(new ExitAction(), initializer);
         stage.setScene(start.initScene());
     }
 
