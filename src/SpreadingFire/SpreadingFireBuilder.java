@@ -6,10 +6,14 @@ import grid.Parameters;
 import grid.Runner;
 
 
-public class SpreadingFireBuilder extends Builder{
+public class SpreadingFireBuilder extends Builder {
 	
+	public SpreadingFireBuilder(Parameters param) {
+		super(param);
+	}
+
 	@Override
-	public Runner init(Parameters param) {
+	public Runner init() {
 		if (!(param instanceof SFParameters)) {
 			// not supposed to happen
 			return null;
