@@ -53,4 +53,12 @@ public class CellGraphic {
 	public void setHeight(double height) {
 		this.height = height;
 	}
+
+	public GridPosition getGridPos() {
+		return gridPos;
+	}
+
+	public void setGridPos(GridPosition gridPos) {
+		this.gridPos = gridPos;
+	}
 }
