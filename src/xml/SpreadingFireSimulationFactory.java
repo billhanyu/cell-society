@@ -2,6 +2,8 @@ package xml;
 
 import org.w3c.dom.Element;
 import grid.Builder;
+import xml.model.SimulationParameters;
+import xml.model.SpreadingFireModel;
 
 public class SpreadingFireSimulationFactory extends SimulationFactory {
     
@@ -16,8 +18,22 @@ public class SpreadingFireSimulationFactory extends SimulationFactory {
     }
 
     @Override
+    public SpreadingFireModel getSimulationParameters(){
+        if(!isValidFile()){
+            System.out.println("hello");
+        }
+        String title = getTextValue("title");
+        String size = getTextValue("size");
+        String author = getTextValue("author");
+        String probCatch = getTextValue("probCatch");
+        String numRows = getTextValue("numRows");
+        String numCols = getTextValue("numCols");
+        return new SpreadingFireModel(title, author, size, numRows, numCols, probCatch);
+    }
+    
+    @Override
     public String getSimulationType () {
         // TODO Auto-generated method stub
-        return "SpreadingFireSimulation";
+        return "Spreading Fire Simulation";
     }
 }

@@ -8,19 +8,26 @@ package xml.model;
 
 public class SimulationParameters {
 
-    private final int guiSize;
-    private final String guiTitle;
+    private final int simSize;
+    private final String simTitle;
+    private final String simAuthor;
     
-    public SimulationParameters(String GUIsize, String GUItitle){
-        this.guiSize = Integer.parseInt(GUIsize);
-        this.guiTitle = GUItitle;
+    public SimulationParameters(String title, String author, String size){
+        this.simSize = Integer.parseInt(size);
+        this.simTitle = title;
+        this.simAuthor = author;
     }
 
-    public int getGuiSize () {
-        return guiSize;
+    public int getSimSize () {
+        return simSize;
     }
 
-    public String getGuiTitle () {
-        return guiTitle;
+    public String getSimTitle () {
+        return simTitle;
     }
+
+    public String getSimAuthor () {
+        return simAuthor;
+    }
+
 }
