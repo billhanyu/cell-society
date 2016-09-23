@@ -5,26 +5,75 @@ import cell.Cell;
 import cell.State;
 
 public class WaTorCell extends Cell{
-	
+
 	public static final int SHARK_ENERGY = 10;
 	public static final int FISH_REPRODUCTION_RATE = 3;
 	public static final int SHARK_REPRODUCTION_RATE = 15;
 	public static State empty = new State(Color.GRAY, "EMPTY");
 
-
-
 	@Override
 	public void checkChangeState() {
-		if (getCurrState().equals(new WaTorFishState()));
-		
+		if (getCurrState().equals(new WaTorFishState()))
+			fishSwim();
+		if(getCurrState().equals(new WaTorSharkState()))
+			sharkSwim();
+
 	}
-	
-	public void fishSwim(){
+
+	private void fishSwim(){
+		if(canReproduce(FISH_REPRODUCTION_RATE)){
+			if(canMoveLikeFish())
+				this.setFutureState(new WaTorFishState());
+		}
+		else
+			if(canMoveLikeFish())
+				this.setFutureState(empty);	}
+
+	private void sharkSwim(){
+		if(isDead()){
+			if(canReproduce(SHARK_REPRODUCTION_RATE)){
+				if(canMoveLikeShark())
+					this.setFutureState(new WaTorSharkState());
+			}
+			else
+				if(canMoveLikeShark())
+					this.setFutureState(empty);
+		}
+	}
+
+	private boolean isDead(){
+		if( ((WaTorSharkState) getCurrState()).energy == 0){
+			setFutureState(empty);
+			return false;
+		}
+		((WaTorSharkState) getCurrState()).loseEnergy();
+		return true;
+	}
+
+	private boolean canReproduce(int reproductionRate){
+		if(((WaTorState) getCurrState()).getChrononsSinceReproduction() == reproductionRate){
+			((WaTorState) getCurrState()).zeroChrononsSinceReproduction();
+			return true;
+		}
+		((WaTorState) getCurrState()).incrementChrononsSinceReproduction();
+		return false;
+	}
+
+	private boolean canMoveLikeShark(){
 		for(Cell neighbor : getNeighbors())
-			if (neighbor.getCurrState().equals(empty))
-				
-				;
-
+			if(neighbor.getFutureState().equals(new WaTorFishState())){
+				neighbor.setFutureState(this.getCurrState());
+				return true;
+			}
+		return canMoveLikeFish();
 	}
 
+	private boolean canMoveLikeFish(){
+		for(Cell neighbor : getNeighbors())
+			if(neighbor.getFutureState().equals(empty)){
+				neighbor.setFutureState(this.getCurrState());
+				return true;
+			}
+		return false;
+	}
 }
