@@ -6,7 +6,7 @@ public class ParamSlider {
 	
 	private int min, max, value, increment;
 	
-	public void init(int min, int max, int value, int increment) {
+	public ParamSlider (int min, int max, int value, int increment) {
 		this.min = min;
 		this.max = max;
 		this.value = value;

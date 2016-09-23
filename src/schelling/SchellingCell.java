@@ -2,6 +2,7 @@ package schelling;
 
 import javafx.scene.paint.Color;
 import cell.Cell;
+import cell.GridPosition;
 import cell.State;
 
 public class SchellingCell extends Cell{
@@ -12,6 +13,10 @@ public class SchellingCell extends Cell{
 	public static State vacant = new State(Color.GRAY, "VACANT");
 
 	
+	public SchellingCell(GridPosition gridPosition) {
+		super(gridPosition);
+	}
+
 	@Override
 	public void checkChangeState() {
 		if(!checkSatisfied())
