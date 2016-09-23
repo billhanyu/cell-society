@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import cell.Cell;
+import global.Initializer;
 import ui.SimulationPane;
 
 public abstract class Builder {
@@ -47,7 +48,7 @@ public abstract class Builder {
 	
 	protected abstract void initCells();
 	
-	protected SimulationPane getSimulationPane() {
+	public SimulationPane getSimulationPane() {
 		SimulationPane pane = new SimulationPane(width, height);
 		for (CellGraphic graphic: cellGrid.values()) {
 			pane.addShape(graphic.getGraphic());

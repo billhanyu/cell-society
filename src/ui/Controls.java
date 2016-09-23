@@ -1,8 +1,8 @@
 package ui;
 
-import grid.Initializer;
 import ui.ParamSlider;
 import javafx.beans.value.ObservableValue;
+import global.Initializer;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Node;
 import javafx.scene.control.Slider;
@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 public class Controls {
-	private Initializer initializer;
+	protected Initializer initializer;
 	
 	public Controls(Initializer initializer) {
 		this.initializer = initializer;
