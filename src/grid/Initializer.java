@@ -3,6 +3,8 @@ package grid;
 import SpreadingFire.SFParameters;
 import SpreadingFire.SpreadingFireBuilder;
 import javafx.stage.Stage;
+import schelling.SLParameters;
+import schelling.SchellingBuilder;
 import ui.Controls;
 import ui.ErrorPop;
 import ui.SimulationScene;
@@ -37,7 +39,13 @@ public class Initializer {
 	public void initSimulation(String algorithm) {
 		this.algorithm = algorithm;
 		if (algorithm.equals(SEGREGATION)) {
-			
+			param = new SLParameters();
+			param.setRows(20);
+			param.setCols(20);
+			((SLParameters) param).setEmptyRatio(0.2);
+			((SLParameters) param).setRatio(1.5);
+			builder = new SchellingBuilder(param);
+			runner = builder.init();
 		}
 		else if (algorithm.equals(PRED_PREY)) {
 			

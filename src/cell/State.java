@@ -7,6 +7,11 @@ public class State {
 	private Color color;
 	private String stateName;	
 	
+	public State(Color c, String n){
+		color = c;
+		stateName = n;
+	}
+	
 	public Color getColor() {
 		return color;
 	}
@@ -35,12 +40,4 @@ public class State {
 		State other = (State) obj;
 		return(stateName != null && stateName.equals(other.stateName));
 	}
-
-	public State(Color c, String n){
-		color = c;
-		stateName = n;
-	}
-	
-	
-
 }

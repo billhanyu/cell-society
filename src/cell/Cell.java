@@ -9,8 +9,9 @@ public abstract class Cell {
 	protected State futureState;
 	protected GridPosition gridPos;
 	
-	public Cell(){
-		
+	public Cell(GridPosition gp, State s){
+		this(s);
+		gridPos = gp;
 	}
 	
 	public Cell(State s){
