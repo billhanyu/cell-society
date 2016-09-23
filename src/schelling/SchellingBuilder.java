@@ -8,6 +8,7 @@ import grid.Parameters;
 import grid.Runner;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import ui.ErrorPop;
 
 public class SchellingBuilder extends Builder {
 
@@ -21,17 +22,6 @@ public class SchellingBuilder extends Builder {
 
 	@Override
 	protected Runner initRunner() {
-		if (!(param instanceof SLParameters)) {
-			// not supposed to happen
-			return null;
-		}
-		pars = (SLParameters) param;
-		cellWidth = (double)width / numCols;
-		cellHeight = cellWidth;
-		emptyRatio = pars.getEmptyRatio();
-		ratio = pars.getRatio();
-		initCells();
-		giveAllCellsNeighbors();
 		return new SchellingRunner(cells, cellGrid);
 	}
 
@@ -65,5 +55,20 @@ public class SchellingBuilder extends Builder {
 	@Override
 	protected void addAllNeighbors(Cell c) {
 		addSidesAsNeighbors(c);
+		addCornersAsNeighbors(c);
+	}
+
+	@Override
+	protected void readParameters() {
+		if (!(param instanceof SLParameters)) {
+			// not supposed to happen
+			ErrorPop error = new ErrorPop(300, 200, "Error reading Schelling Parameters");
+			error.popup();
+		}
+		pars = (SLParameters) param;
+		cellWidth = (double)width / numCols;
+		cellHeight = cellWidth;
+		emptyRatio = pars.getEmptyRatio();
+		ratio = pars.getRatio();
 	}
 }
