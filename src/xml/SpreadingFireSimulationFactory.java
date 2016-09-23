@@ -1,6 +1,7 @@
 package xml;
 
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import grid.Builder;
 import xml.model.SimulationParameters;
 import xml.model.SpreadingFireModel;
@@ -22,6 +23,8 @@ public class SpreadingFireSimulationFactory extends SimulationFactory {
         if(!isValidFile()){
             System.out.println("hello");
         }
+        //NodeList listTagNames = rootElement.getElementsByTagName("*");
+        //System.out.println(listTagNames.item(2));
         String title = getTextValue("title");
         String size = getTextValue("size");
         String author = getTextValue("author");
