@@ -17,7 +17,7 @@ public class SpreadingFireBuilder extends Builder {
 	}
 
 	@Override
-	public Runner init() {
+	public Runner initRunner() {
 		if (!(param instanceof SFParameters)) {
 			// not supposed to happen
 			return null;

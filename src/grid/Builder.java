@@ -27,12 +27,23 @@ public abstract class Builder {
 		this.param = param;
 		numRows = param.getRows();
 		numCols = param.getCols();
-		width = Initializer.SCENE_WIDTH - 20;
+		width = Initializer.SCENE_HEIGHT - 20;
 		height = width;
 		//TODO change this height = width relationship later
 	}
 	
-	public abstract Runner init();
+	public void setParameters(Parameters param) {
+		this.param = param;
+	}
+	
+	public Runner init() {
+		numRows = param.getRows();
+		numCols = param.getCols();
+		cellGrid = new HashMap<Cell, CellGraphic>();
+		return initRunner();
+	};
+	
+	protected abstract Runner initRunner();
 	
 	protected abstract void initCells();
 	
