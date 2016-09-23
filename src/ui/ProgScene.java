@@ -1,6 +1,6 @@
 package ui;
 
-import grid.Initializer;
+import global.Initializer;
 import javafx.scene.Scene;
 
 public abstract class ProgScene {
