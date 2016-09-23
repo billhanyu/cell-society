@@ -43,4 +43,23 @@ public abstract class Builder {
 		}
 		return pane;
 	};
+	
+	protected abstract void addNeighbors(Cell c);
+
+	protected void addSidesAsNeighbors(Cell c){
+		// TODO
+	}
+
+	protected void addSidesAcrossBoardAsNeighbors(Cell c){
+		// TODO
+	}
+	
+	protected void addCornersAsNeighbors(Cell c){
+		// TODO
+	}
+
+	protected void addCornersAcrossBoardAsNeighbors(Cell c){
+		// TODO
+	}
+
 }
