@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 
 public class WaTorSharkState extends WaTorState{
 	
-	private int energy;
+	protected int energy;
 	private static Color myColor = Color.BLUE;
 	private static String myName = "SHARK";
 
