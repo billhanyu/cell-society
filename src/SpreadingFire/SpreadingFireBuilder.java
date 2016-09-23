@@ -1,5 +1,6 @@
 package SpreadingFire;
 
+import cell.Cell;
 import cell.GridPosition;
 import grid.Builder;
 import grid.CellGraphic;
@@ -26,6 +27,7 @@ public class SpreadingFireBuilder extends Builder {
 		cellWidth = (double)width / numCols;
 		cellHeight = cellWidth;
 		initCells();
+		giveAllCellsNeighbors();
 		return new SpreadingFireRunner(cells, cellGrid);
 	}
 
@@ -49,5 +51,10 @@ public class SpreadingFireBuilder extends Builder {
 				cellGrid.put(sfCell, g);
 			}
 		}
+	}
+
+	@Override
+	protected void addAllNeighbors(Cell c) {
+		addSidesAsNeighbors(c);
 	}
 }
