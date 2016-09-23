@@ -26,10 +26,10 @@ public class SchellingControls extends Controls {
             	int newNumO = 100 - newNumX;
             	double newRatio;
             	if (newNumO == 0) {
-            		newRatio = Double.MAX_VALUE;
+            		newRatio = Double.MIN_VALUE;
             	}
             	else {
-            		newRatio = ((double)newNumX) / newNumO;
+            		newRatio = ((double)newNumO) / newNumX;
             	}
             	((SLParameters) initializer.getParameters()).setRatio(newRatio);
             	initializer.update();
