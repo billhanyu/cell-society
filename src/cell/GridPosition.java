@@ -22,5 +22,13 @@ public class GridPosition {
 		return (gridCol == other.gridCol && gridRow == other.gridRow);
 	}
 	
+	public int getRow(){
+		return gridRow;
+	}
+	
+	public int getCol(){
+		return gridCol;
+	}
+	
 
 }

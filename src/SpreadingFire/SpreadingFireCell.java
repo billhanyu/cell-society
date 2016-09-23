@@ -24,7 +24,7 @@ public class SpreadingFireCell extends Cell{
 		if (this.getCurrState().equals(tree)){
 			for(Cell neighbor : getNeighbors()){
 				if (neighbor.getCurrState().equals(burning) && checkIfFlamable())
-					futureState = burning;
+					this.futureState = burning;
 			}
 		}
 	}
