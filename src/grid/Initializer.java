@@ -3,13 +3,16 @@ package grid;
 import SpreadingFire.SFParameters;
 import SpreadingFire.SpreadingFireBuilder;
 import javafx.stage.Stage;
+import schelling.SLParameters;
+import schelling.SchellingBuilder;
+import ui.Controls;
 import ui.ErrorPop;
 import ui.SimulationScene;
 
 public class Initializer {
 	private Stage stage;
-	public static final int SCENE_WIDTH = 680;
-	public static final int SCENE_HEIGHT = 680;
+	public static final int SCENE_WIDTH = 800;
+	public static final int SCENE_HEIGHT = 500;
 	public static final String SEGREGATION = "Segregation";
 	public static final String PRED_PREY = "Predator-Prey";
 	public static final String FIRE = "Fire";
@@ -18,6 +21,8 @@ public class Initializer {
 	private Builder builder;
 	private Parameters param;
 	private Runner runner;
+	private String algorithm;
+	private SimulationScene scn;
 	
 	public Initializer(Stage s) {
 		stage = s;
@@ -32,8 +37,15 @@ public class Initializer {
 	}
 	
 	public void initSimulation(String algorithm) {
+		this.algorithm = algorithm;
 		if (algorithm.equals(SEGREGATION)) {
-			
+			param = new SLParameters();
+			param.setRows(20);
+			param.setCols(20);
+			((SLParameters) param).setEmptyRatio(0.2);
+			((SLParameters) param).setRatio(1.5);
+			builder = new SchellingBuilder(param);
+			runner = builder.init();
 		}
 		else if (algorithm.equals(PRED_PREY)) {
 			
@@ -52,11 +64,18 @@ public class Initializer {
 			ErrorPop error = new ErrorPop(300, 200, "Simulation Initializing Error");
 			error.popup();
 		}
+		stage.setTitle(algorithm);
 		initSimulationScene();
 	}
 	
+	public void update() {
+		runner = builder.init();
+		scn.setSimulationPane(builder.getSimulationPane());
+	}
+	
 	private void initSimulationScene() {
-		SimulationScene scn = new SimulationScene(builder.getSimulationPane());
+		Controls controls = new Controls(this);
+		scn = new SimulationScene(builder.getSimulationPane(), controls);
 		stage.setScene(scn.initScene());
 	}
 }

@@ -14,7 +14,7 @@ public class SpreadingFireCell extends Cell{
 
 
 	public SpreadingFireCell(GridPosition gp) {
-		gridPos = gp;
+		super(gp);
 	}
 
 	@Override
