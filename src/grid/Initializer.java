@@ -40,7 +40,7 @@ public class Initializer {
 		}
 		else if (algorithm.equals(FIRE)) {
 			param = new SFParameters();
-			param.setRows(20);
+			param.setRows(20);// TODO read the numRows and numCols from XML
 			param.setCols(20);
 			builder = new SpreadingFireBuilder(param);
 			runner = builder.init();

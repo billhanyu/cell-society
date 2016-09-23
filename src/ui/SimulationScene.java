@@ -1,5 +1,6 @@
 package ui;
 
+import javafx.scene.Group;
 import javafx.scene.Scene;
 
 public class SimulationScene extends ProgScene {
@@ -14,6 +15,12 @@ public class SimulationScene extends ProgScene {
 	@Override
 	public Scene initScene() {
 		//TODO: init with pane
-		return null;
+		Group root = new Group();
+		Group simu = pane.getGroup();
+		simu.setLayoutX((width - pane.getWidth())/2);
+		simu.setLayoutY(10);
+		root.getChildren().add(pane.getGroup());
+		Scene scn = new Scene(root, width, height);
+		return scn;
 	}
 }
