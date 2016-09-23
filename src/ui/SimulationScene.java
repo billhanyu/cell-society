@@ -3,11 +3,14 @@ package ui;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
+import schelling.SchellingControls;
 
 public class SimulationScene extends ProgScene {
 	
 	private SimulationPane pane;
 	private Controls controls;
+	private VBox controlGroup;
 	private Group root;
 	private Group simu; // simulation pane group
 
@@ -28,9 +31,16 @@ public class SimulationScene extends ProgScene {
 		root = new Group();
 		addSimulationView();
 		Node slider = controls.initSizeSlider();
-		slider.setLayoutX(simu.getLayoutX() + pane.getWidth() + 20);
-		slider.setLayoutY(20);
-		root.getChildren().addAll(slider);
+		controlGroup = new VBox();
+		controlGroup.getChildren().add(slider);
+		controlGroup.setLayoutX(simu.getLayoutX() + pane.getWidth() + 20);
+		controlGroup.setLayoutY(20);
+		controlGroup.setSpacing(10);
+		if (controls instanceof SchellingControls) {
+			controlGroup.getChildren().add(((SchellingControls) controls).initRatioSlider());
+			controlGroup.getChildren().add(((SchellingControls) controls).initEmptySlider());
+		}
+		root.getChildren().addAll(controlGroup);
 		Scene scn = new Scene(root, width, height);
 		
 		return scn;

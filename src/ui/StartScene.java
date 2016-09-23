@@ -1,6 +1,6 @@
 package ui;
 
-import grid.Initializer;
+import global.Initializer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
