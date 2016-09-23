@@ -19,6 +19,10 @@ public class WaTorState extends State{
 	public void zeroChrononsSinceReproduction(){
 		chrononsSinceReproduction = 0;
 	}
+	
+	public int getChrononsSinceReproduction(){
+		return chrononsSinceReproduction;
+	}
 
 
 }
