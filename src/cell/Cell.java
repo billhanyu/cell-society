@@ -1,10 +1,11 @@
 package cell;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Cell {
 	
-	protected ArrayList<Cell> neighbors;
+	protected List<Cell> neighbors;
 	protected State currState;
 	protected State futureState;
 	protected GridPosition gridPos;
@@ -17,13 +18,14 @@ public abstract class Cell {
 	public Cell(State s){
 		currState = s;
 		futureState = s;
+		neighbors = new ArrayList<Cell>();
 	}
 	
 	public Cell(GridPosition gp){
 		gridPos = gp;
 	}
 	
-	public ArrayList<Cell> getNeighbors(){
+	public List<Cell> getNeighbors(){
 		return neighbors;
 	}
 	

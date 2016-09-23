@@ -55,6 +55,11 @@ public abstract class Builder {
 		}
 		return pane;
 	};
+	
+	public void giveAllCellsNeighbors(){
+		for(Cell c: cells)
+			addAllNeighbors(c);
+	}
 
 	protected abstract void addAllNeighbors(Cell c);
 

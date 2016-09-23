@@ -27,6 +27,7 @@ public class SpreadingFireBuilder extends Builder {
 		cellWidth = (double)width / numCols;
 		cellHeight = cellWidth;
 		initCells();
+		giveAllCellsNeighbors();
 		return new SpreadingFireRunner(cells, cellGrid);
 	}
 

@@ -31,6 +31,7 @@ public class SchellingBuilder extends Builder {
 		emptyRatio = pars.getEmptyRatio();
 		ratio = pars.getRatio();
 		initCells();
+		giveAllCellsNeighbors();
 		return new SchellingRunner(cells, cellGrid);
 	}
 
