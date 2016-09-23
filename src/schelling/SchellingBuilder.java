@@ -1,5 +1,6 @@
 package schelling;
 
+import cell.Cell;
 import cell.GridPosition;
 import grid.Builder;
 import grid.CellGraphic;
@@ -58,5 +59,10 @@ public class SchellingBuilder extends Builder {
 				cellGrid.put(slCell, g);
 			}
 		}
+	}
+
+	@Override
+	protected void addAllNeighbors(Cell c) {
+		addSidesAsNeighbors(c);
 	}
 }

@@ -50,4 +50,16 @@ public abstract class Runner {
 		updateAllCellStates();
 		updateCellGrid();
 	}
+	
+	public void start(){
+		// TODO update animations
+	}
+	
+	// TODO get animation working
+	
+	// TODO move animation stuff from Main to here
+	
+	// TODO method to set step
+	
+	// TODO start, step, stop, reset
 }

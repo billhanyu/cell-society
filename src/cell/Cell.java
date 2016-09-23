@@ -27,6 +27,10 @@ public abstract class Cell {
 		return neighbors;
 	}
 	
+	public void addNeighbor(Cell c){
+		neighbors.add(c);
+	}
+	
 	public State getCurrState(){
 		return currState;
 	}

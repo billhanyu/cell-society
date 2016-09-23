@@ -53,7 +53,7 @@ public class SpreadingFireBuilder extends Builder {
 	}
 
 	@Override
-	protected void addNeighbors(Cell c) {
+	protected void addAllNeighbors(Cell c) {
 		addSidesAsNeighbors(c);
 	}
 }
