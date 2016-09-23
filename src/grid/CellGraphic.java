@@ -13,10 +13,8 @@ public class CellGraphic {
 	private GridPosition gridPos;
 	private Color shapeColor;
 	
-	public CellGraphic(double x, double y, double width, double height) {
-		setPosition(x, y);
-		setWidth(width);
-		setHeight(height);
+	public CellGraphic(GridPosition gp) {
+		gridPos = gp;
 	}
 
 	public Shape getGraphic() {
@@ -58,7 +56,7 @@ public class CellGraphic {
 	
 	public void setColor(Color color){
 		shapeColor = color;
-		//TODO: set shape color
+		graphic.setFill(shapeColor);
 	}
 
 	public GridPosition getGridPos() {
