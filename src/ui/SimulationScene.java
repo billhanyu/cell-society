@@ -42,6 +42,7 @@ public class SimulationScene extends ProgScene {
 		if (controls instanceof SchellingControls) {
 			controlGroup.getChildren().add(((SchellingControls) controls).initRatioSlider());
 			controlGroup.getChildren().add(((SchellingControls) controls).initEmptySlider());
+			controlGroup.getChildren().add(((SchellingControls) controls).initIdealSlider());
 		}
 		buttons.setLayoutX(controlGroup.getLayoutX());
 		buttons.setLayoutY(Initializer.SCENE_HEIGHT - 150);

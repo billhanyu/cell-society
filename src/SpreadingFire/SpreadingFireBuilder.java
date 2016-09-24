@@ -40,7 +40,7 @@ public class SpreadingFireBuilder extends Builder {
 				cells.add(sfCell);
 				Rectangle rect = new Rectangle(c * cellWidth, r * cellHeight, cellWidth, cellHeight);
 				CellGraphic g = new CellGraphic(new GridPosition(r, c));
-				rect.setFill(sfCell.getCurrState().getColor()); // for debugging
+				rect.setFill(sfCell.getCurrState().getColor());
 				rect.setStroke(Color.BLACK);
 				g.setGraphic(rect);
 				cellGrid.put(sfCell, g);

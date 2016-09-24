@@ -22,7 +22,6 @@ public class WaTorCell extends Cell{
 			fishSwim();
 		if(getCurrState().equals(new WaTorSharkState()))
 			sharkSwim();
-
 	}
 
 	private void fishSwim(){
