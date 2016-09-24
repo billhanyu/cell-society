@@ -13,9 +13,8 @@ public abstract class Runner {
 	protected List<Cell> cells;
 	protected Map<Cell, CellGraphic> cellGrid;
 
-	public static final int FRAMES_PER_SECOND = 60;
-	public static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
-	public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
+	public static final double MIN_SPEED_IN_SECONDS = .25;
+	public static final double MAX_SPEED_IN_SECONDS = 3;
 	private Timeline currentAnimation;
 	private boolean freshStart;
 
@@ -64,17 +63,21 @@ public abstract class Runner {
 		System.out.println("step");
 	}
 
-	public void start(){
+	public void start(int speedOutOf100){
 		if(freshStart){
 			freshStart = false;
+			
+			// maps speedOutOf100 to the equivalent in range of minimum speed to maximum speed
+			double mappedTimeInSecs = speedOutOf100 * ((MAX_SPEED_IN_SECONDS - MIN_SPEED_IN_SECONDS)/100) + MIN_SPEED_IN_SECONDS;
+			
 			Timeline animation = new Timeline();
-			KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
+			KeyFrame frame = new KeyFrame(Duration.seconds(mappedTimeInSecs),
 					e -> step());
 			animation.setCycleCount(Timeline.INDEFINITE);
 			animation.getKeyFrames().add(frame);
-			animation.play();
 			currentAnimation = animation;
 		}
+		currentAnimation.play();
 	}
 
 	public void pause(){
@@ -84,14 +87,10 @@ public abstract class Runner {
 	public void reset(){
 		currentAnimation.stop();
 	}
+	
+	public void updateSpeed(int newSpeed){
+		start(newSpeed);
+	}
 
 
-
-	// TODO get animation working
-
-	// TODO move animation stuff from Main to here
-
-	// TODO method to set step
-
-	// TODO start, step, stop, reset
 }
