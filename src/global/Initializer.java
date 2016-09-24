@@ -52,7 +52,7 @@ public class Initializer {
 	public void start() {
 		stage.setTitle("Cell Society");
 		StartScene start = new StartScene(new ExitAction(), this);
-        stage.setScene(start.initScene());
+        stage.setScene(start.initScene(0));
 	}
 	
 	public void reset() {
@@ -78,7 +78,7 @@ public class Initializer {
 	}
 	
 	public void initSimulation(String algorithm) {
-	        Decoder xmlParser = new Decoder();
+	        xmlParser = new Decoder();
 	        this.algorithm = algorithm;
 		getType();
 		switch (type) {
@@ -99,9 +99,8 @@ public class Initializer {
 	}
 
 	private void initFire() {
-	        Decoder parser = new Decoder();
 	        SpreadingFireSimulationFactory fireSimulation = 
-	                new SpreadingFireSimulationFactory(parser.getRootElement("data/xml/sample.xml"));
+	                new SpreadingFireSimulationFactory(xmlParser.getRootElement("data/xml/sample.xml"));
 		param = fireSimulation.getSimulationParameters();
 		builder = new SpreadingFireBuilder(param);
 		runner = builder.init();
@@ -137,7 +136,7 @@ public class Initializer {
 			break;
 		}
 		scn = new SimulationScene(builder.getSimulationPane(), controls);
-		stage.setScene(scn.initScene());
+		stage.setScene(scn.initScene(param.getRows()));
 	}
 	
 	private void getType() {

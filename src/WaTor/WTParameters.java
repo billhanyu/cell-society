@@ -57,4 +57,9 @@ public class WTParameters extends Parameters {
 	public void setRatio(double ratio) {
 		this.ratio = ratio;
 	}
+    
+    public boolean isModified () {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }

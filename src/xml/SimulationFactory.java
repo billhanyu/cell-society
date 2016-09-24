@@ -17,6 +17,17 @@ public abstract class SimulationFactory extends XMLFactory {
         return Objects.equals(getAttribute("SimulationType"), getSimulationType());
     }
     
+    public Parameters returnBasicParameters(){
+        if(!isValidFile()){
+            System.out.println("hello");
+        }
+        String title = getTextValue("title");
+        String author = getTextValue("author");
+        String numRows = getTextValue("numRows");
+        String numCols = getTextValue("numCols");
+        return new Parameters(title, author, numRows, numCols);
+    }
+    
     public abstract Parameters getSimulationParameters();
     
     public abstract String getSimulationType();

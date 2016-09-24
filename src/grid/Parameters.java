@@ -14,7 +14,14 @@ public class Parameters {
 	    this.cols = Integer.parseInt(cols);
 	}
 	
-	public String getTitle () {
+	public Parameters (Parameters p) {
+	    this.title = p.getTitle();
+	    this.author = p.getAuthor();
+	    this.rows = p.getRows();
+	    this.cols = p.getCols();
+	}
+
+        public String getTitle () {
             return title;
         }
 
@@ -37,4 +44,5 @@ public class Parameters {
 	public void setCols(int cols) {
 		this.cols = cols;
 	}
+
 }
