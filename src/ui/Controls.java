@@ -37,6 +37,21 @@ public class Controls {
 		return box;
 	}
 	
+	public Node initSpeedSlider() {
+		HBox box = new HBox();
+		Slider speedSlider = new ParamSlider(0, 100, 50, 5).initSlider();
+		Text speedHud = new Text("Speed");
+		speedSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
+            	int newSpeed = new_val.intValue();
+            	initializer.getRunner().start(newSpeed);
+            }
+		});
+		box.getChildren().addAll(speedSlider, speedHud);
+		box.setSpacing(20);
+		return box;
+	}
+	
 	public Node initActionButtons() {
 		Button start = initStartButton();
 		Button step = initStepButton();

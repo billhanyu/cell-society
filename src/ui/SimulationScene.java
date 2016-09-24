@@ -32,6 +32,7 @@ public class SimulationScene extends ProgScene {
 		root = new Group();
 		addSimulationView();
 		Node slider = controls.initSizeSlider();
+		Node speed = controls.initSpeedSlider();
 		Node buttons = controls.initActionButtons();
 		Node back = controls.initBackButton();
 		controlGroup = new VBox();
@@ -40,18 +41,24 @@ public class SimulationScene extends ProgScene {
 		controlGroup.setLayoutY(20);
 		controlGroup.setSpacing(10);
 		if (controls instanceof SchellingControls) {
-			controlGroup.getChildren().add(((SchellingControls) controls).initRatioSlider());
-			controlGroup.getChildren().add(((SchellingControls) controls).initEmptySlider());
-			controlGroup.getChildren().add(((SchellingControls) controls).initIdealSlider());
+			addSchellingControls();
 		}
 		buttons.setLayoutX(controlGroup.getLayoutX());
-		buttons.setLayoutY(Initializer.SCENE_HEIGHT - 150);
+		buttons.setLayoutY(Initializer.SCENE_HEIGHT - 200);
+		speed.setLayoutX(controlGroup.getLayoutX());
+		speed.setLayoutY(Initializer.SCENE_HEIGHT - 150);
 		back.setLayoutX(Initializer.SCENE_WIDTH - 80);
 		back.setLayoutY(Initializer.SCENE_HEIGHT - 50);
-		root.getChildren().addAll(controlGroup, buttons, back);
+		root.getChildren().addAll(controlGroup, buttons, speed, back);
 		Scene scn = new Scene(root, width, height);
 		
 		return scn;
+	}
+
+	private void addSchellingControls() {
+		controlGroup.getChildren().add(((SchellingControls) controls).initRatioSlider());
+		controlGroup.getChildren().add(((SchellingControls) controls).initEmptySlider());
+		controlGroup.getChildren().add(((SchellingControls) controls).initIdealSlider());
 	}
 	
 	private void addSimulationView() {

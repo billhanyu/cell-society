@@ -40,7 +40,7 @@ public class SchellingCell extends Cell{
 				numDifferent++;
 		}
 		int numNeighbors = numSimilar + numDifferent;
-		return ( numNeighbors == 0 || ((double) numSimilar / (double) (numNeighbors)) > idealRatio);
+		return ( numNeighbors == 0 || ((double) numSimilar / (double) (numNeighbors)) > getIdealRatio());
 	}
 
 	private void moveToEmptyCell(){
@@ -56,5 +56,13 @@ public class SchellingCell extends Cell{
 
 	public void setCellsPointer(List<Cell> cells){
 		this.cells = cells;
+	}
+
+	public double getIdealRatio() {
+		return idealRatio;
+	}
+
+	public void setIdealRatio(double idealRatio) {
+		this.idealRatio = idealRatio;
 	}
 }
