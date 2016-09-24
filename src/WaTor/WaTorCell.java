@@ -89,4 +89,9 @@ public class WaTorCell extends Cell{
 			}
 		return false;
 	}
+
+	@Override
+	protected Cell getCopiedCell(GridPosition gp, State state) {
+		return new WaTorCell(gp, state);
+	}
 }

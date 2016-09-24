@@ -56,7 +56,8 @@ public class Initializer {
 	}
 	
 	public void reset() {
-		// TODO reset the whole thing
+		runner = builder.regetRunner();
+		scn.setSimulationPane(builder.getSimulationPane());
 	}
 	
 	public void setParameters(Parameters param) {

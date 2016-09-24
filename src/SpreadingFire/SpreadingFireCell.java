@@ -38,4 +38,9 @@ public class SpreadingFireCell extends Cell{
 	private boolean checkIfFlamable(){
 		return Math.random() < probCatch;
 	}
+
+	@Override
+	protected Cell getCopiedCell(GridPosition gp, State state) {
+		return new SpreadingFireCell(gp, state);
+	}
 }

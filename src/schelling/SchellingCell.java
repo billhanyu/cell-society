@@ -65,4 +65,9 @@ public class SchellingCell extends Cell{
 	public void setIdealRatio(double idealRatio) {
 		this.idealRatio = idealRatio;
 	}
+
+	@Override
+	protected Cell getCopiedCell(GridPosition gp, State state) {
+		return new SchellingCell(gp, state);
+	}
 }

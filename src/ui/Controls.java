@@ -39,7 +39,7 @@ public class Controls {
 	
 	public Node initSpeedSlider() {
 		HBox box = new HBox();
-		Slider speedSlider = new ParamSlider(0, 100, 10, 5).initSlider();
+		Slider speedSlider = new ParamSlider(0, 100, 90, 5).initSlider();
 		Text speedHud = new Text("Speed");
 		speedSlider.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {

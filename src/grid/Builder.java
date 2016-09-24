@@ -20,7 +20,10 @@ public abstract class Builder {
 
 	protected List<Cell> cells;
 	protected Map<Cell, CellGraphic> cellGrid;
+	
 	private Cell[][] neighborGrid;
+	private List<Cell> copyCells;
+	private Map<Cell, CellGraphic> copyGrid; // for reset
 
 	public Builder(Parameters param) {
 		cells = new ArrayList<Cell>();
@@ -46,8 +49,14 @@ public abstract class Builder {
 		readParameters();
 		initCells();
 		giveAllCellsNeighbors();
+		keepCopy();
 		return initRunner();
 	};
+	
+	public Runner regetRunner() {
+		returnCopy();
+		return initRunner();
+	}
 	
 	public SimulationPane getSimulationPane() {
 		SimulationPane pane = new SimulationPane(width, height);
@@ -142,5 +151,21 @@ public abstract class Builder {
 		if (row == numRows - 1 && col == numCols - 1) {
 			c.addNeighbor(neighborGrid[0][0]);
 		}
+	}
+	
+	private void keepCopy() {
+		copyCells = new ArrayList<Cell>();
+		copyGrid = new HashMap<Cell, CellGraphic>();
+		
+		for (Cell c: cells) {
+			Cell cpCell = c.copy();
+			copyCells.add(cpCell);
+			copyGrid.put(cpCell, cellGrid.get(c));
+		}
+	}
+	
+	private void returnCopy() {
+		cells = copyCells;
+		cellGrid = copyGrid;
 	}
 }

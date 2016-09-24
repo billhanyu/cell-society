@@ -56,7 +56,6 @@ public abstract class Runner {
 		for(Cell c: cells){
 			CellGraphic cg = cellGrid.get(c);
 			cg.setColor(c.getCurrState().getColor());
-			cellGrid.put(c, cg);
 		}
 	}
 

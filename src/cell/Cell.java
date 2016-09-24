@@ -54,4 +54,11 @@ public abstract class Cell {
 	
 	public abstract void checkChangeState();
 	
+	public Cell copy() {
+		Cell cp = getCopiedCell(gridPos, currState);
+		return cp;
+	}
+	
+	protected abstract Cell getCopiedCell(GridPosition gp, State state);
+	
 }
