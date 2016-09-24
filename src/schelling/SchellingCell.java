@@ -1,5 +1,6 @@
 package schelling;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class SchellingCell extends Cell{
 	public void checkChangeState() {
 		if(!this.getCurrState().equals(vacant) && !checkSatisfied()){
 			moveToEmptyCell();
+			return;
 		}
 	}
 
@@ -42,7 +44,7 @@ public class SchellingCell extends Cell{
 	}
 
 	private void moveToEmptyCell(){
-		List<Cell> toShuffle = cells;
+		List<Cell> toShuffle = new ArrayList<Cell>(cells);
 		Collections.shuffle(toShuffle);
 		for(Cell option : toShuffle)
 			if(option.getFutureState().equals(vacant)){
