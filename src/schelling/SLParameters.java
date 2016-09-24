@@ -3,7 +3,15 @@ package schelling;
 import grid.Parameters;
 
 public class SLParameters extends Parameters {
-	private double emptyRatio; // vacant ratio
+    public SLParameters(){
+        super("Schelling", "Bill", "10", "10");
+    }
+	public SLParameters (String title, String author, String rows, String cols) {
+        super(title, author, rows, cols);
+        // TODO Auto-generated constructor stub
+    }
+
+    private double emptyRatio; // vacant ratio
 	private double ratio; // red-blue ratio
 	private double idealRatio; // the ratio for the cell to become satisfied
 	

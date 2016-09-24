@@ -28,5 +28,7 @@ private final Element rootElement;
         return textValue;
     }
     
+    //protected NodeList getElements
+    
     
 }

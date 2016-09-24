@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SimulationParameters SimulationType="Spreading Fire Simulation">
+<Simulation SimulationType="Spreading Fire Simulation">
 	<title>Spreading Fire Simulation</title>
-	<size>600</size>
 	<author>Addison and Bill have done everything so far</author>
-	<probCatch>.55</probCatch>
 	<numRows>10</numRows>
 	<numCols>10</numCols>
+	<probCatch>.55</probCatch>
 </SimulationParameters>
 	
