@@ -94,6 +94,7 @@ public class Initializer {
 		param = new SFParameters();
 		param.setRows(20);// TODO read the numRows and numCols from XML
 		param.setCols(20);
+		((SFParameters) param).setProbCatch(0.6);
 		builder = new SpreadingFireBuilder(param);
 		runner = builder.init();
 	}

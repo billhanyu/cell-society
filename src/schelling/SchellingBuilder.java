@@ -30,21 +30,22 @@ public class SchellingBuilder extends Builder {
 		// initialize grid of cells
 		for(int r = 0; r < numRows; r++) {
 			for(int c = 0; c < numCols; c++) {
-				SchellingCell slCell = new SchellingCell(new GridPosition(r,c));
+				GridPosition gp = new GridPosition(r, c);
+				SchellingCell slCell;
 				double rnd = Math.random();
 				if (rnd < emptyRatio) {
-					slCell.setFutureState(SchellingCell.vacant);
+					slCell = new SchellingCell(gp, SchellingCell.vacant);
 				}
 				else if (rnd > (emptyRatio + ratio)/(ratio + 1)) {
-					slCell.setFutureState(SchellingCell.personO);
+					slCell = new SchellingCell(gp, SchellingCell.personO);
 				}
 				else {
-					slCell.setFutureState(SchellingCell.personX);
+					slCell = new SchellingCell(gp, SchellingCell.personX);
 				}
 				cells.add(slCell);
 				Rectangle rect = new Rectangle(c * cellWidth, r * cellHeight, cellWidth, cellHeight);
 				CellGraphic g = new CellGraphic(new GridPosition(r, c));
-				rect.setFill(slCell.getFutureState().getColor());
+				rect.setFill(slCell.getCurrState().getColor());
 				rect.setStroke(Color.BLACK);
 				g.setGraphic(rect);
 				cellGrid.put(slCell, g);

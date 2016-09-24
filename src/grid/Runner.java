@@ -60,7 +60,6 @@ public abstract class Runner {
 	public void step(){
 		updateAllCellStates();
 		updateCellGrid();
-		System.out.println("step");
 	}
 
 	public void start(int speedOutOf100){
