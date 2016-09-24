@@ -15,13 +15,18 @@ public abstract class Runner {
 
 	public static final double MIN_SPEED_IN_SECONDS = .25;
 	public static final double MAX_SPEED_IN_SECONDS = 3;
+	private int speedOutOf100;
 	private Timeline currentAnimation;
 	private boolean freshStart;
+	
+	private KeyFrame frame;
+	private boolean inPlay = false;
 
 	public Runner(List<Cell> cells, Map<Cell, CellGraphic> cellGrid) {
 		this.cells = cells;
 		this.cellGrid = cellGrid;
 		freshStart = true;
+		speedOutOf100 = 10;
 	}
 
 	public List<Cell> getCells(){
@@ -60,29 +65,39 @@ public abstract class Runner {
 		updateCellGrid();
 	}
 
-	public void start(int speedOutOf100){
+	public void start(){
 		if(freshStart){
 			freshStart = false;
 			// maps speedOutOf100 to the equivalent in range of minimum speed to maximum speed
-			double mappedTimeInSecs = speedOutOf100 * ((MAX_SPEED_IN_SECONDS - MIN_SPEED_IN_SECONDS)/100) + MIN_SPEED_IN_SECONDS;
 			
 			Timeline animation = new Timeline();
-			KeyFrame frame = new KeyFrame(Duration.seconds(mappedTimeInSecs),
+			frame = new KeyFrame(Duration.seconds(getMappedTime()),
 					e -> step());
 			animation.setCycleCount(Timeline.INDEFINITE);
 			animation.getKeyFrames().add(frame);
 			currentAnimation = animation;
 		}
 		currentAnimation.play();
+		inPlay = true;
 	}
 
 	public void pause(){
 		currentAnimation.pause();
+		inPlay = false;
 	}
 	
-	public void updateSpeed(int newSpeed){
-		start(newSpeed);
+	public void setSpeed(int newSpeed){
+		this.speedOutOf100 = newSpeed;
+		if (inPlay) {
+			frame = new KeyFrame(Duration.seconds(getMappedTime()),
+					e -> step());
+			currentAnimation.stop();
+			currentAnimation.getKeyFrames().setAll(frame);
+			currentAnimation.play();
+		}
 	}
-
-
+	
+	private double getMappedTime() {
+		return speedOutOf100 * ((MAX_SPEED_IN_SECONDS - MIN_SPEED_IN_SECONDS)/100) + MIN_SPEED_IN_SECONDS;
+	}
 }
