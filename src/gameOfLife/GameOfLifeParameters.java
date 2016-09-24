@@ -8,4 +8,10 @@ public class GameOfLifeParameters extends Parameters {
         super(title, author, rows, cols);
     }
 
+    
+    public boolean isModified () {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
 }

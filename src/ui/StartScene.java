@@ -29,8 +29,8 @@ public class StartScene extends ProgScene {
 		this.initializer = initializer;
 	}
 
-	@Override
-	public Scene initScene() {
+	
+	public Scene initScene(int size) {
 		HBox selectionBox = initSelectionBox();
 		Button exitButton = initExitButton();
 		VBox box = new VBox();

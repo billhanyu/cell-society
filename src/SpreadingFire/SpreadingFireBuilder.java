@@ -30,12 +30,25 @@ public class SpreadingFireBuilder extends Builder {
 			for(int c = 0; c < numCols; c++) {
 				SpreadingFireCell sfCell;
 				GridPosition gp = new GridPosition(r, c);
-				if (r == (numRows / 2) && c == (numCols / 2) ) {
-					sfCell = new SpreadingFireCell(gp, SpreadingFireCell.burning);
+				if (pars.isModified()){
+				    if (pars.getExtendedParams().getRowStart() == r && pars.getExtendedParams().getColStart() == c){
+				        sfCell = new SpreadingFireCell(gp, SpreadingFireCell.burning);
+				        System.out.println(r);
+				        System.out.println(c);
+				    }
+				    else{
+				        sfCell = new SpreadingFireCell(gp, SpreadingFireCell.tree);
+				    }
 				}
-				else {
-					sfCell = new SpreadingFireCell(gp, SpreadingFireCell.tree);
+				else{
+				    if (r == (numRows / 2) && c == (numCols / 2) ) {
+				        sfCell = new SpreadingFireCell(gp, SpreadingFireCell.burning);
+				    }
+				    else{
+				        sfCell = new SpreadingFireCell(gp, SpreadingFireCell.tree);
+				    }
 				}
+				
 				sfCell.setProbCatch(pars.getProbCatch());
 				cells.add(sfCell);
 				Rectangle rect = new Rectangle(c * cellWidth, r * cellHeight, cellWidth, cellHeight);

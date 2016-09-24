@@ -2,8 +2,8 @@ package xml;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import grid.Builder;
 import SpreadingFire.SFParameters;
+import grid.Parameters;
 
 public class SpreadingFireSimulationFactory extends SimulationFactory {
     
@@ -13,17 +13,17 @@ public class SpreadingFireSimulationFactory extends SimulationFactory {
 
     @Override
     public SFParameters getSimulationParameters(){
-        if(!isValidFile()){
-            System.out.println("hello");
-        }
-        //NodeList listTagNames = rootElement.getElementsByTagName("*");
-        //System.out.println(listTagNames.item(2));
-        String title = getTextValue("title");
-        String author = getTextValue("author");
+        Parameters basicParams = returnBasicParameters();
+        NodeList listTagNames = rootElement.getElementsByTagName("*");
         String probCatch = getTextValue("probCatch");
-        String numRows = getTextValue("numRows");
-        String numCols = getTextValue("numCols");
-        return new SFParameters(title, author, numRows, numCols, probCatch);
+        for (int i = 0; i < listTagNames.getLength(); i++){
+            if (listTagNames.item(i).getNodeName().equals("FireCell")){
+                String startingCell = getTextValue("FireCell");
+                return new SFParameters(basicParams, probCatch, startingCell);
+            }
+        }
+        
+        return new SFParameters(basicParams, probCatch);
     }
     
     @Override
