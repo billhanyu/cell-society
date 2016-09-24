@@ -1,7 +1,6 @@
 package xml;
 import org.w3c.dom.Element;
-import grid.Builder;
-
+import schelling.SLParameters;
 public class SchellingSimulationFactory extends SimulationFactory {
     
     public SchellingSimulationFactory(Element rootElement) {
@@ -9,14 +8,15 @@ public class SchellingSimulationFactory extends SimulationFactory {
     }
 
     @Override
-    public Builder getSimulation () {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public String getSimulationType () {
         // TODO Auto-generated method stub
         return "SchellingSimulation";
     }
+
+    @Override
+    public SLParameters getSimulationParameters () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }
