@@ -23,6 +23,7 @@ public abstract class Cell {
 	
 	public Cell(GridPosition gp){
 		gridPos = gp;
+		neighbors = new ArrayList<Cell>();
 	}
 	
 	public List<Cell> getNeighbors(){

@@ -6,6 +6,7 @@ import java.util.Map;
 import cell.Cell;
 import grid.CellGraphic;
 import grid.Runner;
+import javafx.scene.paint.Color;
 
 public class SchellingRunner extends Runner {
 

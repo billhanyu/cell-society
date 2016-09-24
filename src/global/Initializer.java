@@ -5,6 +5,8 @@ import SpreadingFire.SpreadingFireBuilder;
 import grid.Builder;
 import grid.Parameters;
 import grid.Runner;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import schelling.SLParameters;
 import schelling.SchellingBuilder;
@@ -12,6 +14,7 @@ import schelling.SchellingControls;
 import ui.Controls;
 import ui.ErrorPop;
 import ui.SimulationScene;
+import ui.StartScene;
 
 public class Initializer {
 	private Stage stage;
@@ -30,8 +33,21 @@ public class Initializer {
 	private SimulationScene scn;
 	private Controls controls;
 	
+	class ExitAction implements EventHandler<ActionEvent> {
+		@Override
+		public void handle(ActionEvent event) {
+			stage.close();
+		}
+    }
+	
 	public Initializer(Stage s) {
 		stage = s;
+	}
+	
+	public void start() {
+		stage.setTitle("Cell Society");
+		StartScene start = new StartScene(new ExitAction(), this);
+        stage.setScene(start.initScene());
 	}
 	
 	public void setParameters(Parameters param) {

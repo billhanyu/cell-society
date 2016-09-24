@@ -2,9 +2,12 @@ package ui;
 
 import ui.ParamSlider;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import global.Initializer;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -32,5 +35,47 @@ public class Controls {
 		box.getChildren().addAll(sizeSlider, sizeHud);
 		box.setSpacing(20);
 		return box;
+	}
+	
+	public Node initActionButtons() {
+		Button start = initStartButton();
+		Button step = initStepButton();
+		Button stop = initStopButton();
+		Button reset = initResetButton();
+		HBox buttons = new HBox();
+		buttons.getChildren().addAll(start, step, stop, reset);
+		buttons.setSpacing(15);
+		return buttons;
+	}
+	
+	public Node initBackButton() {
+		Button back = new Button("Back");
+		back.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				initializer.start();
+			}
+		});
+		return back;
+	}
+	
+	private Button initStartButton() {
+		Button start = new Button("start");
+		return start;
+	}
+	
+	private Button initStepButton() {
+		Button step = new Button("step");
+		return step;
+	}
+	
+	private Button initStopButton() {
+		Button stop = new Button("stop");
+		return stop;
+	}
+	
+	private Button initResetButton() {
+		Button reset = new Button("reset");
+		return reset;
 	}
 }

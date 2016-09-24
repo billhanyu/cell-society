@@ -1,5 +1,6 @@
 package ui;
 
+import global.Initializer;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -31,8 +32,10 @@ public class SimulationScene extends ProgScene {
 		root = new Group();
 		addSimulationView();
 		Node slider = controls.initSizeSlider();
+		Node buttons = controls.initActionButtons();
+		Node back = controls.initBackButton();
 		controlGroup = new VBox();
-		controlGroup.getChildren().add(slider);
+		controlGroup.getChildren().addAll(slider);
 		controlGroup.setLayoutX(simu.getLayoutX() + pane.getWidth() + 20);
 		controlGroup.setLayoutY(20);
 		controlGroup.setSpacing(10);
@@ -40,7 +43,11 @@ public class SimulationScene extends ProgScene {
 			controlGroup.getChildren().add(((SchellingControls) controls).initRatioSlider());
 			controlGroup.getChildren().add(((SchellingControls) controls).initEmptySlider());
 		}
-		root.getChildren().addAll(controlGroup);
+		buttons.setLayoutX(controlGroup.getLayoutX());
+		buttons.setLayoutY(Initializer.SCENE_HEIGHT - 150);
+		back.setLayoutX(Initializer.SCENE_WIDTH - 80);
+		back.setLayoutY(Initializer.SCENE_HEIGHT - 50);
+		root.getChildren().addAll(controlGroup, buttons, back);
 		Scene scn = new Scene(root, width, height);
 		
 		return scn;

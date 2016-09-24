@@ -6,8 +6,8 @@ import grid.Builder;
 import grid.CellGraphic;
 import grid.Parameters;
 import grid.Runner;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import ui.ErrorPop;
 
 public class SpreadingFireBuilder extends Builder {
 
@@ -19,15 +19,6 @@ public class SpreadingFireBuilder extends Builder {
 
 	@Override
 	public Runner initRunner() {
-		if (!(param instanceof SFParameters)) {
-			// not supposed to happen
-			return null;
-		}
-		pars = (SFParameters) param;
-		cellWidth = (double)width / numCols;
-		cellHeight = cellWidth;
-		initCells();
-		giveAllCellsNeighbors();
 		return new SpreadingFireRunner(cells, cellGrid);
 	}
 
@@ -56,5 +47,16 @@ public class SpreadingFireBuilder extends Builder {
 	@Override
 	protected void addAllNeighbors(Cell c) {
 		addSidesAsNeighbors(c);
+	}
+
+	@Override
+	protected void readParameters() {
+		if (!(param instanceof SFParameters)) {
+			ErrorPop error = new ErrorPop(300, 200, "Error Reading SFParameters");
+			error.popup();
+		}
+		pars = (SFParameters) param;
+		cellWidth = (double)width / numCols;
+		cellHeight = cellWidth;
 	}
 }
