@@ -3,7 +3,16 @@ package WaTor;
 import grid.Parameters;
 
 public class WTParameters extends Parameters {
-	private int sharkStarve;
+    
+    public WTParameters(){
+        super("WaTor", "Bill", "10", "10");
+    }
+	public WTParameters (String title, String author, String rows, String cols) {
+        super(title, author, rows, cols);
+        // TODO Auto-generated constructor stub
+    }
+
+    private int sharkStarve;
 	private int fishRate;
 	private int sharkRate;
 	private double emptyRatio;

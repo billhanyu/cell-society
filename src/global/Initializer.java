@@ -17,6 +17,7 @@ import ui.Controls;
 import ui.ErrorPop;
 import ui.SimulationScene;
 import ui.StartScene;
+import xml.*;
 
 public class Initializer {
 	private Stage stage;
@@ -34,6 +35,8 @@ public class Initializer {
 	private AlgorithmType type;
 	private SimulationScene scn;
 	private Controls controls;
+	
+	private Decoder xmlParser;
 	
 	class ExitAction implements EventHandler<ActionEvent> {
 		@Override
@@ -74,7 +77,8 @@ public class Initializer {
 	}
 	
 	public void initSimulation(String algorithm) {
-		this.algorithm = algorithm;
+	        Decoder xmlParser = new Decoder();
+	        this.algorithm = algorithm;
 		getType();
 		switch (type) {
 		case Schelling:
@@ -94,10 +98,10 @@ public class Initializer {
 	}
 
 	private void initFire() {
-		param = new SFParameters();
-		param.setRows(20);// TODO read the numRows and numCols from XML
-		param.setCols(20);
-		((SFParameters) param).setProbCatch(0.6);
+	        Decoder parser = new Decoder();
+	        SpreadingFireSimulationFactory fireSimulation = 
+	                new SpreadingFireSimulationFactory(parser.getRootElement("data/xml/sample.xml"));
+		param = fireSimulation.getSimulationParameters();
 		builder = new SpreadingFireBuilder(param);
 		runner = builder.init();
 	}
