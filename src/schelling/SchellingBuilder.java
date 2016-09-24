@@ -42,6 +42,7 @@ public class SchellingBuilder extends Builder {
 				else {
 					slCell = new SchellingCell(gp, SchellingCell.personX);
 				}
+				slCell.setCellsPointer(cells);
 				cells.add(slCell);
 				Rectangle rect = new Rectangle(c * cellWidth, r * cellHeight, cellWidth, cellHeight);
 				CellGraphic g = new CellGraphic(new GridPosition(r, c));
@@ -52,6 +53,7 @@ public class SchellingBuilder extends Builder {
 			}
 		}
 	}
+
 
 	@Override
 	protected void addAllNeighbors(Cell c) {

@@ -18,8 +18,6 @@ public abstract class Runner {
 	private Timeline currentAnimation;
 	private boolean freshStart;
 
-
-
 	public Runner(List<Cell> cells, Map<Cell, CellGraphic> cellGrid) {
 		this.cells = cells;
 		this.cellGrid = cellGrid;
@@ -65,7 +63,6 @@ public abstract class Runner {
 	public void start(int speedOutOf100){
 		if(freshStart){
 			freshStart = false;
-			
 			// maps speedOutOf100 to the equivalent in range of minimum speed to maximum speed
 			double mappedTimeInSecs = speedOutOf100 * ((MAX_SPEED_IN_SECONDS - MIN_SPEED_IN_SECONDS)/100) + MIN_SPEED_IN_SECONDS;
 			
@@ -81,10 +78,6 @@ public abstract class Runner {
 
 	public void pause(){
 		currentAnimation.pause();
-	}
-
-	public void reset(){
-		currentAnimation.stop();
 	}
 	
 	public void updateSpeed(int newSpeed){
