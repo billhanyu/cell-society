@@ -52,7 +52,7 @@ public class Initializer {
 	public void start() {
 		stage.setTitle("Cell Society");
 		StartScene start = new StartScene(new ExitAction(), this);
-        stage.setScene(start.initScene());
+        stage.setScene(start.initScene(0));
 	}
 	
 	public void reset() {
@@ -135,7 +135,7 @@ public class Initializer {
 			break;
 		}
 		scn = new SimulationScene(builder.getSimulationPane(), controls);
-		stage.setScene(scn.initScene());
+		stage.setScene(scn.initScene(param.getRows()));
 	}
 	
 	private void getType() {

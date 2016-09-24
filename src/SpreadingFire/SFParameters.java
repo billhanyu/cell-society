@@ -12,18 +12,18 @@ public class SFParameters extends Parameters {
         super("Spreading Fire", "Bill", "10", "10");
     }
     
-    public SFParameters (String title, String author, String rows, String cols) {
-        super(title, author, rows, cols);
+    public SFParameters (Parameters p) {
+        super(p);
     }
 
-    public SFParameters(String title, String author, String rows, String cols, String probCatch){
-        super(title, author, rows, cols);
+    public SFParameters(Parameters p, String probCatch){
+        super(p);
 	this.probCatch = Double.parseDouble(probCatch);
 	modifiedStart = false;
     }
     
-    public SFParameters(String title, String author, String rows, String cols, String probCatch, String startLocation){
-        super(title, author, rows, cols);
+    public SFParameters(Parameters p, String probCatch, String startLocation){
+        super(p);
         this.probCatch = Double.parseDouble(probCatch);
         extendedParams = new SFExtendedParameters();
         extendedParams.setRowStart(Integer.parseInt(startLocation.split(" ")[0]) - 1);
@@ -44,7 +44,7 @@ public class SFParameters extends Parameters {
     public void setModified(boolean condition){
         modifiedStart = condition;
     }
-    @Override
+    
     public boolean isModified(){
         return modifiedStart;
     }

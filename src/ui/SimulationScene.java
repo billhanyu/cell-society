@@ -28,10 +28,10 @@ public class SimulationScene extends ProgScene {
 	}
 
 	@Override
-	public Scene initScene() {
+	public Scene initScene(int size) {
 		root = new Group();
 		addSimulationView();
-		Node slider = controls.initSizeSlider();
+		Node slider = controls.initSizeSlider(size);
 		Node buttons = controls.initActionButtons();
 		Node back = controls.initBackButton();
 		controlGroup = new VBox();

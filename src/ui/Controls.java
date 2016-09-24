@@ -19,10 +19,10 @@ public class Controls {
 		this.initializer = initializer;
 	}
 	
-	public Node initSizeSlider() {
+	public Node initSizeSlider(int size) {
 		HBox box = new HBox();
-		Slider sizeSlider = new ParamSlider(10, 50, 20, 5).initSlider();
-		Text sizeHud = new Text("Size: 20x20");
+		Slider sizeSlider = new ParamSlider(10, 50, size, 5).initSlider();
+		Text sizeHud = new Text("Size: " + size + "x" + size);
 		sizeSlider.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
             	int newSize = new_val.intValue();

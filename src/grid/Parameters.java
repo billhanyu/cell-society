@@ -1,6 +1,6 @@
 package grid;
 
-public abstract class Parameters {
+public class Parameters {
     
         protected String title;
         protected String author;
@@ -14,7 +14,14 @@ public abstract class Parameters {
 	    this.cols = Integer.parseInt(cols);
 	}
 	
-	public String getTitle () {
+	public Parameters (Parameters p) {
+	    this.title = p.getTitle();
+	    this.author = p.getAuthor();
+	    this.rows = p.getRows();
+	    this.cols = p.getCols();
+	}
+
+        public String getTitle () {
             return title;
         }
 
@@ -37,6 +44,5 @@ public abstract class Parameters {
 	public void setCols(int cols) {
 		this.cols = cols;
 	}
-	
-	public abstract boolean isModified();
+
 }
