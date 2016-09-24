@@ -1,5 +1,8 @@
 package schelling;
 
+import java.util.List;
+
+import cell.Cell;
 import global.Initializer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -65,7 +68,10 @@ public class SchellingControls extends Controls {
 			public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
 				int newIdealPercent = new_val.intValue();
 				double newIdeal = newIdealPercent / 100.0;
-				((SLParameters) initializer.getParameters()).setIdealRatio(newIdeal);
+				List<Cell> cells = initializer.getRunner().getCells();
+				for (Cell c: cells) {
+					((SchellingCell)c).setIdealRatio(newIdeal);
+				}
 			}
 		});
 		box.getChildren().addAll(idealSlider, idealHud);

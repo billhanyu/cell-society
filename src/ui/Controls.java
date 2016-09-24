@@ -37,6 +37,21 @@ public class Controls {
 		return box;
 	}
 	
+	public Node initSpeedSlider() {
+		HBox box = new HBox();
+		Slider speedSlider = new ParamSlider(0, 100, 10, 5).initSlider();
+		Text speedHud = new Text("Speed");
+		speedSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
+            	int newSpeed = 100 - new_val.intValue();
+            	initializer.getRunner().setSpeed(newSpeed);
+            }
+		});
+		box.getChildren().addAll(speedSlider, speedHud);
+		box.setSpacing(20);
+		return box;
+	}
+	
 	public Node initActionButtons() {
 		Button start = initStartButton();
 		Button step = initStepButton();
@@ -62,7 +77,7 @@ public class Controls {
 	private Button initStartButton() {
 		Button start = new Button("start");
 		start.setOnAction(e -> {
-			initializer.getRunner().start(10);
+			initializer.getRunner().start();
 		});
 		return start;
 	}
