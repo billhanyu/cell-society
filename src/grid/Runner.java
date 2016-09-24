@@ -55,6 +55,10 @@ public abstract class Runner {
 		// TODO update animations
 	}
 	
+	public void stop() {
+		// TODO stop animations
+	}
+	
 	// TODO get animation working
 	
 	// TODO move animation stuff from Main to here

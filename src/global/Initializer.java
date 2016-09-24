@@ -50,6 +50,10 @@ public class Initializer {
         stage.setScene(start.initScene());
 	}
 	
+	public void reset() {
+		// TODO reset the whole thing
+	}
+	
 	public void setParameters(Parameters param) {
 		this.param = param;
 	}
@@ -61,6 +65,10 @@ public class Initializer {
 	public void update() {
 		runner = builder.init();
 		scn.setSimulationPane(builder.getSimulationPane());
+	}
+	
+	public Runner getRunner() {
+		return runner;
 	}
 	
 	public void initSimulation(String algorithm) {
