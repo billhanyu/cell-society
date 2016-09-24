@@ -1,5 +1,8 @@
 package WaTor;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 import javafx.scene.paint.Color;
 import cell.Cell;
 import cell.GridPosition;
@@ -11,9 +14,10 @@ public class WaTorCell extends Cell{
 		super(gp, s);
 	}
 
-	public static final int SHARK_ENERGY = 10;
-	public static final int FISH_REPRODUCTION_RATE = 3;
-	public static final int SHARK_REPRODUCTION_RATE = 15;
+	public static final int SHARK_ENERGY = 3;
+	public static final int FISH_REPRODUCTION_RATE = 10;
+	public static final int SHARK_REPRODUCTION_RATE = 5;
+	public static final int ENERGY_GAINED_FROM_EATING = 6;
 	public static State empty = new State(Color.GRAY, "EMPTY");
 
 	@Override
@@ -64,8 +68,11 @@ public class WaTorCell extends Cell{
 	}
 
 	private boolean canMoveLikeShark(){
-		for(Cell neighbor : getNeighbors())
+		ArrayList<Cell> shuffledNeighbors = new ArrayList<Cell>(getNeighbors());
+		Collections.shuffle(shuffledNeighbors);
+		for(Cell neighbor : shuffledNeighbors)
 			if(neighbor.getFutureState().equals(new WaTorFishState())){
+				((WaTorSharkState) getCurrState()).increaseEnergy(ENERGY_GAINED_FROM_EATING);
 				neighbor.setFutureState(this.getCurrState());
 				return true;
 			}
@@ -73,7 +80,9 @@ public class WaTorCell extends Cell{
 	}
 
 	private boolean canMoveLikeFish(){
-		for(Cell neighbor : getNeighbors())
+		ArrayList<Cell> shuffledNeighbors = new ArrayList<Cell>(getNeighbors());
+		Collections.shuffle(shuffledNeighbors);
+		for(Cell neighbor : shuffledNeighbors)
 			if(neighbor.getFutureState().equals(empty)){
 				neighbor.setFutureState(this.getCurrState());
 				return true;
