@@ -61,21 +61,33 @@ public class Controls {
 	
 	private Button initStartButton() {
 		Button start = new Button("start");
+		start.setOnAction(e -> {
+			initializer.getRunner().start();
+		});
 		return start;
 	}
 	
 	private Button initStepButton() {
 		Button step = new Button("step");
+		step.setOnAction(e -> {
+			initializer.getRunner().step();
+		});
 		return step;
 	}
 	
 	private Button initStopButton() {
 		Button stop = new Button("stop");
+		stop.setOnAction(e -> {
+			initializer.getRunner().stop();
+		});
 		return stop;
 	}
 	
 	private Button initResetButton() {
 		Button reset = new Button("reset");
+		reset.setOnAction(e -> {
+			initializer.reset();
+		});
 		return reset;
 	}
 }
