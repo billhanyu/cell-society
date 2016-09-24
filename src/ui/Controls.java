@@ -62,7 +62,7 @@ public class Controls {
 	private Button initStartButton() {
 		Button start = new Button("start");
 		start.setOnAction(e -> {
-			initializer.getRunner().start();
+			initializer.getRunner().start(10);
 		});
 		return start;
 	}
@@ -78,7 +78,7 @@ public class Controls {
 	private Button initStopButton() {
 		Button stop = new Button("stop");
 		stop.setOnAction(e -> {
-			initializer.getRunner().stop();
+			initializer.getRunner().pause();
 		});
 		return stop;
 	}

@@ -13,18 +13,20 @@ public class SpreadingFireCell extends Cell{
 	public static State empty = new State(Color.YELLOW, "EMPTY");
 
 
-	public SpreadingFireCell(GridPosition gp) {
-		super(gp);
+	public SpreadingFireCell(GridPosition gp, State s) {
+		super(gp, s);
 	}
 
 	@Override
 	public void checkChangeState() {
-		if(this.getCurrState().equals(burning))
+		if(this.getCurrState().equals(burning)) {
 			futureState = empty;
-		if (this.getCurrState().equals(tree)){
-			for(Cell neighbor : getNeighbors()){
-				if (neighbor.getCurrState().equals(burning) && checkIfFlamable())
+		}
+		else if (this.getCurrState().equals(tree)){
+			for(Cell neighbor : getNeighbors()) {
+				if (neighbor.getCurrState().equals(burning) && checkIfFlamable()) {
 					this.futureState = burning;
+				}
 			}
 		}
 	}
