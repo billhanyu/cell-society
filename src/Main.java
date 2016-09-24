@@ -1,9 +1,10 @@
 
 
 import global.Initializer;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
-
+import xml.*;
 /**
  * This is the main program.
  * 

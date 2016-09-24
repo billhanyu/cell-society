@@ -5,5 +5,5 @@
 	<numRows>10</numRows>
 	<numCols>10</numCols>
 	<probCatch>.55</probCatch>
-</SimulationParameters>
+</Simulation>
 	
