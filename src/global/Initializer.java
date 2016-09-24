@@ -2,9 +2,13 @@ package global;
 
 import SpreadingFire.SFParameters;
 import SpreadingFire.SpreadingFireBuilder;
+import WaTor.WTParameters;
+import WaTor.WaTorBuilder;
 import grid.Builder;
 import grid.Parameters;
 import grid.Runner;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import schelling.SLParameters;
 import schelling.SchellingBuilder;
@@ -12,6 +16,7 @@ import schelling.SchellingControls;
 import ui.Controls;
 import ui.ErrorPop;
 import ui.SimulationScene;
+import ui.StartScene;
 
 public class Initializer {
 	private Stage stage;
@@ -30,8 +35,25 @@ public class Initializer {
 	private SimulationScene scn;
 	private Controls controls;
 	
+	class ExitAction implements EventHandler<ActionEvent> {
+		@Override
+		public void handle(ActionEvent event) {
+			stage.close();
+		}
+    }
+	
 	public Initializer(Stage s) {
 		stage = s;
+	}
+	
+	public void start() {
+		stage.setTitle("Cell Society");
+		StartScene start = new StartScene(new ExitAction(), this);
+        stage.setScene(start.initScene());
+	}
+	
+	public void reset() {
+		// TODO reset the whole thing
 	}
 	
 	public void setParameters(Parameters param) {
@@ -47,6 +69,10 @@ public class Initializer {
 		scn.setSimulationPane(builder.getSimulationPane());
 	}
 	
+	public Runner getRunner() {
+		return runner;
+	}
+	
 	public void initSimulation(String algorithm) {
 		this.algorithm = algorithm;
 		getType();
@@ -55,6 +81,7 @@ public class Initializer {
 			initSchelling();
 			break;
 		case WaTor:
+			initWaTor();
 			break;
 		case SpreadingFire:
 			initFire();
@@ -70,6 +97,7 @@ public class Initializer {
 		param = new SFParameters();
 		param.setRows(20);// TODO read the numRows and numCols from XML
 		param.setCols(20);
+		((SFParameters) param).setProbCatch(0.6);
 		builder = new SpreadingFireBuilder(param);
 		runner = builder.init();
 	}
@@ -81,6 +109,16 @@ public class Initializer {
 		((SLParameters) param).setEmptyRatio(0.2);
 		((SLParameters) param).setRatio(1.5);
 		builder = new SchellingBuilder(param);
+		runner = builder.init();
+	}
+	
+	private void initWaTor() {
+		param = new WTParameters();
+		param.setRows(50);
+		param.setCols(50);
+		((WTParameters) param).setEmptyRatio(0.2);
+		((WTParameters) param).setRatio(1.5);
+		builder = new WaTorBuilder(param);
 		runner = builder.init();
 	}
 	

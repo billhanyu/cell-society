@@ -26,10 +26,10 @@ public class SchellingControls extends Controls {
             	int newNumO = 100 - newNumX;
             	double newRatio;
             	if (newNumO == 0) {
-            		newRatio = Double.MIN_VALUE;
+            		newRatio = Double.MAX_VALUE;
             	}
             	else {
-            		newRatio = ((double)newNumO) / newNumX;
+            		newRatio = ((double)newNumX) / newNumO;
             	}
             	((SLParameters) initializer.getParameters()).setRatio(newRatio);
             	initializer.update();
@@ -56,5 +56,20 @@ public class SchellingControls extends Controls {
 		box.setSpacing(20);
 		return box;
 	}
-
+	
+	public Node initIdealSlider() {
+		HBox box = new HBox();
+		Slider idealSlider = new ParamSlider(0, 100, 50, 5).initSlider();
+		Text idealHud = new Text("Ideal Ratio");
+		idealSlider.valueProperty().addListener(new ChangeListener<Number>() {
+			public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
+				int newIdealPercent = new_val.intValue();
+				double newIdeal = newIdealPercent / 100.0;
+				((SLParameters) initializer.getParameters()).setIdealRatio(newIdeal);
+			}
+		});
+		box.getChildren().addAll(idealSlider, idealHud);
+		box.setSpacing(20);
+		return box;
+	}
 }

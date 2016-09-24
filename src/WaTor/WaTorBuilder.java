@@ -1,4 +1,4 @@
-package schelling;
+package WaTor;
 
 import cell.Cell;
 import cell.GridPosition;
@@ -10,19 +10,32 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import ui.ErrorPop;
 
-public class SchellingBuilder extends Builder {
+public class WaTorBuilder extends Builder {
 
-	private SLParameters pars;
+	private WTParameters pars;
 	private double emptyRatio;
 	private double ratio;
 
-	public SchellingBuilder(Parameters param) {
+	public WaTorBuilder(Parameters param) {
 		super(param);
 	}
 
 	@Override
 	protected Runner initRunner() {
-		return new SchellingRunner(cells, cellGrid);
+		return new WaTorRunner(cells, cellGrid);
+	}
+
+	@Override
+	protected void readParameters() {
+		if (!(param instanceof WTParameters)) {
+			ErrorPop error = new ErrorPop(300, 200, "Error Reading WTParameters");
+			error.popup();
+		}
+		pars = (WTParameters) param;
+		cellWidth = (double)width / numCols;
+		cellHeight = cellWidth;
+		emptyRatio = pars.getEmptyRatio();
+		ratio = pars.getRatio();
 	}
 
 	@Override
@@ -31,45 +44,34 @@ public class SchellingBuilder extends Builder {
 		for(int r = 0; r < numRows; r++) {
 			for(int c = 0; c < numCols; c++) {
 				GridPosition gp = new GridPosition(r, c);
-				SchellingCell slCell;
+				WaTorCell wtCell;
 				double rnd = Math.random();
 				if (rnd < emptyRatio) {
-					slCell = new SchellingCell(gp, SchellingCell.vacant);
+					wtCell = new WaTorCell(gp, WaTorCell.empty);
 				}
 				else if (rnd > (emptyRatio + ratio)/(ratio + 1)) {
-					slCell = new SchellingCell(gp, SchellingCell.personO);
+					wtCell = new WaTorCell(gp, new WaTorFishState());
 				}
 				else {
-					slCell = new SchellingCell(gp, SchellingCell.personX);
+					wtCell = new WaTorCell(gp, new WaTorSharkState());
 				}
-				cells.add(slCell);
+				cells.add(wtCell);
 				Rectangle rect = new Rectangle(c * cellWidth, r * cellHeight, cellWidth, cellHeight);
 				CellGraphic g = new CellGraphic(new GridPosition(r, c));
-				rect.setFill(slCell.getCurrState().getColor());
+				rect.setFill(wtCell.getCurrState().getColor());
 				rect.setStroke(Color.BLACK);
 				g.setGraphic(rect);
-				cellGrid.put(slCell, g);
+				cellGrid.put(wtCell, g);
 			}
 		}
 	}
 
 	@Override
 	protected void addAllNeighbors(Cell c) {
-		addSidesAsNeighbors(c);
-		addCornersAsNeighbors(c);
+		this.addSidesAsNeighbors(c);
+		this.addCornersAsNeighbors(c);
+		this.addSidesAcrossBoardAsNeighbors(c);
+		this.addCornersAcrossBoardAsNeighbors(c);
 	}
 
-	@Override
-	protected void readParameters() {
-		if (!(param instanceof SLParameters)) {
-			// not supposed to happen
-			ErrorPop error = new ErrorPop(300, 200, "Error reading Schelling Parameters");
-			error.popup();
-		}
-		pars = (SLParameters) param;
-		cellWidth = (double)width / numCols;
-		cellHeight = cellWidth;
-		emptyRatio = pars.getEmptyRatio();
-		ratio = pars.getRatio();
-	}
 }

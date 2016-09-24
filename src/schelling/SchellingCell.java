@@ -13,8 +13,8 @@ public class SchellingCell extends Cell{
 	public static State vacant = new State(Color.GRAY, "VACANT");
 
 	
-	public SchellingCell(GridPosition gridPosition) {
-		super(gridPosition);
+	public SchellingCell(GridPosition gridPosition, State s) {
+		super(gridPosition, s);
 	}
 
 	@Override
