@@ -37,9 +37,15 @@ public abstract class Cell {
 	public State getCurrState(){
 		return currState;
 	}
+	
 	public State getFutureState(){
 		return futureState;
 	}
+	
+	public void setCurrState(State f){
+		currState = f;
+	}
+	
 	public void setFutureState(State f){
 		futureState = f;
 	}
@@ -53,12 +59,5 @@ public abstract class Cell {
 	}
 	
 	public abstract void checkChangeState();
-	
-	public Cell copy() {
-		Cell cp = getCopiedCell(gridPos, currState);
-		return cp;
-	}
-	
-	protected abstract Cell getCopiedCell(GridPosition gp, State state);
 	
 }

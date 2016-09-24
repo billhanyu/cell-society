@@ -35,9 +35,4 @@ public class GameOfLifeCell extends Cell{
 			}
 		}
 	}
-
-	@Override
-	protected Cell getCopiedCell(GridPosition gp, State s) {
-		return new GameOfLifeCell(gp, s);
-	}
 }

@@ -56,8 +56,8 @@ public class Initializer {
 	}
 	
 	public void reset() {
-		runner = builder.regetRunner();
-		scn.setSimulationPane(builder.getSimulationPane());
+		builder.reset();
+		runner.updateCellGrid();
 	}
 	
 	public void setParameters(Parameters param) {

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import cell.Cell;
+import cell.State;
 import global.Initializer;
 import ui.SimulationPane;
 
@@ -22,8 +23,7 @@ public abstract class Builder {
 	protected Map<Cell, CellGraphic> cellGrid;
 	
 	private Cell[][] neighborGrid;
-	private List<Cell> copyCells;
-	private Map<Cell, CellGraphic> copyGrid; // for reset
+	private State[][] copy;
 
 	public Builder(Parameters param) {
 		cells = new ArrayList<Cell>();
@@ -52,11 +52,6 @@ public abstract class Builder {
 		keepCopy();
 		return initRunner();
 	};
-	
-	public Runner regetRunner() {
-		returnCopy();
-		return initRunner();
-	}
 	
 	public SimulationPane getSimulationPane() {
 		SimulationPane pane = new SimulationPane(width, height);
@@ -154,18 +149,16 @@ public abstract class Builder {
 	}
 	
 	private void keepCopy() {
-		copyCells = new ArrayList<Cell>();
-		copyGrid = new HashMap<Cell, CellGraphic>();
-		
+		copy = new State[numRows][numCols];
 		for (Cell c: cells) {
-			Cell cpCell = c.copy();
-			copyCells.add(cpCell);
-			copyGrid.put(cpCell, cellGrid.get(c));
+			copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()] = c.getCurrState();
 		}
 	}
 	
-	private void returnCopy() {
-		cells = copyCells;
-		cellGrid = copyGrid;
+	public void reset() {
+		for (Cell c: cells) {
+			c.setCurrState(copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()]);
+			c.setFutureState(copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()]);
+		}
 	}
 }
