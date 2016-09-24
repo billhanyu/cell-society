@@ -6,7 +6,7 @@ import org.w3c.dom.NodeList;
 
 public abstract class XMLFactory {
     
-private final Element rootElement;
+protected final Element rootElement;
     
     public XMLFactory(Element rootElement) {
         this.rootElement = rootElement;

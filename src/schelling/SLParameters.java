@@ -38,4 +38,9 @@ public class SLParameters extends Parameters {
 	public void setIdealRatio(double idealRatio) {
 		this.idealRatio = idealRatio;
 	}
+    @Override
+    public boolean isModified () {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }

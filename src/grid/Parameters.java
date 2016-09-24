@@ -1,6 +1,6 @@
 package grid;
 
-public class Parameters {
+public abstract class Parameters {
     
         protected String title;
         protected String author;
@@ -37,4 +37,6 @@ public class Parameters {
 	public void setCols(int cols) {
 		this.cols = cols;
 	}
+	
+	public abstract boolean isModified();
 }
