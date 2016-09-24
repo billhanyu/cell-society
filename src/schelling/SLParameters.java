@@ -3,18 +3,28 @@ package schelling;
 import grid.Parameters;
 
 public class SLParameters extends Parameters {
-    public SLParameters(){
-        super("Schelling", "Bill", "10", "10");
-    }
-	public SLParameters (String title, String author, String rows, String cols) {
-        super(title, author, rows, cols);
-        // TODO Auto-generated constructor stub
-    }
+    
+        private double emptyRatio; // vacant ratio
+        private double ratio; // red-blue ratio
+        private double idealRatio; // the ratio for the cell to become satisfied
+        
+        
+        public SLParameters(){
+            super("Schelling", "Bill", "10", "10");
+        }
+        
+    	public SLParameters (Parameters p) {
+            super(p);
+        }
+    	
+    	public SLParameters (Parameters p, String ideal, String redBlue, String empty){
+    	    super(p);
+    	    this.idealRatio = Double.parseDouble(ideal);
+    	    this.ratio = Double.parseDouble(redBlue);
+    	    this.emptyRatio = Double.parseDouble(empty);
+    	}
 
-    private double emptyRatio; // vacant ratio
-	private double ratio; // red-blue ratio
-	private double idealRatio; // the ratio for the cell to become satisfied
-	
+     
 	public double getEmptyRatio() {
 		return emptyRatio;
 	}

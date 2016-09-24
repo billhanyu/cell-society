@@ -18,8 +18,9 @@ public abstract class SimulationFactory extends XMLFactory {
     }
     
     public Parameters returnBasicParameters(){
+        // throw error/exception here
         if(!isValidFile()){
-            System.out.println("hello");
+            return null;
         }
         String title = getTextValue("title");
         String author = getTextValue("author");

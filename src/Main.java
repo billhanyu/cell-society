@@ -1,10 +1,18 @@
 
 
+import java.io.File;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import global.Initializer;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 import xml.*;
+import xml.model.SchellingXMLGenerator;
 /**
  * This is the main program.
  * 
@@ -29,8 +37,12 @@ public class Main extends Application {
     
 	/**
      * Start the program.
+	 * @throws TransformerException 
+	 * @throws ParserConfigurationException 
      */
-    public static void main (String[] args) {
+    public static void main (String[] args) throws ParserConfigurationException, TransformerException {
+        SchellingXMLGenerator s = new SchellingXMLGenerator();
+        s.createFile();
         launch(args);
     }
 }
