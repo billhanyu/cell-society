@@ -2,6 +2,8 @@ package global;
 
 import SpreadingFire.SFParameters;
 import SpreadingFire.SpreadingFireBuilder;
+import WaTor.WTParameters;
+import WaTor.WaTorBuilder;
 import grid.Builder;
 import grid.Parameters;
 import grid.Runner;
@@ -79,6 +81,7 @@ public class Initializer {
 			initSchelling();
 			break;
 		case WaTor:
+			initWaTor();
 			break;
 		case SpreadingFire:
 			initFire();
@@ -106,6 +109,16 @@ public class Initializer {
 		((SLParameters) param).setEmptyRatio(0.2);
 		((SLParameters) param).setRatio(1.5);
 		builder = new SchellingBuilder(param);
+		runner = builder.init();
+	}
+	
+	private void initWaTor() {
+		param = new WTParameters();
+		param.setRows(50);
+		param.setCols(50);
+		((WTParameters) param).setEmptyRatio(0.2);
+		((WTParameters) param).setRatio(1.5);
+		builder = new WaTorBuilder(param);
 		runner = builder.init();
 	}
 	
