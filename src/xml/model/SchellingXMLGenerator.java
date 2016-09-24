@@ -17,6 +17,11 @@ public class SchellingXMLGenerator {
     
     private Element rootElement;
     private Document doc;
+    private int rows = 12;
+    private int cols = 12;
+    private double redBlue = 1;
+    private double ideal = .5;
+    private double empty = .3;
     
     public SchellingXMLGenerator() {
         
@@ -32,23 +37,31 @@ public class SchellingXMLGenerator {
         
         createAndAppendElement("title", "Schelling Simulation");
         createAndAppendElement("author", "Bill");
-        createAndAppendElement("numRows", 12);
-        createAndAppendElement("numCols", 12);
-        createAndAppendElement("redBlueRatio", 2);
-        createAndAppendElement("idealRatio", .4);
-        createAndAppendElement("emptyRatio", .5);
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer();
-        DOMSource source = new DOMSource(doc);
-        StreamResult result = new StreamResult(new File("/Users/Brian/Documents/Duke/JUNIOR_YEAR_2016_2017/workspace/cellsociety_team18/data/xml/SchellingExpanded.xml"));
-        transformer.transform(source, result);
-        System.out.println("File saved!");
+        createAndAppendElement("numRows", rows);
+        createAndAppendElement("numCols", cols);
+        createAndAppendElement("redBlueRatio", redBlue);
+        createAndAppendElement("idealRatio", ideal);
+        createAndAppendElement("emptyRatio", empty);
+        
+        createAndAppendElement("red", "5 5");
+        createAndAppendElement("red", "6 6");
+        
+        writeFile();
     }
     
     private void createAndAppendElement(String element, Object text){
         Element elem = doc.createElement(element);
         elem.appendChild(doc.createTextNode(text.toString()));
         rootElement.appendChild(elem);
+    }
+    
+    private void writeFile() throws TransformerException{
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        DOMSource source = new DOMSource(doc);
+        StreamResult result = new StreamResult(new File("/Users/Brian/Documents/Duke/JUNIOR_YEAR_2016_2017/workspace/cellsociety_team18/data/xml/SchellingExpanded.xml"));
+        transformer.transform(source, result);
+        System.out.println("File saved!");
     }
     
 }
