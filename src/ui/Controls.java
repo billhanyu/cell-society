@@ -1,6 +1,5 @@
 package ui;
 
-import ui.ParamSlider;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,9 +7,7 @@ import global.Initializer;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
 
 public class Controls {
 	protected Initializer initializer;
@@ -20,36 +17,25 @@ public class Controls {
 	}
 	
 	public Node initSizeSlider(int size) {
-		HBox box = new HBox();
-		Slider sizeSlider = new ParamSlider(10, 50, size, 5).initSlider();
-		Text sizeHud = new Text("Size: " + size + "x" + size);
-		sizeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+		ChangeListener<Number> listener = new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
             	int newSize = new_val.intValue();
             	initializer.getParameters().setRows(newSize);
             	initializer.getParameters().setCols(newSize);
             	initializer.update();
-            	sizeHud.setText("Size: " + newSize + "x" + newSize);
             }
-		});
-		box.getChildren().addAll(sizeSlider, sizeHud);
-		box.setSpacing(20);
-		return box;
+		};
+		return new SliderBox("Size", 10, 50, size, 5, listener).getBox();
 	}
 	
 	public Node initSpeedSlider() {
-		HBox box = new HBox();
-		Slider speedSlider = new ParamSlider(0, 100, 90, 5).initSlider();
-		Text speedHud = new Text("Speed");
-		speedSlider.valueProperty().addListener(new ChangeListener<Number>() {
+		ChangeListener<Number> listener = new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
             	int newSpeed = 100 - new_val.intValue();
             	initializer.getRunner().setSpeed(newSpeed);
             }
-		});
-		box.getChildren().addAll(speedSlider, speedHud);
-		box.setSpacing(20);
-		return box;
+		};
+		return new SliderBox("Speed", 0, 100, 90, 5, listener).getBox();
 	}
 	
 	public Node initActionButtons() {
@@ -64,45 +50,28 @@ public class Controls {
 	}
 	
 	public Node initBackButton() {
-		Button back = new Button("Back");
-		back.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				initializer.start();
-			}
-		});
-		return back;
+		return makeButton("back", e->initializer.start());
 	}
 	
 	private Button initStartButton() {
-		Button start = new Button("start");
-		start.setOnAction(e -> {
-			initializer.getRunner().start();
-		});
-		return start;
+		return makeButton("start", e->initializer.getRunner().start());
 	}
 	
 	private Button initStepButton() {
-		Button step = new Button("step");
-		step.setOnAction(e -> {
-			initializer.getRunner().step();
-		});
-		return step;
+		return makeButton("step", e->initializer.getRunner().step());
 	}
 	
 	private Button initStopButton() {
-		Button stop = new Button("stop");
-		stop.setOnAction(e -> {
-			initializer.getRunner().pause();
-		});
-		return stop;
+		return makeButton("stop", e->initializer.getRunner().pause());
 	}
 	
 	private Button initResetButton() {
-		Button reset = new Button("reset");
-		reset.setOnAction(e -> {
-			initializer.reset();
-		});
-		return reset;
+		return makeButton("reset", e->initializer.reset());
+	}
+	
+	private Button makeButton(String text, EventHandler<ActionEvent> handler) {
+		Button btn = new Button(text);
+		btn.setOnAction(handler);
+		return btn;
 	}
 }
