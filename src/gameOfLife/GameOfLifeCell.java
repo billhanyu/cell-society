@@ -9,8 +9,8 @@ public class GameOfLifeCell extends Cell{
 
 	public static State alive = new State(Color.BLACK, "ALIVE");
 	public static State dead = new State(Color.WHITE, "DEAD");
-	private final int underPopulation = 1;
-	private final int overPopulation = 4;
+	private final int underPopulation = 2;
+	private final int overPopulation = 3;
 	private final int reproduction = 3;
 
 	public GameOfLifeCell(GridPosition gp, State s) {
@@ -20,13 +20,13 @@ public class GameOfLifeCell extends Cell{
 	@Override
 	public void checkChangeState() {
 		int numLivingNeighbors = 0;
-		for (Cell n : getNeighbors())
+		for (Cell n : this.getNeighbors())
 			if (n.getCurrState().equals(alive))
 				numLivingNeighbors ++;
-		if(this.currState.equals(alive)){
-			if (numLivingNeighbors <= underPopulation)
+		if(this.getCurrState().equals(alive)){
+			if (numLivingNeighbors < underPopulation)
 				this.setFutureState(dead);
-			if (numLivingNeighbors >= overPopulation)
+			if (numLivingNeighbors > overPopulation)
 				this.setFutureState(dead);
 		}
 		if(this.currState.equals(dead)){
