@@ -1,5 +1,7 @@
 package xml;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import grid.Parameters;
 import schelling.SLParameters;
 public class SchellingSimulationFactory extends SimulationFactory {
     
@@ -9,14 +11,19 @@ public class SchellingSimulationFactory extends SimulationFactory {
 
     @Override
     public String getSimulationType () {
-        // TODO Auto-generated method stub
-        return "SchellingSimulation";
+        return "Schelling";
     }
 
     @Override
     public SLParameters getSimulationParameters () {
-        // TODO Auto-generated method stub
-        return null;
+        Parameters basicParams = returnBasicParameters();
+        
+        NodeList listTagNames = rootElement.getElementsByTagName("*");
+        String idealRatio = getTextValue("idealRatio");
+        String redBlueRatio = getTextValue("redBlueRatio");
+        String emptyRatio = getTextValue("emptyRatio");
+        return new SLParameters(basicParams, idealRatio, redBlueRatio, emptyRatio);
+        
     }
 
 }

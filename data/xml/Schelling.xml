@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Simulation SimulationType="Schelling">
+	<title>Schelling Simulation</title>
+	<author>Addison and Bill</author>
+	<numRows>12</numRows>
+	<numCols>12</numCols>
+	<redBlueRatio>5</redBlueRatio>
+	<idealRatio>.1</idealRatio>
+	<emptyRatio>.6</emptyRatio>
+</Simulation>

@@ -18,21 +18,21 @@ public class SchellingControls extends Controls {
 	
 	public Node initRatioSlider() {
 		ChangeListener<Number> listener = new ChangeListener<Number>() {
-            public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
-            	int newNumX = new_val.intValue();
-            	int newNumO = 100 - newNumX;
-            	double newRatio;
-            	if (newNumO == 0) {
-            		newRatio = Double.MAX_VALUE;
-            	}
-            	else {
-            		newRatio = ((double)newNumX) / newNumO;
-            	}
-            	((SLParameters) initializer.getParameters()).setRatio(newRatio);
-            	initializer.update();
-            }
+			public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
+				int newNumX = new_val.intValue();
+				int newNumO = 100 - newNumX;
+				double newRatio;
+				if (newNumO == 0) {
+					newRatio = Double.MAX_VALUE;
+				}
+				else {
+					newRatio = ((double)newNumX) / newNumO;
+				}
+				((SLParameters) initializer.getParameters()).setRatio(newRatio);
+				initializer.update();
+			}
 		};
-		return new SliderBox("Red/Blue", 0, 100, 50, 5, listener).getBox();
+		return new SliderBox("Red/Blue", 0, 100, (int) (ratio/(ratio + 1) * 100), 5, listener).getBox();
 	}
 	
 	public Node initEmptySlider() {
@@ -44,7 +44,7 @@ public class SchellingControls extends Controls {
 				initializer.update();
 			}
 		};
-		return new SliderBox("Empty Ratio", 0, 100, 25, 5, listener).getBox();
+		return new SliderBox("Empty Ratio", 0, 100, (int) (empty*100), 5, listener).getBox();
 	}
 	
 	public Node initIdealSlider() {
@@ -58,6 +58,6 @@ public class SchellingControls extends Controls {
 				}
 			}
 		};
-		return new SliderBox("Ideal Ratio", 0, 100, 50, 5, listener).getBox();
+		return new SliderBox("Ideal Ratio", 0, 100, (int) (ideal * 100), 5, listener).getBox();
 	}
 }
