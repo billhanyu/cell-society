@@ -59,9 +59,14 @@ public class SchellingXMLGenerator {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         DOMSource source = new DOMSource(doc);
-        StreamResult result = new StreamResult(new File("/Users/Brian/Documents/Duke/JUNIOR_YEAR_2016_2017/workspace/cellsociety_team18/data/xml/SchellingExpanded.xml"));
+        String filePath = System.getProperty("java.class.path");
+        int index = filePath.indexOf('8');
+        String copyFile = new String(filePath.substring(0, index+1));
+        String correctCopy = new String(copyFile.replace('\\', '/'));
+        String finalFilePath = correctCopy + "/data/xml/Schelling2.xml";
+        StreamResult result = new StreamResult(new File(finalFilePath));
         transformer.transform(source, result);
-       // System.out.println("File saved!");
+        System.out.println(finalFilePath);
     }
     
 }
