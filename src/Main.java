@@ -41,8 +41,8 @@ public class Main extends Application {
 	 * @throws ParserConfigurationException 
      */
     public static void main (String[] args) throws ParserConfigurationException, TransformerException {
-        //SchellingXMLGenerator s = new SchellingXMLGenerator();
-        //s.createFile();
+        SchellingXMLGenerator s = new SchellingXMLGenerator();
+        s.createFile();
         launch(args);
     }
 }
