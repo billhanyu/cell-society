@@ -14,9 +14,9 @@ public class WaTorSharkState extends WaTorState{
 		this.energy = energy;
 	}
 	
-	public WaTorSharkState() {
+	public WaTorSharkState(WTParameters p) {
 		super(myColor, myName, 0);
-		energy = WaTorCell.SHARK_ENERGY;
+		energy = p.getSharkStarve();
 	}
 
 

@@ -115,11 +115,9 @@ public class Initializer {
 	}
 	
 	private void initWaTor() {
-		param = new WTParameters();
-		param.setRows(50);
-		param.setCols(50);
-		((WTParameters) param).setEmptyRatio(0.2);
-		((WTParameters) param).setRatio(1.5);
+	        WaTorSimulationFactory waTorSimulation = 
+	                new WaTorSimulationFactory(xmlParser.getRootElement("data/xml/WaTor.xml"));
+		param = waTorSimulation.getSimulationParameters();
 		builder = new WaTorBuilder(param);
 		runner = builder.init();
 	}

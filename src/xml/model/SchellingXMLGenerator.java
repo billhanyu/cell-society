@@ -61,7 +61,7 @@ public class SchellingXMLGenerator {
         DOMSource source = new DOMSource(doc);
         StreamResult result = new StreamResult(new File("/Users/Brian/Documents/Duke/JUNIOR_YEAR_2016_2017/workspace/cellsociety_team18/data/xml/SchellingExpanded.xml"));
         transformer.transform(source, result);
-        System.out.println("File saved!");
+       // System.out.println("File saved!");
     }
     
 }

@@ -7,6 +7,7 @@ public class WTParameters extends Parameters {
         private int sharkStarve;
         private int fishRate;
         private int sharkRate;
+        private int energyFromEating;
         private double emptyRatio;
         private double ratio;
     
@@ -16,14 +17,15 @@ public class WTParameters extends Parameters {
         
         public WTParameters (Parameters p) {
             super(p);
-            // TODO Auto-generated constructor stub
         }
         
-        public WTParameters(Parameters p, String sharkRate, String fishRate, String emptyRatio, String ratio, String sharkStarve){
+        public WTParameters(Parameters p, String sharkRate, String fishRate, String emptyRatio, String ratio,
+                            String sharkStarve, String energyFromEating){
             super(p);
             this.sharkStarve = Integer.parseInt(sharkStarve);
             this.fishRate = Integer.parseInt(fishRate);
             this.sharkRate = Integer.parseInt(sharkRate);
+            this.setEnergyFromEating(Integer.parseInt(energyFromEating));
             this.emptyRatio = Double.parseDouble(emptyRatio);
             this.ratio = Double.parseDouble(ratio);
             
@@ -69,6 +71,14 @@ public class WTParameters extends Parameters {
     		this.ratio = ratio;
     	}
         
+        public int getEnergyFromEating () {
+            return energyFromEating;
+        }
+
+        public void setEnergyFromEating (int energyFromEating) {
+            this.energyFromEating = energyFromEating;
+        }
+
         public boolean isModified () {
             // TODO Auto-generated method stub
             return false;

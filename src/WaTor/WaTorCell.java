@@ -9,27 +9,26 @@ import cell.GridPosition;
 import cell.State;
 
 public class WaTorCell extends Cell{
+    
+        WTParameters params;
 	
-	public WaTorCell(GridPosition gp, State s) {
+	public WaTorCell(GridPosition gp, State s, WTParameters p) {
 		super(gp, s);
+		this.params = p;
 	}
 
-	public static final int SHARK_ENERGY = 3;
-	public static final int FISH_REPRODUCTION_RATE = 10;
-	public static final int SHARK_REPRODUCTION_RATE = 4;
-	public static final int ENERGY_GAINED_FROM_EATING = 6;
 	public static State empty = new State(Color.GRAY, "EMPTY");
 
 	@Override
 	public void checkChangeState() {
 		if (getCurrState().equals(new WaTorFishState()))
 			fishSwim();
-		if(getCurrState().equals(new WaTorSharkState()))
+		if(getCurrState().equals(new WaTorSharkState(params)))
 			sharkSwim();
 	}
 
 	private void fishSwim(){
-		if(canReproduce(FISH_REPRODUCTION_RATE)){
+		if(canReproduce(params.getFishRate())){
 			if(canMoveLikeFish())
 				this.setFutureState(new WaTorFishState());
 		}
@@ -39,9 +38,9 @@ public class WaTorCell extends Cell{
 
 	private void sharkSwim(){
 		if(isDead()){
-			if(canReproduce(SHARK_REPRODUCTION_RATE)){
+			if(canReproduce(params.getSharkRate())){
 				if(canMoveLikeShark())
-					this.setFutureState(new WaTorSharkState());
+					this.setFutureState(new WaTorSharkState(params));
 			}
 			else
 				if(canMoveLikeShark())
@@ -72,7 +71,7 @@ public class WaTorCell extends Cell{
 		Collections.shuffle(shuffledNeighbors);
 		for(Cell neighbor : shuffledNeighbors)
 			if(neighbor.getFutureState().equals(new WaTorFishState())){
-				((WaTorSharkState) getCurrState()).increaseEnergy(ENERGY_GAINED_FROM_EATING);
+				((WaTorSharkState) getCurrState()).increaseEnergy(params.getEnergyFromEating());
 				neighbor.setFutureState(this.getCurrState());
 				return true;
 			}
