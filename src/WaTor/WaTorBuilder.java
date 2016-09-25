@@ -47,13 +47,13 @@ public class WaTorBuilder extends Builder {
 				WaTorCell wtCell;
 				double rnd = Math.random();
 				if (rnd < emptyRatio) {
-					wtCell = new WaTorCell(gp, WaTorCell.empty);
+					wtCell = new WaTorCell(gp, WaTorCell.empty, pars);
 				}
 				else if (rnd > (emptyRatio + ratio)/(ratio + 1)) {
-					wtCell = new WaTorCell(gp, new WaTorFishState());
+					wtCell = new WaTorCell(gp, new WaTorFishState(), pars);
 				}
 				else {
-					wtCell = new WaTorCell(gp, new WaTorSharkState());
+					wtCell = new WaTorCell(gp, new WaTorSharkState(pars), pars);
 				}
 				cells.add(wtCell);
 				Rectangle rect = new Rectangle(c * cellWidth, r * cellHeight, cellWidth, cellHeight);
