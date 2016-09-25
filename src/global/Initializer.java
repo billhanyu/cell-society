@@ -99,18 +99,16 @@ public class Initializer {
 
 	private void initFire() {
 	        SpreadingFireSimulationFactory fireSimulation = 
-	                new SpreadingFireSimulationFactory(xmlParser.getRootElement("data/xml/sample.xml"));
+	                new SpreadingFireSimulationFactory(xmlParser.getRootElement("data/xml/SpreadingFire.xml"));
 		param = fireSimulation.getSimulationParameters();
 		builder = new SpreadingFireBuilder(param);
 		runner = builder.init();
 	}
 
 	private void initSchelling() {
-		param = new SLParameters();
-		param.setRows(20);
-		param.setCols(20);
-		((SLParameters) param).setEmptyRatio(0.2);
-		((SLParameters) param).setRatio(1.5);
+	        SchellingSimulationFactory schellingSimulation = 
+	                new SchellingSimulationFactory(xmlParser.getRootElement("data/xml/Schelling.xml"));
+	        param = schellingSimulation.getSimulationParameters();
 		builder = new SchellingBuilder(param);
 		runner = builder.init();
 	}
@@ -135,7 +133,7 @@ public class Initializer {
 			break;
 		}
 		scn = new SimulationScene(builder.getSimulationPane(), controls);
-		stage.setScene(scn.initScene(param.getRows()));
+		stage.setScene(scn.initScene(param.getRows(), param));
 	}
 	
 	private void getType() {
