@@ -35,7 +35,9 @@ public class SFParameters extends Parameters {
 	return probCatch;
     }
     
-    
+    public void setProbCatch(double probCatch){
+    	this.probCatch = probCatch;
+    }
 	
     public SFExtendedParameters getExtendedParams () {
         return extendedParams;

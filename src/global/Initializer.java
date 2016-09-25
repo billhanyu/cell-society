@@ -2,8 +2,10 @@ package global;
 
 import SpreadingFire.SFParameters;
 import SpreadingFire.SpreadingFireBuilder;
+import SpreadingFire.SpreadingFireControls;
 import WaTor.WTParameters;
 import WaTor.WaTorBuilder;
+import WaTor.WaTorControls;
 import grid.Builder;
 import grid.Parameters;
 import grid.Runner;
@@ -126,6 +128,12 @@ public class Initializer {
 		switch (type) {
 		case Schelling:
 			controls = new SchellingControls(this);
+			break;
+		case WaTor:
+			controls = new WaTorControls(this);
+			break;
+		case SpreadingFire:
+			controls = new SpreadingFireControls(this);
 			break;
 		default:
 			controls = new Controls(this);
