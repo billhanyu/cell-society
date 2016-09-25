@@ -19,9 +19,14 @@ public abstract class Builder {
 	protected int numCols;
 	protected Parameters param;
 
+	private final int TOP = 0;
+	private final int BOTTOM;// = numRows - 1;
+	private final int LEFT = 0;
+	private final int RIGHT;// = numCols - 1;
+
 	protected List<Cell> cells;
 	protected Map<Cell, CellGraphic> cellGrid;
-	
+
 	private Cell[][] neighborGrid;
 	private State[][] copy;
 
@@ -31,6 +36,8 @@ public abstract class Builder {
 		this.param = param;
 		numRows = param.getRows();
 		numCols = param.getCols();
+		BOTTOM = numRows - 1;
+		RIGHT = numCols - 1;
 		width = Initializer.SCENE_HEIGHT - 20;
 		height = width;
 		//TODO change this height = width relationship later
@@ -52,7 +59,7 @@ public abstract class Builder {
 		keepCopy();
 		return initRunner();
 	};
-	
+
 	public SimulationPane getSimulationPane() {
 		SimulationPane pane = new SimulationPane(width, height);
 		for (CellGraphic graphic: cellGrid.values()) {
@@ -60,7 +67,7 @@ public abstract class Builder {
 		}
 		return pane;
 	};
-	
+
 	public void giveAllCellsNeighbors(){
 		for (Cell c: cells) {
 			neighborGrid[c.getGridPosition().getRow()][c.getGridPosition().getCol()]
@@ -73,7 +80,7 @@ public abstract class Builder {
 	}
 
 	protected abstract Runner initRunner();
-	
+
 	protected abstract void readParameters();
 
 	protected abstract void initCells();
@@ -134,27 +141,58 @@ public abstract class Builder {
 	protected void addCornersAcrossBoardAsNeighbors(Cell c){
 		int row = c.getGridPosition().getRow();
 		int col = c.getGridPosition().getCol();
-		if (row == 0 && col == 0) {
-			c.addNeighbor(neighborGrid[numRows - 1][numCols - 1]);
+		// TOP ROW
+		if (row == TOP) {
+			// UPPER LEFT
+			if(col == LEFT)
+				c.addNeighbor(neighborGrid[BOTTOM][RIGHT]);
+			else
+				c.addNeighbor(neighborGrid[BOTTOM][col - 1]);
+			// UPPER RIGHT
+			if(col == RIGHT)
+				c.addNeighbor(neighborGrid[BOTTOM][LEFT]);
+			else
+				c.addNeighbor(neighborGrid[BOTTOM][col + 1]);
 		}
-		if (row == 0 && col == numCols - 1) {
-			c.addNeighbor(neighborGrid[numRows - 1][0]);
+		// BOTTOM ROW
+		if (row == BOTTOM) {
+			// BOTTOM LEFT
+			if(col == LEFT)
+				c.addNeighbor(neighborGrid[TOP][RIGHT]);
+			else
+				c.addNeighbor(neighborGrid[TOP][col - 1]);
+			// BOTTOM RIGHT
+			if(col == RIGHT)
+				c.addNeighbor(neighborGrid[TOP][LEFT]);
+			else
+				c.addNeighbor(neighborGrid[TOP][col + 1]);
 		}
-		if (row == numRows - 1 && col == 0) {
-			c.addNeighbor(neighborGrid[0][numCols - 1]);
+		// LEFT COLUMN excluding 4 corners (grid corners already handled above)
+		if (col == LEFT) {
+			// UPPER LEFT
+			if(row != TOP)
+				c.addNeighbor(neighborGrid[row - 1][RIGHT]);
+			// BOTTOM LEFT
+			if(row != BOTTOM)
+				c.addNeighbor(neighborGrid[row + 1][RIGHT]);
 		}
-		if (row == numRows - 1 && col == numCols - 1) {
-			c.addNeighbor(neighborGrid[0][0]);
+		if (col == RIGHT) {
+			// UPPER LEFT
+			if(row != TOP)
+				c.addNeighbor(neighborGrid[row - 1][LEFT]);
+			// BOTTOM LEFT
+			if(row != BOTTOM)
+				c.addNeighbor(neighborGrid[row + 1][LEFT]);
 		}
 	}
-	
+
 	private void keepCopy() {
 		copy = new State[numRows][numCols];
 		for (Cell c: cells) {
 			copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()] = c.getCurrState();
 		}
 	}
-	
+
 	public void reset() {
 		for (Cell c: cells) {
 			c.setCurrState(copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()]);

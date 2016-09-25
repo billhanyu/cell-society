@@ -11,7 +11,7 @@ import javafx.scene.shape.Rectangle;
 import ui.ErrorPop;
 
 public class GameOfLifeBuilder extends Builder{
-	
+
 	private GLParameters pars;
 
 	public GameOfLifeBuilder(Parameters param) {
@@ -62,5 +62,8 @@ public class GameOfLifeBuilder extends Builder{
 	@Override
 	protected void addAllNeighbors(Cell c) {
 		this.addSidesAsNeighbors(c);
+		this.addCornersAsNeighbors(c);
+		this.addCornersAcrossBoardAsNeighbors(c);
+		this.addSidesAcrossBoardAsNeighbors(c);
 	}
 }
