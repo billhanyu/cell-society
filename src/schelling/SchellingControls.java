@@ -19,9 +19,9 @@ public class SchellingControls extends Controls {
 		super(initializer);
 	}
 	
-	public Node initRatioSlider() {
+	public Node initRatioSlider(double ratio) {
 		HBox box = new HBox();
-		Slider sizeSlider = new ParamSlider(0, 100, 50, 5).initSlider();
+		Slider sizeSlider = new ParamSlider(0, 100, (int) (ratio/(ratio + 1) * 100), 5).initSlider();
 		Text sizeHud = new Text("Red/Blue");
 		sizeSlider.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
@@ -43,9 +43,9 @@ public class SchellingControls extends Controls {
 		return box;
 	}
 	
-	public Node initEmptySlider() {
+	public Node initEmptySlider(double empty) {
 		HBox box = new HBox();
-		Slider emptySlider = new ParamSlider(0, 100, 25, 5).initSlider();
+		Slider emptySlider = new ParamSlider(0, 100, (int) (empty*100), 5).initSlider();
 		Text emptyHud = new Text("Empty Ratio");
 		emptySlider.valueProperty().addListener(new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
@@ -60,9 +60,9 @@ public class SchellingControls extends Controls {
 		return box;
 	}
 	
-	public Node initIdealSlider() {
+	public Node initIdealSlider(double ideal) {
 		HBox box = new HBox();
-		Slider idealSlider = new ParamSlider(0, 100, 50, 5).initSlider();
+		Slider idealSlider = new ParamSlider(0, 100, (int) (ideal * 100), 5).initSlider();
 		Text idealHud = new Text("Ideal Ratio");
 		idealSlider.valueProperty().addListener(new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {

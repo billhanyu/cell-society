@@ -12,6 +12,6 @@ public abstract class ProgScene {
 		this.height = Initializer.SCENE_HEIGHT;
 	}
 	
-	public abstract Scene initScene(int size);
+	//public abstract Scene initScene(int size);
     
 }
