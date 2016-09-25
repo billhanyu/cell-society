@@ -9,9 +9,9 @@ import cell.GridPosition;
 import cell.State;
 
 public class WaTorCell extends Cell{
-    
-        WTParameters params;
-	
+
+	WTParameters params;
+
 	public WaTorCell(GridPosition gp, State s, WTParameters p) {
 		super(gp, s);
 		this.params = p;
