@@ -12,6 +12,7 @@ import global.Initializer;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import xml.*;
+import xml.model.GameOfLifeXMLGenerator;
 import xml.model.SchellingXMLGenerator;
 /**
  * This is the main program.
@@ -41,7 +42,7 @@ public class Main extends Application {
 	 * @throws ParserConfigurationException 
      */
     public static void main (String[] args) throws ParserConfigurationException, TransformerException {
-        //SchellingXMLGenerator s = new SchellingXMLGenerator();
+        //GameOfLifeXMLGenerator s = new GameOfLifeXMLGenerator();
         //s.createFile();
         launch(args);
     }
