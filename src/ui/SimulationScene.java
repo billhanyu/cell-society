@@ -51,7 +51,7 @@ public class SimulationScene extends ProgScene {
 		if (controls instanceof SpreadingFireControls){
 			addFireControls((SFParameters) p);
 		}
-		
+
 		buttons.setLayoutX(controlGroup.getLayoutX());
 		buttons.setLayoutY(Initializer.SCENE_HEIGHT - 200);
 		speed.setLayoutX(controlGroup.getLayoutX());
@@ -65,7 +65,6 @@ public class SimulationScene extends ProgScene {
 	}
 	private void addSchellingControls(SLParameters p){//double ratio, double empty, double ideal) {
 		controlGroup.getChildren().add(((SchellingControls) controls).initRatioSlider(p.getRatio()));
-		System.out.println(p.getRatio());
 		controlGroup.getChildren().add(((SchellingControls) controls).initEmptySlider(p.getEmptyRatio()));
 		controlGroup.getChildren().add(((SchellingControls) controls).initIdealSlider(p.getIdealRatio()));
 	}
@@ -78,12 +77,10 @@ public class SimulationScene extends ProgScene {
 		controlGroup.getChildren().add(((WaTorControls) controls).fishReproductionRateSlider(p.getFishRate()));
 		controlGroup.getChildren().add(((WaTorControls) controls).sharkReproductionRateSlider(p.getSharkRate()));
 	}
-	
+
 	private void addFireControls(SFParameters p){
 		controlGroup.getChildren().add(((SpreadingFireControls) controls).flamabilitySlider(p.getProbCatch()));
 	}
-	
-	
 
 	private void addSimulationView() {
 		simu = pane.getGroup();
@@ -91,5 +88,6 @@ public class SimulationScene extends ProgScene {
 		simu.setLayoutY((height - pane.getHeight())/2);
 		root.getChildren().add(simu);
 	}
+
 }
 
