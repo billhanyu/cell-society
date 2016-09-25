@@ -7,8 +7,8 @@ import cell.State;
 
 public class GameOfLifeCell extends Cell{
 
-	public static State alive = new State(Color.WHITE, "ALIVE");
-	public static State dead = new State(Color.BLACK, "DEAD");
+	public static State alive = new State(Color.BLACK, "ALIVE");
+	public static State dead = new State(Color.WHITE, "DEAD");
 	private final int underPopulation = 1;
 	private final int overPopulation = 4;
 	private final int reproduction = 3;

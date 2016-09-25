@@ -13,4 +13,3 @@ public class SpreadingFireRunner extends Runner {
 		super(cells, cellGrid);
 	}
 }
-
