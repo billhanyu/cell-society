@@ -42,7 +42,7 @@ public class GameOfLifeBuilder extends Builder{
 				GameOfLifeCell glCell;
 				GridPosition gp = new GridPosition(r, c);
 				double rnd = Math.random();
-				if (rnd < 0.1) {
+				if (rnd < 0.5) {
 					glCell = new GameOfLifeCell(gp, GameOfLifeCell.alive);
 				}
 				else {

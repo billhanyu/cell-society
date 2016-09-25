@@ -20,7 +20,7 @@ public class WaTorControls extends Controls {
 				((WTParameters) initializer.getParameters()).setSharkStarve(starveRate);
 			}
 		};
-		return new SliderBox("Shark Starve Rate", 0, 25, (int) (rate * 100), 5, listener).getBox();
+		return new SliderBox("Shark Starve", 0, 25, (int) (rate * 100), 5, listener).getBox();
 	}
 	
 	public Node fishReproductionRateSlider(int rate) {
@@ -30,7 +30,7 @@ public class WaTorControls extends Controls {
 				((WTParameters) initializer.getParameters()).setFishRate(fishReproductionRate);
 			}
 		};
-		return new SliderBox("Fish Reproduction Rate", 0, 25, (int) (rate * 100), 5, listener).getBox();
+		return new SliderBox("Fish Reproduction", 0, 25, (int) (rate * 100), 5, listener).getBox();
 	}
 	
 	public Node sharkReproductionRateSlider(int rate) {
@@ -40,7 +40,7 @@ public class WaTorControls extends Controls {
 				((WTParameters) initializer.getParameters()).setSharkRate(sharkReproductionRate);
 			}
 		};
-		return new SliderBox("Shark Reproduction Rate", 0, 25, (int) (rate * 100), 5, listener).getBox();
+		return new SliderBox("Shark Reproduction", 0, 25, (int) (rate * 100), 5, listener).getBox();
 	}
 	
 	public Node sharkEnergyGainedFromEatingSlider(int rate) {
@@ -50,7 +50,7 @@ public class WaTorControls extends Controls {
 				((WTParameters) initializer.getParameters()).setSharkRate(energy);
 			}
 		};
-		return new SliderBox("Shark Energy From Eating", 0, 25, (int) (rate * 100), 5, listener).getBox();
+		return new SliderBox("Shark Gain", 0, 25, (int) (rate * 100), 5, listener).getBox();
 	}
 	
 	public Node initRatioSlider(double ratio) {

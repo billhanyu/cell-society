@@ -1,5 +1,8 @@
 package SpreadingFire;
 
+import java.util.List;
+
+import cell.Cell;
 import global.Initializer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,7 +21,10 @@ public class SpreadingFireControls extends Controls {
 			public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
 				int flamabilityPercent = new_val.intValue();
 				double flamability = flamabilityPercent / 100.0;
-				((SFParameters) initializer.getParameters()).setProbCatch(flamability);
+				List<Cell> cells = initializer.getRunner().getCells();
+				for (Cell c: cells) {
+					((SpreadingFireCell)c).setProbCatch(flamability);
+				}
 			}
 		};
 		return new SliderBox("Chance of catching fire", 0, 100, (int) (empty*100), 5, listener).getBox();
