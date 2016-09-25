@@ -1,12 +1,17 @@
 package xml;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import cell.GridPosition;
 import gameOfLife.GLParameters;
 import grid.Parameters;
 import schelling.SLParameters;
 
 public class GameOfLifeSimulationFactory extends SimulationFactory {
+    
+    private List<String> listOfAlive;
     
     public GameOfLifeSimulationFactory(Element rootElement) {
         super(rootElement);
@@ -19,13 +24,24 @@ public class GameOfLifeSimulationFactory extends SimulationFactory {
 
     @Override
     public GLParameters getSimulationParameters () {
+        
+        listOfAlive = new ArrayList<String>();
         Parameters basicParams = returnBasicParameters();
-        
-        NodeList listTagNames = rootElement.getElementsByTagName("*");
-        
-        
-        String aliveRatio = getTextValue("aliveRatio");
-        return new GLParameters(basicParams, aliveRatio);
+        //NodeList listTagNames = rootElement.getElementsByTagName("*");
+        NodeList hello = rootElement.getChildNodes();
+        for (int i = 0; i < hello.getLength(); i++){
+            if (hello.item(i).getNodeName().equals("Alive")){
+                String alivePos = new String(hello.item(i).getTextContent());
+                listOfAlive.add(alivePos);
+            }
+        }
+        if (listOfAlive.size() > 1){
+            return new GLParameters(basicParams, listOfAlive);
+        }
+        else{
+            //String aliveRatio = getTextValue("aliveRatio");
+            return new GLParameters(basicParams, ".4");
+        }
         
     }
 

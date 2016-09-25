@@ -26,9 +26,7 @@ public class SchellingXMLGenerator extends XMLFileGenerator{
     }
         
     public void createFile() throws ParserConfigurationException, TransformerException{
-        this.rootElement = this.doc.createElement("Simulation");
-        this.rootElement.setAttribute("SimulationType", "Schelling");
-        this.doc.appendChild(rootElement);
+        setRootElement("Schelling");
         createAndAppendElement("title", "Schelling Simulation");
         createAndAppendElement("author", "Bill");
         createAndAppendElement("numRows", rows);

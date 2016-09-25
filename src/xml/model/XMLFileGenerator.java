@@ -12,7 +12,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class XMLFileGenerator {
+public abstract class XMLFileGenerator {
     
     
     protected Element rootElement;
@@ -24,7 +24,12 @@ public class XMLFileGenerator {
         this.docFactory = DocumentBuilderFactory.newInstance();
         this.docBuilder = docFactory.newDocumentBuilder();
         this.doc = docBuilder.newDocument();
+    }
+    
+    public void setRootElement(String simType){
         this.rootElement = this.doc.createElement("Simulation");
+        this.rootElement.setAttribute("SimulationType", "simType");
+        this.doc.appendChild(rootElement);
     }
 
     
@@ -47,4 +52,19 @@ public class XMLFileGenerator {
         transformer.transform(source, result);
         System.out.println(finalFilePath);
     }
+    
+    public void createElementsAtLocations(String element, int[] row, int [] col){
+        if (row.length != col.length){
+            return;
+        }
+        for (int i = 0; i < row.length; i++){
+            createAndAppendElement(element, RCString(row[i], col[i]));
+        }
+    }
+    
+    public String RCString(int row, int col){
+        return row + " " + col;
+    }
+    
+    public abstract void createFile() throws ParserConfigurationException, TransformerException;
 }
