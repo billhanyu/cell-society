@@ -32,7 +32,7 @@ public class SchellingControls extends Controls {
 				initializer.update();
 			}
 		};
-		return new SliderBox("Red/Blue", 0, 100, (int) (ratio/(ratio + 1) * 100) * 100, 5, listener).getBox();
+		return new SliderBox("Red/Blue", 0, 100, (int) (ratio/(ratio + 1) * 100), 5, listener).getBox();
 	}
 	
 	public Node initEmptySlider(double empty) {

@@ -4,7 +4,7 @@
 	<author>Addison and Bill</author>
 	<numRows>12</numRows>
 	<numCols>12</numCols>
-	<redBlueRatio>5</redBlueRatio>
+	<redBlueRatio>2</redBlueRatio>
 	<idealRatio>.1</idealRatio>
 	<emptyRatio>.6</emptyRatio>
 </Simulation>
