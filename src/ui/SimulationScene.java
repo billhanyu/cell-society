@@ -54,7 +54,6 @@ public class SimulationScene extends ProgScene {
         }
         private void addSchellingControls(SLParameters p){//double ratio, double empty, double ideal) {
                 controlGroup.getChildren().add(((SchellingControls) controls).initRatioSlider(p.getRatio()));
-                System.out.println(p.getRatio());
                 controlGroup.getChildren().add(((SchellingControls) controls).initEmptySlider(p.getEmptyRatio()));
                 controlGroup.getChildren().add(((SchellingControls) controls).initIdealSlider(p.getIdealRatio()));
         }

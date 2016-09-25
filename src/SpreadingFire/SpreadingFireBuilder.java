@@ -33,8 +33,6 @@ public class SpreadingFireBuilder extends Builder {
 				if (pars.isModified()){
 				    if (pars.getExtendedParams().getRowStart() == r && pars.getExtendedParams().getColStart() == c){
 				        sfCell = new SpreadingFireCell(gp, SpreadingFireCell.burning);
-				        System.out.println(r);
-				        System.out.println(c);
 				    }
 				    else{
 				        sfCell = new SpreadingFireCell(gp, SpreadingFireCell.tree);
