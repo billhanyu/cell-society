@@ -1,9 +1,11 @@
 package ui;
 import global.Initializer;
+import grid.Parameters;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
+import schelling.SLParameters;
 import schelling.SchellingControls;
 public class SimulationScene extends ProgScene {
         
@@ -23,8 +25,8 @@ public class SimulationScene extends ProgScene {
                 root.getChildren().remove(simu);
                 addSimulationView();
         }
-        @Override
-        public Scene initScene(int size) {
+        
+        public Scene initScene(int size, Parameters p){ //double ratio, double empty, double ideal) {
                 root = new Group();
                 addSimulationView();
                 Node slider = controls.initSizeSlider(size);
@@ -37,7 +39,7 @@ public class SimulationScene extends ProgScene {
                 controlGroup.setLayoutY(20);
                 controlGroup.setSpacing(10);
                 if (controls instanceof SchellingControls) {
-                        addSchellingControls();
+                        addSchellingControls((SLParameters) p);
                 }
                 buttons.setLayoutX(controlGroup.getLayoutX());
                 buttons.setLayoutY(Initializer.SCENE_HEIGHT - 200);
@@ -50,10 +52,11 @@ public class SimulationScene extends ProgScene {
                 
                 return scn;
         }
-        private void addSchellingControls() {
-                controlGroup.getChildren().add(((SchellingControls) controls).initRatioSlider());
-                controlGroup.getChildren().add(((SchellingControls) controls).initEmptySlider());
-                controlGroup.getChildren().add(((SchellingControls) controls).initIdealSlider());
+        private void addSchellingControls(SLParameters p){//double ratio, double empty, double ideal) {
+                controlGroup.getChildren().add(((SchellingControls) controls).initRatioSlider(p.getRatio()));
+                System.out.println(p.getRatio());
+                controlGroup.getChildren().add(((SchellingControls) controls).initEmptySlider(p.getEmptyRatio()));
+                controlGroup.getChildren().add(((SchellingControls) controls).initIdealSlider(p.getIdealRatio()));
         }
         
         private void addSimulationView() {

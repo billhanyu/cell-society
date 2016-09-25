@@ -109,11 +109,6 @@ public class Initializer {
 	        SchellingSimulationFactory schellingSimulation = 
 	                new SchellingSimulationFactory(xmlParser.getRootElement("data/xml/Schelling.xml"));
 	        param = schellingSimulation.getSimulationParameters();
-		//param = new SLParameters();
-		//param.setRows(20);
-//		param.setCols(20);
-//		((SLParameters) param).setEmptyRatio(0.2);
-//		((SLParameters) param).setRatio(1.5);
 		builder = new SchellingBuilder(param);
 		runner = builder.init();
 	}
@@ -138,7 +133,7 @@ public class Initializer {
 			break;
 		}
 		scn = new SimulationScene(builder.getSimulationPane(), controls);
-		stage.setScene(scn.initScene(param.getRows()));
+		stage.setScene(scn.initScene(param.getRows(), param));
 	}
 	
 	private void getType() {
