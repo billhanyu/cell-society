@@ -18,7 +18,7 @@ public class SchellingSimulationFactory extends SimulationFactory {
     public SLParameters getSimulationParameters () {
         Parameters basicParams = returnBasicParameters();
         
-        NodeList listTagNames = rootElement.getElementsByTagName("*");
+        //NodeList listTagNames = rootElement.getElementsByTagName("*");
         String idealRatio = getTextValue("idealRatio");
         String redBlueRatio = getTextValue("redBlueRatio");
         String emptyRatio = getTextValue("emptyRatio");

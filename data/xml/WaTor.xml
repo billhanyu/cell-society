@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Simulation SimulationType="WaTor">
+	<title>WaTor Simulation</title>
+	<author>Addison and Bill</author>
+	<numRows>15</numRows>
+	<numCols>15</numCols>
+	<sharkStarve>5</sharkStarve>
+	<fishRate>8</fishRate>
+	<sharkRate>4</sharkRate>
+	<energyFromEating>5</energyFromEating>
+	<emptyRatio>.3</emptyRatio>
+	<ratio>2</ratio>
+</Simulation>
