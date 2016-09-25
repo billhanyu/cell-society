@@ -2,6 +2,7 @@ package global;
 
 import SpreadingFire.SFParameters;
 import SpreadingFire.SpreadingFireBuilder;
+import SpreadingFire.SpreadingFireControls;
 import WaTor.WTParameters;
 import WaTor.WaTorBuilder;
 import WaTor.WaTorControls;
@@ -130,6 +131,9 @@ public class Initializer {
 			break;
 		case WaTor:
 			controls = new WaTorControls(this);
+			break;
+		case SpreadingFire:
+			controls = new SpreadingFireControls(this);
 			break;
 		default:
 			controls = new Controls(this);

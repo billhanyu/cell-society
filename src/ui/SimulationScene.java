@@ -1,4 +1,6 @@
 package ui;
+import SpreadingFire.SFParameters;
+import SpreadingFire.SpreadingFireControls;
 import WaTor.WTParameters;
 import WaTor.WaTorControls;
 import global.Initializer;
@@ -46,6 +48,10 @@ public class SimulationScene extends ProgScene {
 		if (controls instanceof WaTorControls) {
 			addWaTorControls((WTParameters) p);
 		}
+		if (controls instanceof SpreadingFireControls){
+			addFireControls((SFParameters) p);
+		}
+		
 		buttons.setLayoutX(controlGroup.getLayoutX());
 		buttons.setLayoutY(Initializer.SCENE_HEIGHT - 200);
 		speed.setLayoutX(controlGroup.getLayoutX());
@@ -64,15 +70,20 @@ public class SimulationScene extends ProgScene {
 		controlGroup.getChildren().add(((SchellingControls) controls).initIdealSlider(p.getIdealRatio()));
 	}
 
-	private void addWaTorControls(WTParameters p){//double ratio, double empty, double ideal) {
+	private void addWaTorControls(WTParameters p){
 		controlGroup.getChildren().add(((WaTorControls) controls).initRatioSlider(p.getRatio()));
 		controlGroup.getChildren().add(((WaTorControls) controls).initEmptySlider(p.getEmptyRatio()));
 		controlGroup.getChildren().add(((WaTorControls) controls).sharkStarveRateSlider(p.getSharkStarve()));
 		controlGroup.getChildren().add(((WaTorControls) controls).sharkEnergyGainedFromEatingSlider(p.getEnergyFromEating()));
 		controlGroup.getChildren().add(((WaTorControls) controls).fishReproductionRateSlider(p.getFishRate()));
 		controlGroup.getChildren().add(((WaTorControls) controls).sharkReproductionRateSlider(p.getSharkRate()));
-
 	}
+	
+	private void addFireControls(SFParameters p){
+		controlGroup.getChildren().add(((SpreadingFireControls) controls).flamabilitySlider(p.getProbCatch()));
+	}
+	
+	
 
 	private void addSimulationView() {
 		simu = pane.getGroup();
