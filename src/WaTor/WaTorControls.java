@@ -1,13 +1,9 @@
 package WaTor;
 
-import java.util.List;
-
-import cell.Cell;
 import global.Initializer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
-import schelling.SLParameters;
 import ui.Controls;
 import ui.SliderBox;
 
@@ -22,7 +18,6 @@ public class WaTorControls extends Controls {
 			public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
 				int starveRate = new_val.intValue();
 				((WTParameters) initializer.getParameters()).setSharkStarve(starveRate);
-				initializer.update();
 			}
 		};
 		return new SliderBox("Shark Starve Rate", 0, 25, (int) (rate * 100), 5, listener).getBox();
@@ -33,7 +28,6 @@ public class WaTorControls extends Controls {
 			public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
 				int fishReproductionRate = new_val.intValue();
 				((WTParameters) initializer.getParameters()).setFishRate(fishReproductionRate);
-				initializer.update();
 			}
 		};
 		return new SliderBox("Fish Reproduction Rate", 0, 25, (int) (rate * 100), 5, listener).getBox();
@@ -44,7 +38,6 @@ public class WaTorControls extends Controls {
 			public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
 				int sharkReproductionRate = new_val.intValue();
 				((WTParameters) initializer.getParameters()).setSharkRate(sharkReproductionRate);
-				initializer.update();
 			}
 		};
 		return new SliderBox("Shark Reproduction Rate", 0, 25, (int) (rate * 100), 5, listener).getBox();
@@ -55,7 +48,6 @@ public class WaTorControls extends Controls {
 			public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
 				int energy = new_val.intValue();
 				((WTParameters) initializer.getParameters()).setSharkRate(energy);
-				initializer.update();
 			}
 		};
 		return new SliderBox("Shark Energy From Eating", 0, 25, (int) (rate * 100), 5, listener).getBox();
@@ -77,7 +69,7 @@ public class WaTorControls extends Controls {
 				initializer.update();
 			}
 		};
-		return new SliderBox("Fish/Shark", 0, 100, (int) (ratio/(ratio + 1) * 100), 5, listener).getBox();
+		return new SliderBox("Shark/Fish", 0, 100, (int) (ratio/(ratio + 1) * 100), 5, listener).getBox();
 	}
 	
 	public Node initEmptySlider(double empty) {
