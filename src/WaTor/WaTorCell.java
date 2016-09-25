@@ -16,7 +16,7 @@ public class WaTorCell extends Cell{
 
 	public static final int SHARK_ENERGY = 3;
 	public static final int FISH_REPRODUCTION_RATE = 10;
-	public static final int SHARK_REPRODUCTION_RATE = 5;
+	public static final int SHARK_REPRODUCTION_RATE = 4;
 	public static final int ENERGY_GAINED_FROM_EATING = 6;
 	public static State empty = new State(Color.GRAY, "EMPTY");
 
