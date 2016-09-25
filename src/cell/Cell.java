@@ -37,9 +37,15 @@ public abstract class Cell {
 	public State getCurrState(){
 		return currState;
 	}
+	
 	public State getFutureState(){
 		return futureState;
 	}
+	
+	public void setCurrState(State f){
+		currState = f;
+	}
+	
 	public void setFutureState(State f){
 		futureState = f;
 	}

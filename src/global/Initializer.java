@@ -56,7 +56,8 @@ public class Initializer {
 	}
 	
 	public void reset() {
-		// TODO reset the whole thing
+		builder.reset();
+		runner.updateCellGrid();
 	}
 	
 	public void setParameters(Parameters param) {

@@ -45,7 +45,7 @@ public class SchellingBuilder extends Builder {
 				slCell.setCellsPointer(cells);
 				cells.add(slCell);
 				Rectangle rect = new Rectangle(c * cellWidth, r * cellHeight, cellWidth, cellHeight);
-				CellGraphic g = new CellGraphic(new GridPosition(r, c));
+				CellGraphic g = new CellGraphic(gp);
 				rect.setFill(slCell.getCurrState().getColor());
 				rect.setStroke(Color.BLACK);
 				g.setGraphic(rect);
