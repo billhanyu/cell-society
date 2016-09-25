@@ -52,11 +52,10 @@ public abstract class Runner {
 			c.updateState();
 	}
 
-	private void updateCellGrid(){
+	public void updateCellGrid(){
 		for(Cell c: cells){
 			CellGraphic cg = cellGrid.get(c);
 			cg.setColor(c.getCurrState().getColor());
-			cellGrid.put(c, cg);
 		}
 	}
 

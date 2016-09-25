@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import cell.Cell;
+import cell.State;
 import global.Initializer;
 import ui.SimulationPane;
 
@@ -20,7 +21,9 @@ public abstract class Builder {
 
 	protected List<Cell> cells;
 	protected Map<Cell, CellGraphic> cellGrid;
+	
 	private Cell[][] neighborGrid;
+	private State[][] copy;
 
 	public Builder(Parameters param) {
 		cells = new ArrayList<Cell>();
@@ -46,6 +49,7 @@ public abstract class Builder {
 		readParameters();
 		initCells();
 		giveAllCellsNeighbors();
+		keepCopy();
 		return initRunner();
 	};
 	
@@ -141,6 +145,20 @@ public abstract class Builder {
 		}
 		if (row == numRows - 1 && col == numCols - 1) {
 			c.addNeighbor(neighborGrid[0][0]);
+		}
+	}
+	
+	private void keepCopy() {
+		copy = new State[numRows][numCols];
+		for (Cell c: cells) {
+			copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()] = c.getCurrState();
+		}
+	}
+	
+	public void reset() {
+		for (Cell c: cells) {
+			c.setCurrState(copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()]);
+			c.setFutureState(copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()]);
 		}
 	}
 }

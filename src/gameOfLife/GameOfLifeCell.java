@@ -13,8 +13,6 @@ public class GameOfLifeCell extends Cell{
 	private final int overPopulation = 4;
 	private final int reproduction = 3;
 
-
-
 	public GameOfLifeCell(GridPosition gp, State s) {
 		super(gp, s);
 	}
