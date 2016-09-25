@@ -40,7 +40,7 @@ public class SchellingCell extends Cell{
 				numDifferent++;
 		}
 		int numNeighbors = numSimilar + numDifferent;
-		return ( numNeighbors == 0 || ((double) numSimilar / (double) (numNeighbors)) > getIdealRatio());
+		return ( numNeighbors == 0 || ((double) numSimilar / (double) (numNeighbors)) > idealRatio);
 	}
 
 	private void moveToEmptyCell(){

@@ -13,7 +13,7 @@ public abstract class Runner {
 	protected List<Cell> cells;
 	protected Map<Cell, CellGraphic> cellGrid;
 
-	public static final double MIN_SPEED_IN_SECONDS = .25;
+	public static final double MIN_SPEED_IN_SECONDS = .05;
 	public static final double MAX_SPEED_IN_SECONDS = 3;
 	private int speedOutOf100;
 	private Timeline currentAnimation;
