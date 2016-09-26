@@ -19,10 +19,10 @@ public abstract class Builder {
 	protected int numCols;
 	protected Parameters param;
 
-	private final int TOP = 0;
-	private final int BOTTOM;// = numRows - 1;
-	private final int LEFT = 0;
-	private final int RIGHT;// = numCols - 1;
+	private int top = 0;
+	private int bottom;// = numRows - 1;
+	private int left = 0;
+	private int right;// = numCols - 1;
 
 	protected List<Cell> cells;
 	protected Map<Cell, CellGraphic> cellGrid;
@@ -36,8 +36,8 @@ public abstract class Builder {
 		this.param = param;
 		numRows = param.getRows();
 		numCols = param.getCols();
-		BOTTOM = numRows - 1;
-		RIGHT = numCols - 1;
+		bottom = numRows - 1;
+		right = numCols - 1;
 		width = Initializer.SCENE_HEIGHT - 20;
 		height = width;
 		//TODO change this height = width relationship later
@@ -50,6 +50,8 @@ public abstract class Builder {
 	public Runner init() {
 		numRows = param.getRows();
 		numCols = param.getCols();
+		bottom = numRows - 1;
+		right = numCols - 1;
 		cells = new ArrayList<Cell>();
 		cellGrid = new HashMap<Cell, CellGraphic>();
 		neighborGrid = new Cell[numRows][numCols];
@@ -142,47 +144,47 @@ public abstract class Builder {
 		int row = c.getGridPosition().getRow();
 		int col = c.getGridPosition().getCol();
 		// TOP ROW
-		if (row == TOP) {
+		if (row == top) {
 			// UPPER LEFT
-			if(col == LEFT)
-				c.addNeighbor(neighborGrid[BOTTOM][RIGHT]);
+			if(col == left)
+				c.addNeighbor(neighborGrid[bottom][right]);
 			else
-				c.addNeighbor(neighborGrid[BOTTOM][col - 1]);
+				c.addNeighbor(neighborGrid[bottom][col - 1]);
 			// UPPER RIGHT
-			if(col == RIGHT)
-				c.addNeighbor(neighborGrid[BOTTOM][LEFT]);
+			if(col == right)
+				c.addNeighbor(neighborGrid[bottom][left]);
 			else
-				c.addNeighbor(neighborGrid[BOTTOM][col + 1]);
+				c.addNeighbor(neighborGrid[bottom][col + 1]);
 		}
 		// BOTTOM ROW
-		if (row == BOTTOM) {
+		if (row == bottom) {
 			// BOTTOM LEFT
-			if(col == LEFT)
-				c.addNeighbor(neighborGrid[TOP][RIGHT]);
+			if(col == left)
+				c.addNeighbor(neighborGrid[top][right]);
 			else
-				c.addNeighbor(neighborGrid[TOP][col - 1]);
+				c.addNeighbor(neighborGrid[top][col - 1]);
 			// BOTTOM RIGHT
-			if(col == RIGHT)
-				c.addNeighbor(neighborGrid[TOP][LEFT]);
+			if(col == right)
+				c.addNeighbor(neighborGrid[top][left]);
 			else
-				c.addNeighbor(neighborGrid[TOP][col + 1]);
+				c.addNeighbor(neighborGrid[top][col + 1]);
 		}
 		// LEFT COLUMN excluding 4 corners (grid corners already handled above)
-		if (col == LEFT) {
+		if (col == left) {
 			// UPPER LEFT
-			if(row != TOP)
-				c.addNeighbor(neighborGrid[row - 1][RIGHT]);
+			if(row != top)
+				c.addNeighbor(neighborGrid[row - 1][right]);
 			// BOTTOM LEFT
-			if(row != BOTTOM)
-				c.addNeighbor(neighborGrid[row + 1][RIGHT]);
+			if(row != bottom)
+				c.addNeighbor(neighborGrid[row + 1][right]);
 		}
-		if (col == RIGHT) {
+		if (col == right) {
 			// UPPER LEFT
-			if(row != TOP)
-				c.addNeighbor(neighborGrid[row - 1][LEFT]);
+			if(row != top)
+				c.addNeighbor(neighborGrid[row - 1][left]);
 			// BOTTOM LEFT
-			if(row != BOTTOM)
-				c.addNeighbor(neighborGrid[row + 1][LEFT]);
+			if(row != bottom)
+				c.addNeighbor(neighborGrid[row + 1][left]);
 		}
 	}
 
