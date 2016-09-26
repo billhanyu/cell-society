@@ -15,9 +15,15 @@ public class GeneralSimulationFactory extends SimulationFactory{
                               getTextValue("numRows"), getTextValue("numCols"));
     }
 
+    
+    public String getTitle(){
+        return getTextValue("title");
+    }
+
     @Override
     public String getSimulationType () {
-        return getAttribute("SimulatonType");
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

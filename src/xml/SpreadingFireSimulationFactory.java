@@ -29,6 +29,6 @@ public class SpreadingFireSimulationFactory extends SimulationFactory {
     @Override
     public String getSimulationType () {
         // TODO Auto-generated method stub
-        return "Spreading Fire Simulation";
+        return "Spreading Fire";
     }
 }

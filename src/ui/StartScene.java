@@ -31,7 +31,8 @@ public class StartScene extends ProgScene {
 
 	
 	public Scene initScene(int size) {
-		HBox selectionBox = initSelectionBox();
+		//HBox selectionBox = initSelectionBox();
+	        VBox selectionBox = initCombinedSelectionBox();
 		Button exitButton = initExitButton();
 		VBox box = new VBox();
 		Label title = initTitle();
@@ -60,8 +61,16 @@ public class StartScene extends ProgScene {
 		return comboBox;
 	}
 	
+	private VBox initCombinedSelectionBox(){
+	        VBox box = new VBox(10);
+	        HBox selectionBox = initSelectionBox();
+	        Button chooseFile = initFileButton();
+	        box.getChildren().addAll(selectionBox, chooseFile);
+	        box.setAlignment(Pos.CENTER);
+	        return box;
+	        
+	}
 	
-
 	//drop down and go button
 	private HBox initSelectionBox() {
 		ComboBox<String> selection = initComboBox();
@@ -83,6 +92,14 @@ public class StartScene extends ProgScene {
 			initializer.initSimulation(algorithm);
 		});
 		return go;
+	}
+	
+	private Button initFileButton() {
+	        Button chooseFile = new Button("Choose File");
+	        chooseFile.setOnAction(e ->{
+	                initializer.initSimulationFromFile();
+	        });
+	        return chooseFile;
 	}
 	
 	private Label initTitle() {
