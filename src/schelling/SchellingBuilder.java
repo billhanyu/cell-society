@@ -1,5 +1,6 @@
 package schelling;
 
+import java.util.ResourceBundle;
 import cell.Cell;
 import cell.GridPosition;
 import grid.Builder;
@@ -15,9 +16,11 @@ public class SchellingBuilder extends Builder {
 	private SLParameters pars;
 	private double emptyRatio;
 	private double ratio;
+	private ResourceBundle myResource;
 
-	public SchellingBuilder(Parameters param) {
+	public SchellingBuilder(Parameters param, ResourceBundle myResource) {
 		super(param);
+		this.myResource = myResource;
 	}
 
 	@Override
@@ -65,7 +68,7 @@ public class SchellingBuilder extends Builder {
 	protected void readParameters() {
 		if (!(param instanceof SLParameters)) {
 			// not supposed to happen
-			ErrorPop error = new ErrorPop(300, 200, "Error reading Schelling Parameters");
+			ErrorPop error = new ErrorPop(300, 200, myResource.getString("SchellingError"), myResource);
 			error.popup();
 		}
 		pars = (SLParameters) param;

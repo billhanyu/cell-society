@@ -1,5 +1,6 @@
 package WaTor;
 
+import java.util.ResourceBundle;
 import global.Initializer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,8 +10,8 @@ import ui.SliderBox;
 
 public class WaTorControls extends Controls {
 
-	public WaTorControls(Initializer initializer) {
-		super(initializer);
+	public WaTorControls(Initializer initializer, ResourceBundle myResource) {
+		super(initializer, myResource);
 	}
 	
 	public Node sharkStarveRateSlider(int rate) {
@@ -20,7 +21,7 @@ public class WaTorControls extends Controls {
 				((WTParameters) initializer.getParameters()).setSharkStarve(starveRate);
 			}
 		};
-		return new SliderBox("Shark Starve", 0, 25, (int) (rate * 100), 5, listener).getBox();
+		return new SliderBox(myResource.getString("SharkStarve"), 0, 25, (int) (rate * 100), 5, listener).getBox();
 	}
 	
 	public Node fishReproductionRateSlider(int rate) {
@@ -30,7 +31,7 @@ public class WaTorControls extends Controls {
 				((WTParameters) initializer.getParameters()).setFishRate(fishReproductionRate);
 			}
 		};
-		return new SliderBox("Fish Reproduction", 0, 25, (int) (rate * 100), 5, listener).getBox();
+		return new SliderBox(myResource.getString("FishRep"), 0, 25, (int) (rate * 100), 5, listener).getBox();
 	}
 	
 	public Node sharkReproductionRateSlider(int rate) {
@@ -40,7 +41,7 @@ public class WaTorControls extends Controls {
 				((WTParameters) initializer.getParameters()).setSharkRate(sharkReproductionRate);
 			}
 		};
-		return new SliderBox("Shark Reproduction", 0, 25, (int) (rate * 100), 5, listener).getBox();
+		return new SliderBox(myResource.getString("SharkRep"), 0, 25, (int) (rate * 100), 5, listener).getBox();
 	}
 	
 	public Node sharkEnergyGainedFromEatingSlider(int rate) {
@@ -50,7 +51,7 @@ public class WaTorControls extends Controls {
 				((WTParameters) initializer.getParameters()).setSharkRate(energy);
 			}
 		};
-		return new SliderBox("Shark Gain", 0, 25, (int) (rate * 100), 5, listener).getBox();
+		return new SliderBox(myResource.getString("SharkGain"), 0, 25, (int) (rate * 100), 5, listener).getBox();
 	}
 	
 	public Node initRatioSlider(double ratio) {
@@ -81,6 +82,6 @@ public class WaTorControls extends Controls {
 				initializer.update();
 			}
 		};
-		return new SliderBox("Empty Ratio", 0, 100, (int) (empty*100), 5, listener).getBox();
+		return new SliderBox(myResource.getString("Empty"), 0, 100, (int) (empty*100), 5, listener).getBox();
 	}
 }

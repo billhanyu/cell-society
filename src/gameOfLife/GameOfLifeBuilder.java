@@ -3,6 +3,7 @@ package gameOfLife;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.Set;
 import cell.Cell;
 import cell.GridPosition;
@@ -18,9 +19,11 @@ public class GameOfLifeBuilder extends Builder{
 
 	private GLParameters pars;
 	private Set<GridPosition> gpUsed;
+	private ResourceBundle myResource;
 
-	public GameOfLifeBuilder(Parameters param) {
+	public GameOfLifeBuilder(Parameters param, ResourceBundle myResource) {
 		super(param);
+		this.myResource = myResource;
 	}
 
 	@Override
@@ -31,7 +34,7 @@ public class GameOfLifeBuilder extends Builder{
 	@Override
 	protected void readParameters() {
 		if (!(param instanceof GLParameters)) {
-			ErrorPop error = new ErrorPop(300, 200, "Error Reading GLParameters");
+			ErrorPop error = new ErrorPop(300, 200, myResource.getString("LifeError"), myResource);
 			error.popup();
 		}
 		pars = (GLParameters) param;

@@ -1,5 +1,6 @@
 package ui;
 
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -16,23 +17,25 @@ public class ErrorPop {
 	private double height;
 	private String description;
 	private Stage s;
+	private ResourceBundle myResources;
 
-	public ErrorPop(double width, double height, String description) {
+	public ErrorPop(double width, double height, String description, ResourceBundle myResource) {
 		this.width = width;
 		this.height = height;
 		this.description = description;
+		this.myResources = myResource;
 	}
 	
 	public void popup() {
 		s = new Stage();
-		s.setTitle("Cell Society");
+		s.setTitle(myResources.getString("Title"));
 		Scene scn = initScene();
 		s.setScene(scn);
 		s.show();
 	}
 	
 	private Scene initScene() {
-		Label lbl = new Label("Error!");
+		Label lbl = new Label(myResources.getString("ErrorMessage"));
 		lbl.setFont(new Font(20));
 		Label des = new Label(description);
 		Button btn = new Button("OK");

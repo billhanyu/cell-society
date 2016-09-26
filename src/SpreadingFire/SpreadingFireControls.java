@@ -1,7 +1,7 @@
 package SpreadingFire;
 
 import java.util.List;
-
+import java.util.ResourceBundle;
 import cell.Cell;
 import global.Initializer;
 import javafx.beans.value.ChangeListener;
@@ -12,8 +12,8 @@ import ui.SliderBox;
 
 public class SpreadingFireControls extends Controls {
 
-	public SpreadingFireControls(Initializer initializer) {
-		super(initializer);
+	public SpreadingFireControls(Initializer initializer, ResourceBundle myResources) {
+		super(initializer, myResources);
 	}
 	
 	public Node flamabilitySlider(double empty) {
@@ -27,6 +27,6 @@ public class SpreadingFireControls extends Controls {
 				}
 			}
 		};
-		return new SliderBox("Chance of catching fire", 0, 100, (int) (empty*100), 5, listener).getBox();
+		return new SliderBox(myResource.getString("FireChance"), 0, 100, (int) (empty*100), 5, listener).getBox();
 	}
 }

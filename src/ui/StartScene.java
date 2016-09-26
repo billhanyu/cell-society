@@ -1,5 +1,6 @@
 package ui;
 
+import java.util.ResourceBundle;
 import global.Initializer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +23,7 @@ public class StartScene extends ProgScene {
 	private String goString = "Go";
 	private EventHandler<ActionEvent> exitAction;
 	private Initializer initializer;
+	private ResourceBundle myResource;
 
 	public StartScene(EventHandler<ActionEvent> exitAction, Initializer initializer) {
 		super();
@@ -30,8 +32,9 @@ public class StartScene extends ProgScene {
 	}
 
 	
-	public Scene initScene(int size) {
-		HBox selectionBox = initSelectionBox();
+	public Scene initScene(int size, ResourceBundle myResource) {
+		this.myResource = myResource;
+	        VBox selectionBox = initCombinedSelectionBox();
 		Button exitButton = initExitButton();
 		VBox box = new VBox();
 		Label title = initTitle();
@@ -59,7 +62,17 @@ public class StartScene extends ProgScene {
 		});
 		return comboBox;
 	}
-
+	
+	private VBox initCombinedSelectionBox(){
+	        VBox box = new VBox(10);
+	        HBox selectionBox = initSelectionBox();
+	        Button chooseFile = initFileButton();
+	        box.getChildren().addAll(selectionBox, chooseFile);
+	        box.setAlignment(Pos.CENTER);
+	        return box;
+	        
+	}
+	
 	//drop down and go button
 	private HBox initSelectionBox() {
 		ComboBox<String> selection = initComboBox();
@@ -74,13 +87,21 @@ public class StartScene extends ProgScene {
 		Button go = new Button(goString);
 		go.setOnAction(e->{
 			if (algorithm == null) {
-				ErrorPop pop = new ErrorPop(300, 200, "Please select a simulation");
+				ErrorPop pop = new ErrorPop(300, 200, myResource.getString("GoError"), myResource);
 				pop.popup();
 				return;
 			}
 			initializer.initSimulation(algorithm);
 		});
 		return go;
+	}
+	
+	private Button initFileButton() {
+	        Button chooseFile = new Button("Choose File");
+	        chooseFile.setOnAction(e ->{
+	                initializer.initSimulationFromFile();
+	        });
+	        return chooseFile;
 	}
 	
 	private Label initTitle() {
