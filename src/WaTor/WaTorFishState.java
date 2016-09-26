@@ -14,4 +14,9 @@ public class WaTorFishState extends WaTorState{
 	public WaTorFishState(){
 		super(myColor, myName, 0);
 	}
+
+	@Override
+	public WaTorState copy() {
+		return new WaTorFishState(chrononsSinceReproduction);
+	}
 }

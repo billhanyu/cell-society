@@ -43,7 +43,7 @@ public class Main extends Application {
      */
     public static void main (String[] args) throws ParserConfigurationException, TransformerException {
         GameOfLifeXMLGenerator s = new GameOfLifeXMLGenerator();
-        s.createFile();
+        //s.createFile();
         launch(args);
     }
 }

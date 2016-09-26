@@ -28,4 +28,9 @@ public class WaTorSharkState extends WaTorState{
 		energy += increment;
 	}
 
+	@Override
+	public WaTorState copy() {
+		return new WaTorSharkState(chrononsSinceReproduction, energy);
+	}
+
 }
