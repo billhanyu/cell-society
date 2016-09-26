@@ -3,7 +3,7 @@ package WaTor;
 import javafx.scene.paint.Color;
 import cell.State;
 
-public class WaTorState extends State{
+public abstract class WaTorState extends State{
 	
 	protected int chrononsSinceReproduction;
 
@@ -24,5 +24,5 @@ public class WaTorState extends State{
 		return chrononsSinceReproduction;
 	}
 
-
+	public abstract WaTorState copy();
 }

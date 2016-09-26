@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import WaTor.WaTorState;
 import cell.Cell;
 import cell.State;
 import global.Initializer;
@@ -191,7 +192,13 @@ public abstract class Builder {
 	private void keepCopy() {
 		copy = new State[numRows][numCols];
 		for (Cell c: cells) {
-			copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()] = c.getCurrState();
+			State currState = c.getCurrState();
+			if (currState instanceof WaTorState) {
+				copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()] = ((WaTorState) currState).copy();
+			}
+			else {
+				copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()] = currState;
+			}
 		}
 	}
 

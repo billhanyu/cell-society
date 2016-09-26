@@ -21,9 +21,9 @@ public class WaTorCell extends Cell{
 
 	@Override
 	public void checkChangeState() {
-		if (getCurrState().equals(new WaTorFishState()))
+		if (getCurrState() instanceof WaTorFishState)
 			fishSwim();
-		if(getCurrState().equals(new WaTorSharkState(params)))
+		if(getCurrState() instanceof WaTorSharkState)
 			sharkSwim();
 	}
 
