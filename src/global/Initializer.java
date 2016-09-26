@@ -1,5 +1,6 @@
 package global;
 
+import java.io.File;
 import SpreadingFire.SpreadingFireBuilder;
 import SpreadingFire.SpreadingFireControls;
 import WaTor.WaTorBuilder;
@@ -11,6 +12,7 @@ import grid.Parameters;
 import grid.Runner;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import schelling.SchellingBuilder;
 import schelling.SchellingControls;
@@ -36,7 +38,7 @@ public class Initializer {
 	private AlgorithmType type;
 	private SimulationScene scn;
 	private Controls controls;
-
+	private File xmlFile;
 	private Decoder xmlParser;
 
 	class ExitAction implements EventHandler<ActionEvent> {
@@ -54,6 +56,12 @@ public class Initializer {
 		stage.setTitle("Cell Society");
 		StartScene start = new StartScene(new ExitAction(), this);
 		stage.setScene(start.initScene(0));
+//	        FileChooser fileChooser = new FileChooser();
+//	        fileChooser.setTitle("Open Resource File");
+//	        File file = fileChooser.showOpenDialog(stage);
+//	        xmlParser = new Decoder();
+//	        GeneralSimulationFactory test = new GeneralSimulationFactory(xmlParser.getRootElement(file.toString()));
+//	        
 	}
 
 	public void reset() {

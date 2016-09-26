@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import cell.GridPosition;
 import gameOfLife.GLParameters;
 import grid.Parameters;
-import schelling.SLParameters;
 
 public class GameOfLifeSimulationFactory extends SimulationFactory {
     
@@ -27,7 +25,6 @@ public class GameOfLifeSimulationFactory extends SimulationFactory {
         
         listOfAlive = new ArrayList<String>();
         Parameters basicParams = returnBasicParameters();
-        //NodeList listTagNames = rootElement.getElementsByTagName("*");
         NodeList hello = rootElement.getChildNodes();
         for (int i = 0; i < hello.getLength(); i++){
             if (hello.item(i).getNodeName().equals("Alive")){

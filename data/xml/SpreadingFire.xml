@@ -5,6 +5,5 @@
 	<numRows>12</numRows>
 	<numCols>12</numCols>
 	<probCatch>.5</probCatch>
-	<FireCell>8 9</FireCell>
 </Simulation>
 	

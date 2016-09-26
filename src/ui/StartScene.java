@@ -59,6 +59,8 @@ public class StartScene extends ProgScene {
 		});
 		return comboBox;
 	}
+	
+	
 
 	//drop down and go button
 	private HBox initSelectionBox() {

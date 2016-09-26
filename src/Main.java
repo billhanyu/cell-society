@@ -10,6 +10,7 @@ import javax.xml.transform.stream.StreamResult;
 import global.Initializer;
 
 import javafx.application.Application;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import xml.*;
 import xml.model.GameOfLifeXMLGenerator;
@@ -31,6 +32,10 @@ public class Main extends Application {
     public void start (Stage s) {
     	this.stage = s;
         stage.show();
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Open Resource File");
+//        File file = fileChooser.showOpenDialog(stage);
+//        System.out.println(file);
         
         initializer = new Initializer(stage);
         initializer.start();
@@ -42,8 +47,9 @@ public class Main extends Application {
 	 * @throws ParserConfigurationException 
      */
     public static void main (String[] args) throws ParserConfigurationException, TransformerException {
-        GameOfLifeXMLGenerator s = new GameOfLifeXMLGenerator();
-        s.createFile();
+        //GameOfLifeXMLGenerator s = new GameOfLifeXMLGenerator();
+        //s.createFile();
+        
         launch(args);
     }
 }
