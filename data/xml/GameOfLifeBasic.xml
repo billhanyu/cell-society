@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Simulation SimulationType="GameOfLife">
-	<title>Game Of Life Simulation</title>
-	<author>Addison and Bill</author>
-	<numRows>19</numRows>
-	<numCols>19</numCols>
-	<aliveRatio>.3</aliveRatio>
-</Simulation>

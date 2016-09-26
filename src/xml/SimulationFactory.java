@@ -17,7 +17,7 @@ public abstract class SimulationFactory extends XMLFactory {
         return Objects.equals(getAttribute("SimulationType"), getSimulationType());
     }
     
-    public Parameters returnBasicParameters() {
+    public Parameters returnBasicParameters(){
         // throw error/exception here
         if(!isValidFile()){
             return null;

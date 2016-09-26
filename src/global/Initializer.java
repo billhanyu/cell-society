@@ -126,9 +126,7 @@ public class Initializer {
 	}
 
 	private void initLife() {
-	        GameOfLifeSimulationFactory gameSimulation = 
-	                new GameOfLifeSimulationFactory(xmlParser.getRootElement("data/xml/GameOfLifePleaseWork.xml"));
-	        param = gameSimulation.getSimulationParameters();
+		param = new GLParameters("","","20","20");
 		builder = new GameOfLifeBuilder(param);
 		runner = builder.init();
 	}

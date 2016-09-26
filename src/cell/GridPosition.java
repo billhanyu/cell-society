@@ -4,11 +4,6 @@ public class GridPosition {
 	
 	private int gridRow;
 	private int gridCol;
-
-	public GridPosition(GridPosition p){
-	    this.gridRow = p.getRow();
-	    this.gridCol = p.getCol();
-	}
 	
 	public GridPosition(int r, int c){
 		gridRow = r;
@@ -25,15 +20,6 @@ public class GridPosition {
 			return false;
 		GridPosition other = (GridPosition) obj;
 		return (gridCol == other.gridCol && gridRow == other.gridRow);
-	}
-	
-	@Override
-	public int hashCode(){
-	    final int prime = 31;
-	        int result = 1;
-	        result = prime * result + (gridRow);
-	        result = prime * result + (gridCol);
-	        return result;
 	}
 	
 	public int getRow(){
