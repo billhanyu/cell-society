@@ -8,9 +8,7 @@ import javax.xml.transform.stream.StreamResult;
 import global.Initializer;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import xml.*;
-import xml.model.GameOfLifeXMLGenerator;
-import xml.model.SchellingXMLGenerator;
+
 /**
  * This is the main program.
  * 
@@ -33,12 +31,11 @@ public class Main extends Application {
     
         /**
      * Start the program.
-         * @throws TransformerException 
+     *      * 
+     *  * @throws TransformerException 
          * @throws ParserConfigurationException 
      */
-    public static void main (String[] args) throws ParserConfigurationException, TransformerException {
-        //GameOfLifeXMLGenerator s = new GameOfLifeXMLGenerator();
-        //s.createFile();
+    public static void main (String[] args) {
         launch(args);
     }
 }

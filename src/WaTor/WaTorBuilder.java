@@ -1,5 +1,6 @@
 package WaTor;
 
+import java.util.ResourceBundle;
 import cell.Cell;
 import cell.GridPosition;
 import grid.Builder;
@@ -15,9 +16,11 @@ public class WaTorBuilder extends Builder {
 	private WTParameters pars;
 	private double emptyRatio;
 	private double ratio;
+	private ResourceBundle myResource;
 
-	public WaTorBuilder(Parameters param) {
+	public WaTorBuilder(Parameters param, ResourceBundle myResource) {
 		super(param);
+		this.myResource = myResource;
 	}
 
 	@Override
@@ -28,7 +31,7 @@ public class WaTorBuilder extends Builder {
 	@Override
 	protected void readParameters() {
 		if (!(param instanceof WTParameters)) {
-			ErrorPop error = new ErrorPop(300, 200, "Error Reading WTParameters");
+			ErrorPop error = new ErrorPop(300, 200, myResource.getString("WaTorError"), myResource);
 			error.popup();
 		}
 		pars = (WTParameters) param;

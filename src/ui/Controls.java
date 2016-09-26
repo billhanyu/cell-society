@@ -3,6 +3,7 @@ package ui;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import java.util.ResourceBundle;
 import global.Initializer;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Node;
@@ -11,9 +12,11 @@ import javafx.scene.layout.HBox;
 
 public class Controls {
 	protected Initializer initializer;
+	protected ResourceBundle myResource;
 	
-	public Controls(Initializer initializer) {
+	public Controls(Initializer initializer, ResourceBundle myResource) {
 		this.initializer = initializer;
+		this.myResource = myResource;
 	}
 	
 	public Node initSizeSlider(int size) {
@@ -25,7 +28,7 @@ public class Controls {
             	initializer.update();
             }
 		};
-		return new SliderBox("Size", 10, 50, size, 5, listener).getBox();
+		return new SliderBox(myResource.getString("Size"), 10, 50, size, 5, listener).getBox();
 	}
 	
 	public Node initSpeedSlider() {
@@ -35,7 +38,7 @@ public class Controls {
             	initializer.getRunner().setSpeed(newSpeed);
             }
 		};
-		return new SliderBox("Speed", 0, 100, 90, 5, listener).getBox();
+		return new SliderBox(myResource.getString("Speed"), 0, 100, 90, 5, listener).getBox();
 	}
 	
 	public Node initActionButtons() {
@@ -54,19 +57,19 @@ public class Controls {
 	}
 	
 	private Button initStartButton() {
-		return makeButton("start", e->initializer.getRunner().start());
+		return makeButton(myResource.getString("Start"), e->initializer.getRunner().start());
 	}
 	
 	private Button initStepButton() {
-		return makeButton("step", e->initializer.getRunner().step());
+		return makeButton(myResource.getString("Step"), e->initializer.getRunner().step());
 	}
 	
 	private Button initStopButton() {
-		return makeButton("stop", e->initializer.getRunner().pause());
+		return makeButton(myResource.getString("Stop"), e->initializer.getRunner().pause());
 	}
 	
 	private Button initResetButton() {
-		return makeButton("reset", e->initializer.reset());
+		return makeButton(myResource.getString("Reset"), e->initializer.reset());
 	}
 	
 	private Button makeButton(String text, EventHandler<ActionEvent> handler) {
@@ -74,4 +77,5 @@ public class Controls {
 		btn.setOnAction(handler);
 		return btn;
 	}
+	
 }

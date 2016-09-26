@@ -9,5 +9,5 @@
 	<sharkRate>18</sharkRate>
 	<energyFromEating>25</energyFromEating>
 	<emptyRatio>.2</emptyRatio>
-	<ratio>50</ratio>
+	<ratio>25</ratio>
 </Simulation>

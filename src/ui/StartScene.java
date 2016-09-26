@@ -1,5 +1,6 @@
 package ui;
 
+import java.util.ResourceBundle;
 import global.Initializer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +23,7 @@ public class StartScene extends ProgScene {
 	private String goString = "Go";
 	private EventHandler<ActionEvent> exitAction;
 	private Initializer initializer;
+	private ResourceBundle myResource;
 
 	public StartScene(EventHandler<ActionEvent> exitAction, Initializer initializer) {
 		super();
@@ -30,8 +32,8 @@ public class StartScene extends ProgScene {
 	}
 
 	
-	public Scene initScene(int size) {
-		//HBox selectionBox = initSelectionBox();
+	public Scene initScene(int size, ResourceBundle myResource) {
+		this.myResource = myResource;
 	        VBox selectionBox = initCombinedSelectionBox();
 		Button exitButton = initExitButton();
 		VBox box = new VBox();
@@ -85,7 +87,7 @@ public class StartScene extends ProgScene {
 		Button go = new Button(goString);
 		go.setOnAction(e->{
 			if (algorithm == null) {
-				ErrorPop pop = new ErrorPop(300, 200, "Please select a simulation");
+				ErrorPop pop = new ErrorPop(300, 200, myResource.getString("GoError"), myResource);
 				pop.popup();
 				return;
 			}

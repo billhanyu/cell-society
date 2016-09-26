@@ -1,7 +1,7 @@
 package schelling;
 
 import java.util.List;
-
+import java.util.ResourceBundle;
 import cell.Cell;
 import global.Initializer;
 import javafx.beans.value.ChangeListener;
@@ -12,8 +12,8 @@ import ui.SliderBox;
 
 public class SchellingControls extends Controls {
 
-	public SchellingControls(Initializer initializer) {
-		super(initializer);
+	public SchellingControls(Initializer initializer, ResourceBundle myResources) {
+		super(initializer, myResources);
 	}
 	
 	public Node initRatioSlider(double ratio) {
@@ -32,7 +32,7 @@ public class SchellingControls extends Controls {
 				initializer.update();
 			}
 		};
-		return new SliderBox("Red/Blue", 0, 100, (int) (ratio/(ratio + 1) * 100), 5, listener).getBox();
+		return new SliderBox(myResource.getString("RedBlue"), 0, 100, (int) (ratio/(ratio + 1) * 100), 5, listener).getBox();
 	}
 	
 	public Node initEmptySlider(double empty) {
@@ -44,7 +44,7 @@ public class SchellingControls extends Controls {
 				initializer.update();
 			}
 		};
-		return new SliderBox("Empty Ratio", 0, 100, (int) (empty*100), 5, listener).getBox();
+		return new SliderBox(myResource.getString("Empty"), 0, 100, (int) (empty*100), 5, listener).getBox();
 	}
 	
 	public Node initIdealSlider(double ideal) {
@@ -58,6 +58,6 @@ public class SchellingControls extends Controls {
 				}
 			}
 		};
-		return new SliderBox("Ideal Ratio", 0, 100, (int) (ideal * 100), 5, listener).getBox();
+		return new SliderBox(myResource.getString("Ideal"), 0, 100, (int) (ideal * 100), 5, listener).getBox();
 	}
 }

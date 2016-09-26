@@ -1,5 +1,6 @@
 package SpreadingFire;
 
+import java.util.ResourceBundle;
 import cell.Cell;
 import cell.GridPosition;
 import grid.Builder;
@@ -13,9 +14,11 @@ import ui.ErrorPop;
 public class SpreadingFireBuilder extends Builder {
 
 	SFParameters pars;
+	ResourceBundle myResource;
 
-	public SpreadingFireBuilder(Parameters param) {
+	public SpreadingFireBuilder(Parameters param, ResourceBundle myResource) {
 		super(param);
+		this.myResource = myResource;
 	}
 
 	@Override
@@ -67,7 +70,7 @@ public class SpreadingFireBuilder extends Builder {
 	@Override
 	protected void readParameters() {
 		if (!(param instanceof SFParameters)) {
-			ErrorPop error = new ErrorPop(300, 200, "Error Reading SFParameters");
+			ErrorPop error = new ErrorPop(300, 200, myResource.getString("FireError"), myResource);
 			error.popup();
 		}
 		pars = (SFParameters) param;
