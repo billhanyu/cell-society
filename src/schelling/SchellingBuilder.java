@@ -1,14 +1,12 @@
 package schelling;
 
 import java.util.ResourceBundle;
+
 import cell.Cell;
 import cell.GridPosition;
 import grid.Builder;
-import grid.CellGraphic;
 import grid.Parameters;
 import grid.Runner;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import ui.ErrorPop;
 
 public class SchellingBuilder extends Builder {
@@ -43,17 +41,6 @@ public class SchellingBuilder extends Builder {
 		}
 		slCell.setCellsPointer(cells);
 		return slCell;
-	}
-
-	protected CellGraphic initCellGraphic(Cell cell, GridPosition gp) {
-		int r = gp.getRow();
-		int c = gp.getCol();
-		Rectangle rect = new Rectangle(c * cellWidth, r * cellHeight, cellWidth, cellHeight);
-		CellGraphic g = new CellGraphic(gp);
-		rect.setFill(cell.getCurrState().getColor());
-		rect.setStroke(Color.BLACK);
-		g.setGraphic(rect);
-		return g;
 	}
 
 	@Override

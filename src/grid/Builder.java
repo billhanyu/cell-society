@@ -10,6 +10,9 @@ import cell.Cell;
 import cell.GridPosition;
 import cell.State;
 import global.Initializer;
+import grid.CellGraphic.GraphicType;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import ui.SimulationPane;
 
 public abstract class Builder {
@@ -95,7 +98,7 @@ public abstract class Builder {
 			for(int c = 0; c < numCols; c++) {
 				GridPosition gp = new GridPosition(r, c);
 				Cell cell = initCell(gp);
-				CellGraphic g = initCellGraphic(cell, gp);
+				CellGraphic g = initCellGraphic(cell, gp, GraphicType.Rectangle);
 				cells.add(cell);
 				cellGrid.put(cell, g);
 			}
@@ -103,7 +106,28 @@ public abstract class Builder {
 	};
 	
 	protected abstract Cell initCell(GridPosition gp);
-	protected abstract CellGraphic initCellGraphic(Cell cell, GridPosition gp);
+	
+	private CellGraphic initCellGraphic(Cell cell, GridPosition gp, GraphicType type) {
+		switch (type) {
+		case Rectangle:
+			return initRectGraphic(cell, gp);
+		case Triangle:
+		case Hexagon:
+		default:
+			return null;
+		}
+	};
+	
+	private CellGraphic initRectGraphic(Cell cell, GridPosition gp) {
+		int r = gp.getRow();
+		int c = gp.getCol();
+		Rectangle rect = new Rectangle(c * cellWidth, r * cellHeight, cellWidth, cellHeight);
+		CellGraphic g = new CellGraphic(gp);
+		rect.setFill(cell.getCurrState().getColor());
+		rect.setStroke(Color.BLACK);
+		g.setGraphic(rect);
+		return g;
+	}
 
 	protected abstract void addAllNeighbors(Cell c);
 
