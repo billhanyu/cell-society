@@ -112,7 +112,9 @@ public abstract class Builder {
 		case Rectangle:
 			return initRectGraphic(cell, gp);
 		case Triangle:
+			return initTriangleGraphic(cell, gp);
 		case Hexagon:
+			return initHexagonGraphic(cell, gp);
 		default:
 			return null;
 		}
@@ -127,6 +129,14 @@ public abstract class Builder {
 		rect.setStroke(Color.BLACK);
 		g.setGraphic(rect);
 		return g;
+	}
+	
+	private CellGraphic initTriangleGraphic(Cell cell, GridPosition gp) {
+		return null;
+	}
+	
+	private CellGraphic initHexagonGraphic(Cell cell, GridPosition gp) {
+		return null;
 	}
 
 	protected abstract void addAllNeighbors(Cell c);
