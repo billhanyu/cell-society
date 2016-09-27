@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 public class StartScene extends ProgScene {
-	
+
 	private ComboBox<String> comboBox;
 	private String algorithm;
 	private String goString = "Go";
@@ -31,10 +31,10 @@ public class StartScene extends ProgScene {
 		this.initializer = initializer;
 	}
 
-	
+
 	public Scene initScene(int size, ResourceBundle myResource) {
 		this.myResource = myResource;
-	        VBox selectionBox = initCombinedSelectionBox();
+		VBox selectionBox = initCombinedSelectionBox();
 		Button exitButton = initExitButton();
 		VBox box = new VBox();
 		Label title = initTitle();
@@ -45,7 +45,7 @@ public class StartScene extends ProgScene {
 		root.setCenter(box);
 		return new Scene(root, width, height);
 	}
-	
+
 	private ComboBox<String> initComboBox() {
 		ObservableList<String> options = 
 				FXCollections.observableArrayList(
@@ -53,26 +53,26 @@ public class StartScene extends ProgScene {
 						Initializer.PRED_PREY,
 						Initializer.FIRE,
 						Initializer.LIFE
-				);
+						);
 		comboBox = new ComboBox<String>(options);
 		comboBox.setPromptText("Select a Simulation");
 		comboBox.setPrefWidth(200);
 		comboBox.setOnAction((e) -> {
-		    algorithm =  comboBox.getSelectionModel().getSelectedItem().toString();    
+			algorithm =  comboBox.getSelectionModel().getSelectedItem().toString();    
 		});
 		return comboBox;
 	}
-	
+
 	private VBox initCombinedSelectionBox(){
-	        VBox box = new VBox(10);
-	        HBox selectionBox = initSelectionBox();
-	        Button chooseFile = initFileButton();
-	        box.getChildren().addAll(selectionBox, chooseFile);
-	        box.setAlignment(Pos.CENTER);
-	        return box;
-	        
+		VBox box = new VBox(10);
+		HBox selectionBox = initSelectionBox();
+		Button chooseFile = initFileButton();
+		box.getChildren().addAll(selectionBox, chooseFile);
+		box.setAlignment(Pos.CENTER);
+		return box;
+
 	}
-	
+
 	//drop down and go button
 	private HBox initSelectionBox() {
 		ComboBox<String> selection = initComboBox();
@@ -82,7 +82,7 @@ public class StartScene extends ProgScene {
 		box.setAlignment(Pos.CENTER);
 		return box;
 	}
-	
+
 	private Button initGoButton() {
 		Button go = new Button(goString);
 		go.setOnAction(e->{
@@ -95,15 +95,15 @@ public class StartScene extends ProgScene {
 		});
 		return go;
 	}
-	
+
 	private Button initFileButton() {
-	        Button chooseFile = new Button("Choose File");
-	        chooseFile.setOnAction(e ->{
-	                initializer.initSimulationFromFile();
-	        });
-	        return chooseFile;
+		Button chooseFile = new Button("Choose File");
+		chooseFile.setOnAction(e ->{
+			initializer.initSimulationFromFile();
+		});
+		return chooseFile;
 	}
-	
+
 	private Label initTitle() {
 		Label lbl = new Label("Cell Society");
 		lbl.setFont(new Font(20));

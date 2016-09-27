@@ -1,6 +1,6 @@
 package xml;
 import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
+
 import grid.Parameters;
 import schelling.SLParameters;
 public class SchellingSimulationFactory extends SimulationFactory {
