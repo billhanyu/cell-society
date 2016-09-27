@@ -27,39 +27,39 @@ public class SpreadingFireBuilder extends Builder {
 	}
 
 	@Override
-	protected void initCells() {
-		// initialize grid of cells
-		for(int r = 0; r < numRows; r++) {
-			for(int c = 0; c < numCols; c++) {
-				SpreadingFireCell sfCell;
-				GridPosition gp = new GridPosition(r, c);
-				if (pars.isModified()){
-				    if (pars.getExtendedParams().getRowStart() == r && pars.getExtendedParams().getColStart() == c){
-				        sfCell = new SpreadingFireCell(gp, SpreadingFireCell.burning);
-				    }
-				    else{
-				        sfCell = new SpreadingFireCell(gp, SpreadingFireCell.tree);
-				    }
-				}
-				else{
-				    if (r == (numRows / 2) && c == (numCols / 2) ) {
-				        sfCell = new SpreadingFireCell(gp, SpreadingFireCell.burning);
-				    }
-				    else{
-				        sfCell = new SpreadingFireCell(gp, SpreadingFireCell.tree);
-				    }
-				}
-				
-				sfCell.setProbCatch(pars.getProbCatch());
-				cells.add(sfCell);
-				Rectangle rect = new Rectangle(c * cellWidth, r * cellHeight, cellWidth, cellHeight);
-				CellGraphic g = new CellGraphic(new GridPosition(r, c));
-				rect.setFill(sfCell.getCurrState().getColor());
-				rect.setStroke(Color.BLACK);
-				g.setGraphic(rect);
-				cellGrid.put(sfCell, g);
+	protected Cell initCell(GridPosition gp) {
+		int r = gp.getRow();
+		int c = gp.getCol();
+		SpreadingFireCell sfCell;
+		if (pars.isModified()){
+			if (pars.getExtendedParams().getRowStart() == r && pars.getExtendedParams().getColStart() == c){
+				sfCell = new SpreadingFireCell(gp, SpreadingFireCell.burning);
+			}
+			else{
+				sfCell = new SpreadingFireCell(gp, SpreadingFireCell.tree);
 			}
 		}
+		else{
+			if (r == (numRows / 2) && c == (numCols / 2) ) {
+				sfCell = new SpreadingFireCell(gp, SpreadingFireCell.burning);
+			}
+			else{
+				sfCell = new SpreadingFireCell(gp, SpreadingFireCell.tree);
+			}
+		}
+		sfCell.setProbCatch(pars.getProbCatch());
+		return sfCell;
+	}
+
+	protected CellGraphic initCellGraphic(Cell cell, GridPosition gp) {
+		int r = gp.getRow();
+		int c = gp.getCol();
+		Rectangle rect = new Rectangle(c * cellWidth, r * cellHeight, cellWidth, cellHeight);
+		CellGraphic g = new CellGraphic(new GridPosition(r, c));
+		rect.setFill(cell.getCurrState().getColor());
+		rect.setStroke(Color.BLACK);
+		g.setGraphic(rect);
+		return g;
 	}
 
 	@Override
@@ -76,5 +76,9 @@ public class SpreadingFireBuilder extends Builder {
 		pars = (SFParameters) param;
 		cellWidth = (double)width / numCols;
 		cellHeight = cellWidth;
+	}
+
+	@Override
+	protected void prepareForInitCells() {
 	}
 }

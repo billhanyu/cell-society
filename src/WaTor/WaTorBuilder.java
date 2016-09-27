@@ -42,31 +42,31 @@ public class WaTorBuilder extends Builder {
 	}
 
 	@Override
-	protected void initCells() {
-		// initialize grid of cells
-		for(int r = 0; r < numRows; r++) {
-			for(int c = 0; c < numCols; c++) {
-				GridPosition gp = new GridPosition(r, c);
-				WaTorCell wtCell;
-				double rnd = Math.random();
-				if (rnd < emptyRatio) {
-					wtCell = new WaTorCell(gp, WaTorCell.empty, pars);
-				}
-				else if (rnd > (emptyRatio + ratio)/(ratio + 1)) {
-					wtCell = new WaTorCell(gp, new WaTorFishState(), pars);
-				}
-				else {
-					wtCell = new WaTorCell(gp, new WaTorSharkState(pars), pars);
-				}
-				cells.add(wtCell);
-				Rectangle rect = new Rectangle(c * cellWidth, r * cellHeight, cellWidth, cellHeight);
-				CellGraphic g = new CellGraphic(new GridPosition(r, c));
-				rect.setFill(wtCell.getCurrState().getColor());
-				rect.setStroke(Color.BLACK);
-				g.setGraphic(rect);
-				cellGrid.put(wtCell, g);
-			}
+	protected Cell initCell(GridPosition gp) {
+		WaTorCell wtCell;
+		double rnd = Math.random();
+		if (rnd < emptyRatio) {
+			wtCell = new WaTorCell(gp, WaTorCell.empty, pars);
 		}
+		else if (rnd > (emptyRatio + ratio)/(ratio + 1)) {
+			wtCell = new WaTorCell(gp, new WaTorFishState(), pars);
+		}
+		else {
+			wtCell = new WaTorCell(gp, new WaTorSharkState(pars), pars);
+		}
+		return wtCell;
+
+	}
+
+	protected CellGraphic initCellGraphic(Cell cell, GridPosition gp) {
+		int r = gp.getRow();
+		int c = gp.getCol();
+		Rectangle rect = new Rectangle(c * cellWidth, r * cellHeight, cellWidth, cellHeight);
+		CellGraphic g = new CellGraphic(new GridPosition(r, c));
+		rect.setFill(cell.getCurrState().getColor());
+		rect.setStroke(Color.BLACK);
+		g.setGraphic(rect);
+		return g;
 	}
 
 	@Override
@@ -75,6 +75,10 @@ public class WaTorBuilder extends Builder {
 		this.addCornersAsNeighbors(c);
 		this.addSidesAcrossBoardAsNeighbors(c);
 		this.addCornersAcrossBoardAsNeighbors(c);
+	}
+
+	@Override
+	protected void prepareForInitCells() {
 	}
 
 }
