@@ -1,14 +1,12 @@
 package WaTor;
 
 import java.util.ResourceBundle;
+
 import cell.Cell;
 import cell.GridPosition;
 import grid.Builder;
-import grid.CellGraphic;
 import grid.Parameters;
 import grid.Runner;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import ui.ErrorPop;
 
 public class WaTorBuilder extends Builder {
@@ -42,31 +40,20 @@ public class WaTorBuilder extends Builder {
 	}
 
 	@Override
-	protected void initCells() {
-		// initialize grid of cells
-		for(int r = 0; r < numRows; r++) {
-			for(int c = 0; c < numCols; c++) {
-				GridPosition gp = new GridPosition(r, c);
-				WaTorCell wtCell;
-				double rnd = Math.random();
-				if (rnd < emptyRatio) {
-					wtCell = new WaTorCell(gp, WaTorCell.empty, pars);
-				}
-				else if (rnd > (emptyRatio + ratio)/(ratio + 1)) {
-					wtCell = new WaTorCell(gp, new WaTorFishState(), pars);
-				}
-				else {
-					wtCell = new WaTorCell(gp, new WaTorSharkState(pars), pars);
-				}
-				cells.add(wtCell);
-				Rectangle rect = new Rectangle(c * cellWidth, r * cellHeight, cellWidth, cellHeight);
-				CellGraphic g = new CellGraphic(new GridPosition(r, c));
-				rect.setFill(wtCell.getCurrState().getColor());
-				rect.setStroke(Color.BLACK);
-				g.setGraphic(rect);
-				cellGrid.put(wtCell, g);
-			}
+	protected Cell initCell(GridPosition gp) {
+		WaTorCell wtCell;
+		double rnd = Math.random();
+		if (rnd < emptyRatio) {
+			wtCell = new WaTorCell(gp, WaTorCell.empty, pars);
 		}
+		else if (rnd > (emptyRatio + ratio)/(ratio + 1)) {
+			wtCell = new WaTorCell(gp, new WaTorFishState(), pars);
+		}
+		else {
+			wtCell = new WaTorCell(gp, new WaTorSharkState(pars), pars);
+		}
+		return wtCell;
+
 	}
 
 	@Override
@@ -75,6 +62,10 @@ public class WaTorBuilder extends Builder {
 		this.addCornersAsNeighbors(c);
 		this.addSidesAcrossBoardAsNeighbors(c);
 		this.addCornersAcrossBoardAsNeighbors(c);
+	}
+
+	@Override
+	protected void prepareForInitCells() {
 	}
 
 }

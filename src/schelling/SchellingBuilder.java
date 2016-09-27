@@ -1,14 +1,12 @@
 package schelling;
 
 import java.util.ResourceBundle;
+
 import cell.Cell;
 import cell.GridPosition;
 import grid.Builder;
-import grid.CellGraphic;
 import grid.Parameters;
 import grid.Runner;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import ui.ErrorPop;
 
 public class SchellingBuilder extends Builder {
@@ -29,34 +27,21 @@ public class SchellingBuilder extends Builder {
 	}
 
 	@Override
-	protected void initCells() {
-		// initialize grid of cells
-		for(int r = 0; r < numRows; r++) {
-			for(int c = 0; c < numCols; c++) {
-				GridPosition gp = new GridPosition(r, c);
-				SchellingCell slCell;
-				double rnd = Math.random();
-				if (rnd < emptyRatio) {
-					slCell = new SchellingCell(gp, SchellingCell.vacant);
-				}
-				else if (rnd > (emptyRatio + ratio)/(ratio + 1)) {
-					slCell = new SchellingCell(gp, SchellingCell.personO);
-				}
-				else {
-					slCell = new SchellingCell(gp, SchellingCell.personX);
-				}
-				slCell.setCellsPointer(cells);
-				cells.add(slCell);
-				Rectangle rect = new Rectangle(c * cellWidth, r * cellHeight, cellWidth, cellHeight);
-				CellGraphic g = new CellGraphic(gp);
-				rect.setFill(slCell.getCurrState().getColor());
-				rect.setStroke(Color.BLACK);
-				g.setGraphic(rect);
-				cellGrid.put(slCell, g);
-			}
+	protected Cell initCell(GridPosition gp) {
+		SchellingCell slCell;
+		double rnd = Math.random();
+		if (rnd < emptyRatio) {
+			slCell = new SchellingCell(gp, SchellingCell.vacant);
 		}
+		else if (rnd > (emptyRatio + ratio)/(ratio + 1)) {
+			slCell = new SchellingCell(gp, SchellingCell.personO);
+		}
+		else {
+			slCell = new SchellingCell(gp, SchellingCell.personX);
+		}
+		slCell.setCellsPointer(cells);
+		return slCell;
 	}
-
 
 	@Override
 	protected void addAllNeighbors(Cell c) {
@@ -76,5 +61,9 @@ public class SchellingBuilder extends Builder {
 		cellHeight = cellWidth;
 		emptyRatio = pars.getEmptyRatio();
 		ratio = pars.getRatio();
+	}
+
+	@Override
+	protected void prepareForInitCells() {
 	}
 }

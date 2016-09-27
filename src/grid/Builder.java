@@ -7,8 +7,12 @@ import java.util.Map;
 
 import WaTor.WaTorState;
 import cell.Cell;
+import cell.GridPosition;
 import cell.State;
 import global.Initializer;
+import grid.CellGraphic.GraphicType;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import ui.SimulationPane;
 
 public abstract class Builder {
@@ -32,13 +36,9 @@ public abstract class Builder {
 	private State[][] copy;
 
 	public Builder(Parameters param) {
-		cells = new ArrayList<Cell>();
-		cellGrid = new HashMap<Cell, CellGraphic>();
+		initHolders();
 		this.param = param;
-		numRows = param.getRows();
-		numCols = param.getCols();
-		bottom = numRows - 1;
-		right = numCols - 1;
+		readGridSize();
 		width = Initializer.SCENE_HEIGHT - 20;
 		height = width;
 		//TODO change this height = width relationship later
@@ -49,14 +49,11 @@ public abstract class Builder {
 	}
 
 	public Runner init() {
-		numRows = param.getRows();
-		numCols = param.getCols();
-		bottom = numRows - 1;
-		right = numCols - 1;
-		cells = new ArrayList<Cell>();
-		cellGrid = new HashMap<Cell, CellGraphic>();
+		readGridSize();
+		initHolders();
 		neighborGrid = new Cell[numRows][numCols];
 		readParameters();
+		prepareForInitCells();
 		initCells();
 		giveAllCellsNeighbors();
 		keepCopy();
@@ -82,11 +79,65 @@ public abstract class Builder {
 		neighborGrid = null;
 	}
 
+	public void reset() {
+		for (Cell c: cells) {
+			c.setCurrState(copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()]);
+			c.setFutureState(copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()]);
+		}
+	}
+
 	protected abstract Runner initRunner();
 
 	protected abstract void readParameters();
 
-	protected abstract void initCells();
+	protected abstract void prepareForInitCells();
+	
+	protected void initCells() {
+		// initialize grid of cells
+		for(int r = 0; r < numRows; r++) {
+			for(int c = 0; c < numCols; c++) {
+				GridPosition gp = new GridPosition(r, c);
+				Cell cell = initCell(gp);
+				CellGraphic g = initCellGraphic(cell, gp, GraphicType.Rectangle);
+				cells.add(cell);
+				cellGrid.put(cell, g);
+			}
+		}
+	};
+	
+	protected abstract Cell initCell(GridPosition gp);
+	
+	private CellGraphic initCellGraphic(Cell cell, GridPosition gp, GraphicType type) {
+		switch (type) {
+		case Rectangle:
+			return initRectGraphic(cell, gp);
+		case Triangle:
+			return initTriangleGraphic(cell, gp);
+		case Hexagon:
+			return initHexagonGraphic(cell, gp);
+		default:
+			return null;
+		}
+	};
+	
+	private CellGraphic initRectGraphic(Cell cell, GridPosition gp) {
+		int r = gp.getRow();
+		int c = gp.getCol();
+		Rectangle rect = new Rectangle(c * cellWidth, r * cellHeight, cellWidth, cellHeight);
+		CellGraphic g = new CellGraphic(gp);
+		rect.setFill(cell.getCurrState().getColor());
+		rect.setStroke(Color.BLACK);
+		g.setGraphic(rect);
+		return g;
+	}
+	
+	private CellGraphic initTriangleGraphic(Cell cell, GridPosition gp) {
+		return null;
+	}
+	
+	private CellGraphic initHexagonGraphic(Cell cell, GridPosition gp) {
+		return null;
+	}
 
 	protected abstract void addAllNeighbors(Cell c);
 
@@ -189,6 +240,18 @@ public abstract class Builder {
 		}
 	}
 
+	private void initHolders() {
+		cells = new ArrayList<Cell>();
+		cellGrid = new HashMap<Cell, CellGraphic>();
+	}
+
+	private void readGridSize() {
+		numRows = param.getRows();
+		numCols = param.getCols();
+		bottom = numRows - 1;
+		right = numCols - 1;
+	}
+
 	private void keepCopy() {
 		copy = new State[numRows][numCols];
 		for (Cell c: cells) {
@@ -199,13 +262,6 @@ public abstract class Builder {
 			else {
 				copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()] = currState;
 			}
-		}
-	}
-
-	public void reset() {
-		for (Cell c: cells) {
-			c.setCurrState(copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()]);
-			c.setFutureState(copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()]);
 		}
 	}
 }
