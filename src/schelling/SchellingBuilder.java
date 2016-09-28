@@ -45,8 +45,8 @@ public class SchellingBuilder extends Builder {
 
 	@Override
 	protected void addAllNeighbors(Cell c) {
-		addSidesAsNeighbors(c);
-		addCornersAsNeighbors(c);
+		this.getNeighborAdder().addSidesAsNeighbors(c);
+		this.getNeighborAdder().addCornersAsNeighbors(c);
 	}
 
 	@Override

@@ -37,6 +37,8 @@ public abstract class Builder {
 
 	private Cell[][] neighborGrid;
 	private State[][] copy;
+	
+	private NeighborAdder neighborAdder;
 
 	private static final double sqrt3 = Math.pow(3, 0.5);
 
@@ -79,6 +81,8 @@ public abstract class Builder {
 			neighborGrid[c.getGridPosition().getRow()][c.getGridPosition().getCol()]
 					= c;
 		}
+		neighborAdder = new NeighborAdder(neighborGrid, numRows, numCols, 
+				top, right, left, bottom);
 		for (Cell c: cells) {
 			addAllNeighbors(c);
 		}
@@ -90,6 +94,10 @@ public abstract class Builder {
 			c.setCurrState(copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()]);
 			c.setFutureState(copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()]);
 		}
+	}
+	
+	protected NeighborAdder getNeighborAdder() {
+		return neighborAdder;
 	}
 
 	protected abstract Runner initRunner();
@@ -189,105 +197,6 @@ public abstract class Builder {
 	}
 
 	protected abstract void addAllNeighbors(Cell c);
-
-	protected void addSidesAsNeighbors(Cell c){
-		int row = c.getGridPosition().getRow();
-		int col = c.getGridPosition().getCol();
-		if (row > 0) {
-			c.addNeighbor(neighborGrid[row - 1][col]);
-		}
-		if (row < numRows - 1) {
-			c.addNeighbor(neighborGrid[row + 1][col]);
-		}
-		if (col > 0) {
-			c.addNeighbor(neighborGrid[row][col - 1]);
-		}
-		if (col < numCols - 1) {
-			c.addNeighbor(neighborGrid[row][col + 1]);
-		}
-	}
-
-	protected void addSidesAcrossBoardAsNeighbors(Cell c){
-		int row = c.getGridPosition().getRow();
-		int col = c.getGridPosition().getCol();
-		if (row == 0) {
-			c.addNeighbor(neighborGrid[numRows - 1][col]);
-		}
-		if (row == numRows - 1) {
-			c.addNeighbor(neighborGrid[0][col]);
-		}
-		if (col == 0) {
-			c.addNeighbor(neighborGrid[row][numCols - 1]);
-		}
-		if (col == numCols - 1) {
-			c.addNeighbor(neighborGrid[row][0]);
-		}
-	}
-
-	protected void addCornersAsNeighbors(Cell c){
-		int row = c.getGridPosition().getRow();
-		int col = c.getGridPosition().getCol();
-		if (row > 0 && col > 0) {
-			c.addNeighbor(neighborGrid[row - 1][col - 1]);
-		}
-		if (row < numRows - 1 && col < numCols - 1) {
-			c.addNeighbor(neighborGrid[row + 1][col + 1]);
-		}
-		if (col > 0 && row < numRows - 1) {
-			c.addNeighbor(neighborGrid[row + 1][col - 1]);
-		}
-		if (col < numCols - 1 && row > 0) {
-			c.addNeighbor(neighborGrid[row - 1][col + 1]);
-		}
-	}
-
-	protected void addCornersAcrossBoardAsNeighbors(Cell c){
-		int row = c.getGridPosition().getRow();
-		int col = c.getGridPosition().getCol();
-		// TOP ROW
-		if (row == top) {
-			// UPPER LEFT
-			if(col == left)
-				c.addNeighbor(neighborGrid[bottom][right]);
-			else
-				c.addNeighbor(neighborGrid[bottom][col - 1]);
-			// UPPER RIGHT
-			if(col == right)
-				c.addNeighbor(neighborGrid[bottom][left]);
-			else
-				c.addNeighbor(neighborGrid[bottom][col + 1]);
-		}
-		// BOTTOM ROW
-		if (row == bottom) {
-			// BOTTOM LEFT
-			if(col == left)
-				c.addNeighbor(neighborGrid[top][right]);
-			else
-				c.addNeighbor(neighborGrid[top][col - 1]);
-			// BOTTOM RIGHT
-			if(col == right)
-				c.addNeighbor(neighborGrid[top][left]);
-			else
-				c.addNeighbor(neighborGrid[top][col + 1]);
-		}
-		// LEFT COLUMN excluding 4 corners (grid corners already handled above)
-		if (col == left) {
-			// UPPER LEFT
-			if(row != top)
-				c.addNeighbor(neighborGrid[row - 1][right]);
-			// BOTTOM LEFT
-			if(row != bottom)
-				c.addNeighbor(neighborGrid[row + 1][right]);
-		}
-		if (col == right) {
-			// UPPER LEFT
-			if(row != top)
-				c.addNeighbor(neighborGrid[row - 1][left]);
-			// BOTTOM LEFT
-			if(row != bottom)
-				c.addNeighbor(neighborGrid[row + 1][left]);
-		}
-	}
 
 	private void initHolders() {
 		cells = new ArrayList<Cell>();
