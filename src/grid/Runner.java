@@ -81,7 +81,9 @@ public abstract class Runner {
 	}
 
 	public void pause(){
-		currentAnimation.pause();
+		if (currentAnimation != null) {
+			currentAnimation.pause();
+		}
 		inPlay = false;
 	}
 	
