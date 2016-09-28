@@ -6,7 +6,7 @@ public class Parameters {
 	protected String author;
 	protected int rows;
 	protected int cols;
-	protected GraphicType type;
+	private GraphicType type;
 
 	public Parameters(String title, String author, String rows, String cols){
 		this.title = title;
@@ -47,7 +47,7 @@ public class Parameters {
 	public void setCols(int cols) {
 		this.cols = cols;
 	}
-	
+
 	public GraphicType getGraphicType() {
 		return type;
 	}

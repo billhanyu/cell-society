@@ -101,6 +101,31 @@ public class NeighborAdder {
 		}
 	}
 	
+	public void addTriangleNeighbors(Cell c) {
+		int row = c.getGridPosition().getRow();
+		int col = c.getGridPosition().getCol();
+		checkAddNeighbor(c, row - 1, col - 1);
+		checkAddNeighbor(c, row - 1, col);
+		checkAddNeighbor(c, row - 1, col + 1);
+		checkAddNeighbor(c, row, col - 1);
+		checkAddNeighbor(c, row, col + 1);
+		checkAddNeighbor(c, row + 1, col - 1);
+		checkAddNeighbor(c, row + 1, col);
+		checkAddNeighbor(c, row + 1, col + 1);
+	}
+	
+	public void addHexagonNeighbors(Cell c) {
+		int row = c.getGridPosition().getRow();
+		int col = c.getGridPosition().getCol();
+		int offset = row % 2 == 0 ? -1 : 1;
+		checkAddNeighbor(c, row, col - 1);
+		checkAddNeighbor(c, row, col + 1);
+		checkAddNeighbor(c, row - 1, col);
+		checkAddNeighbor(c, row + 1, col);
+		checkAddNeighbor(c, row - 1, col + offset);
+		checkAddNeighbor(c, row + 1, col + offset);
+	}
+	
 	private void checkAddNeighbor(Cell cell, int r, int c) {
 		if (r < top || r > bottom || c < left || c > right) {
 			return;

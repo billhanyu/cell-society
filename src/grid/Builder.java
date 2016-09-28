@@ -80,7 +80,14 @@ public abstract class Builder {
 		}
 		neighborAdder = new NeighborAdder(neighborGrid, top, right, left, bottom);
 		for (Cell c: cells) {
-			addAllNeighbors(c);
+			switch (param.getGraphicType()) {
+			case Rectangle:
+				addRectNeighbors(c);
+			case Triangle:
+				this.getNeighborAdder().addTriangleNeighbors(c);
+			case Hexagon:
+				this.getNeighborAdder().addHexagonNeighbors(c);
+			}
 		}
 		neighborGrid = null;
 	}
@@ -131,7 +138,7 @@ public abstract class Builder {
 		}
 	};
 
-	protected abstract void addAllNeighbors(Cell c);
+	protected abstract void addRectNeighbors(Cell c);
 
 	private void initHolders() {
 		cells = new ArrayList<Cell>();

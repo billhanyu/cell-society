@@ -55,7 +55,7 @@ public class WaTorBuilder extends Builder {
 	}
 
 	@Override
-	protected void addAllNeighbors(Cell c) {
+	protected void addRectNeighbors(Cell c) {
 		this.getNeighborAdder().addSidesAsNeighbors(c);
 		this.getNeighborAdder().addCornersAsNeighbors(c);
 		this.getNeighborAdder().addSidesAcrossBoardAsNeighbors(c);
