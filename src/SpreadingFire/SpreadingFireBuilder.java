@@ -61,8 +61,6 @@ public class SpreadingFireBuilder extends Builder {
 			error.popup();
 		}
 		pars = (SFParameters) param;
-		cellWidth = (double)width / numCols;
-		cellHeight = cellWidth;
 	}
 
 	@Override

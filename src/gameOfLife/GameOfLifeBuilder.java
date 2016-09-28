@@ -34,8 +34,6 @@ public class GameOfLifeBuilder extends Builder{
 			error.popup();
 		}
 		pars = (GLParameters) param;
-		cellWidth = (double)width / numCols;
-		cellHeight = cellWidth;
 	}
 	
 	@Override

@@ -6,10 +6,6 @@ import javafx.scene.shape.Shape;
 
 public class CellGraphic {
 	
-	public enum GraphicType {
-		Rectangle, Triangle, Hexagon;
-	}
-	
 	private Shape graphic;
 	private double positionX;
 	private double positionY;

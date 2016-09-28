@@ -10,16 +10,18 @@ import cell.Cell;
 import cell.GridPosition;
 import cell.State;
 import global.Initializer;
-import grid.CellGraphic.GraphicType;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import ui.SimulationPane;
 
 public abstract class Builder {
 	protected double width;
 	protected double height;
-	protected double cellWidth;
+	protected double cellWidth; //Rectangle cells
 	protected double cellHeight;
+	protected double triangleUnit;
+	protected double hexagonUnit;
 	protected int numRows;
 	protected int numCols;
 	protected Parameters param;
@@ -28,6 +30,7 @@ public abstract class Builder {
 	private int bottom;// = numRows - 1;
 	private int left = 0;
 	private int right;// = numCols - 1;
+	protected GraphicType graphicType;
 
 	protected List<Cell> cells;
 	protected Map<Cell, CellGraphic> cellGrid;
@@ -35,9 +38,12 @@ public abstract class Builder {
 	private Cell[][] neighborGrid;
 	private State[][] copy;
 
+	private static final double sqrt3 = Math.pow(3, 0.5);
+
 	public Builder(Parameters param) {
 		initHolders();
 		this.param = param;
+		this.graphicType = param.getGraphicType();
 		readGridSize();
 		width = Initializer.SCENE_HEIGHT - 20;
 		height = width;
@@ -91,24 +97,24 @@ public abstract class Builder {
 	protected abstract void readParameters();
 
 	protected abstract void prepareForInitCells();
-	
+
 	protected void initCells() {
 		// initialize grid of cells
 		for(int r = 0; r < numRows; r++) {
 			for(int c = 0; c < numCols; c++) {
 				GridPosition gp = new GridPosition(r, c);
 				Cell cell = initCell(gp);
-				CellGraphic g = initCellGraphic(cell, gp, GraphicType.Rectangle);
+				CellGraphic g = initCellGraphic(cell, gp);
 				cells.add(cell);
 				cellGrid.put(cell, g);
 			}
 		}
 	};
-	
+
 	protected abstract Cell initCell(GridPosition gp);
-	
-	private CellGraphic initCellGraphic(Cell cell, GridPosition gp, GraphicType type) {
-		switch (type) {
+
+	private CellGraphic initCellGraphic(Cell cell, GridPosition gp) {
+		switch (graphicType) {
 		case Rectangle:
 			return initRectGraphic(cell, gp);
 		case Triangle:
@@ -119,7 +125,7 @@ public abstract class Builder {
 			return null;
 		}
 	};
-	
+
 	private CellGraphic initRectGraphic(Cell cell, GridPosition gp) {
 		int r = gp.getRow();
 		int c = gp.getCol();
@@ -130,13 +136,56 @@ public abstract class Builder {
 		g.setGraphic(rect);
 		return g;
 	}
-	
+
 	private CellGraphic initTriangleGraphic(Cell cell, GridPosition gp) {
-		return null;
+		int r = gp.getRow();
+		int c = gp.getCol();
+		double x = triangleUnit * (c + 1);
+		double y = triangleUnit * sqrt3 * r;
+		CellGraphic g = new CellGraphic(gp);
+		Polygon gon = new Polygon();
+		if ((r + c) % 2 == 0) {
+			gon.getPoints().addAll(new Double[]{
+					x, y,
+					x - triangleUnit, y + sqrt3 * triangleUnit,
+					x + triangleUnit, y + sqrt3 * triangleUnit
+			});
+		}
+		else {
+			gon.getPoints().addAll(new Double[]{
+					x, y + sqrt3 * triangleUnit,
+					x - triangleUnit, y,
+					x + triangleUnit, y
+			});
+		}
+		gon.setFill(cell.getCurrState().getColor());
+		gon.setStroke(Color.BLACK);
+		g.setGraphic(gon);
+		return g;
 	}
-	
+
 	private CellGraphic initHexagonGraphic(Cell cell, GridPosition gp) {
-		return null;
+		int r = gp.getRow();
+		int c = gp.getCol();
+		CellGraphic g = new CellGraphic(gp);
+		double offset = r % 2 == 0 ? 0 : sqrt3/2*hexagonUnit;
+		double x = sqrt3 * hexagonUnit * c;
+		double y = 3 * hexagonUnit / 2 * r;
+		double xUnit = sqrt3 * hexagonUnit / 2;
+		double yUnit = hexagonUnit / 2;
+		Polygon gon = new Polygon();
+		gon.getPoints().addAll(new Double[]{
+				x + xUnit + offset, y,
+				x + offset, y + yUnit,
+				x + offset, y + 3 * yUnit,
+				x + xUnit + offset, y + 4 * yUnit,
+				x + 2 * xUnit + offset, y + 3 * yUnit,
+				x + 2 * xUnit + offset, y + yUnit
+		});
+		gon.setFill(cell.getCurrState().getColor());
+		gon.setStroke(Color.BLACK);
+		g.setGraphic(gon);
+		return g;
 	}
 
 	protected abstract void addAllNeighbors(Cell c);
@@ -248,6 +297,21 @@ public abstract class Builder {
 	private void readGridSize() {
 		numRows = param.getRows();
 		numCols = param.getCols();
+		switch (graphicType) {
+		case Rectangle:
+			cellWidth = (double)width / numCols;
+			cellHeight = cellWidth;
+			break;
+		case Triangle:
+			triangleUnit = (double)height / numRows / sqrt3;
+			numCols = (int) (numRows * sqrt3);
+			break;
+		case Hexagon:
+			hexagonUnit = (double)width / (numCols + 0.5) / sqrt3;
+			numRows = (int) ((height + hexagonUnit) / (1.5 * hexagonUnit) - 0.5);
+		default:
+			break;
+		}
 		bottom = numRows - 1;
 		right = numCols - 1;
 	}

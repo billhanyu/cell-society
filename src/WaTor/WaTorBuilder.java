@@ -33,8 +33,6 @@ public class WaTorBuilder extends Builder {
 			error.popup();
 		}
 		pars = (WTParameters) param;
-		cellWidth = (double)width / numCols;
-		cellHeight = cellWidth;
 		emptyRatio = pars.getEmptyRatio();
 		ratio = pars.getRatio();
 	}

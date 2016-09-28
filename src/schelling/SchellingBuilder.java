@@ -57,8 +57,6 @@ public class SchellingBuilder extends Builder {
 			error.popup();
 		}
 		pars = (SLParameters) param;
-		cellWidth = (double)width / numCols;
-		cellHeight = cellWidth;
 		emptyRatio = pars.getEmptyRatio();
 		ratio = pars.getRatio();
 	}
