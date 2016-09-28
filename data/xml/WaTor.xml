@@ -5,9 +5,9 @@
 	<numRows>30</numRows>
 	<numCols>30</numCols>
 	<sharkStarve>12</sharkStarve>
-	<fishRate>25</fishRate>
-	<sharkRate>0</sharkRate>
+	<fishRate>23</fishRate>
+	<sharkRate>2</sharkRate>
 	<energyFromEating>25</energyFromEating>
 	<emptyRatio>.2</emptyRatio>
-	<ratio>12</ratio>
+	<ratio>0.1</ratio>
 </Simulation>

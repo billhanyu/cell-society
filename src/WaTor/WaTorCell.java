@@ -60,7 +60,7 @@ public class WaTorCell extends Cell{
 	}
 
 	private boolean canReproduce(int reproductionRate){
-		if(((WaTorState) getCurrState()).getChrononsSinceReproduction() == reproductionRate){
+		if(((WaTorState) getCurrState()).getChrononsSinceReproduction() == 25 - reproductionRate){
 			((WaTorState) getCurrState()).zeroChrononsSinceReproduction();
 			return true;
 		}

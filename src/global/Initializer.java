@@ -149,7 +149,7 @@ public class Initializer {
 			break;
 		case Life:
 			initLife("data/xml/GameOfLifePleaseWork.xml");
-			stage.setTitle(myResources.getString("GameOfLife"));
+			stage.setTitle(myResources.getString(LIFE));
 			break;
 		}
 		initSimulationScene();
