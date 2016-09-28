@@ -34,16 +34,14 @@ public class GameOfLifeBuilder extends Builder{
 			error.popup();
 		}
 		pars = (GLParameters) param;
-		cellWidth = (double)width / numCols;
-		cellHeight = cellWidth;
 	}
 	
 	@Override
 	protected void addAllNeighbors(Cell c) {
-		this.addSidesAsNeighbors(c);
-		this.addCornersAsNeighbors(c);
-		this.addCornersAcrossBoardAsNeighbors(c);
-		this.addSidesAcrossBoardAsNeighbors(c);
+		this.getNeighborAdder().addSidesAsNeighbors(c);
+		this.getNeighborAdder().addCornersAsNeighbors(c);
+		this.getNeighborAdder().addCornersAcrossBoardAsNeighbors(c);
+		this.getNeighborAdder().addSidesAcrossBoardAsNeighbors(c);
 	}
 
 	@Override

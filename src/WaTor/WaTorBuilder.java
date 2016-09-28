@@ -33,8 +33,6 @@ public class WaTorBuilder extends Builder {
 			error.popup();
 		}
 		pars = (WTParameters) param;
-		cellWidth = (double)width / numCols;
-		cellHeight = cellWidth;
 		emptyRatio = pars.getEmptyRatio();
 		ratio = pars.getRatio();
 	}
@@ -58,10 +56,10 @@ public class WaTorBuilder extends Builder {
 
 	@Override
 	protected void addAllNeighbors(Cell c) {
-		this.addSidesAsNeighbors(c);
-		this.addCornersAsNeighbors(c);
-		this.addSidesAcrossBoardAsNeighbors(c);
-		this.addCornersAcrossBoardAsNeighbors(c);
+		this.getNeighborAdder().addSidesAsNeighbors(c);
+		this.getNeighborAdder().addCornersAsNeighbors(c);
+		this.getNeighborAdder().addSidesAcrossBoardAsNeighbors(c);
+		this.getNeighborAdder().addCornersAcrossBoardAsNeighbors(c);
 	}
 
 	@Override

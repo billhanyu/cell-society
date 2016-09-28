@@ -45,8 +45,8 @@ public class SchellingBuilder extends Builder {
 
 	@Override
 	protected void addAllNeighbors(Cell c) {
-		addSidesAsNeighbors(c);
-		addCornersAsNeighbors(c);
+		this.getNeighborAdder().addSidesAsNeighbors(c);
+		this.getNeighborAdder().addCornersAsNeighbors(c);
 	}
 
 	@Override
@@ -57,8 +57,6 @@ public class SchellingBuilder extends Builder {
 			error.popup();
 		}
 		pars = (SLParameters) param;
-		cellWidth = (double)width / numCols;
-		cellHeight = cellWidth;
 		emptyRatio = pars.getEmptyRatio();
 		ratio = pars.getRatio();
 	}

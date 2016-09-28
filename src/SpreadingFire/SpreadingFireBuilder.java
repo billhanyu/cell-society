@@ -51,7 +51,7 @@ public class SpreadingFireBuilder extends Builder {
 
 	@Override
 	protected void addAllNeighbors(Cell c) {
-		addSidesAsNeighbors(c);
+		this.getNeighborAdder().addSidesAsNeighbors(c);
 	}
 
 	@Override
@@ -61,8 +61,6 @@ public class SpreadingFireBuilder extends Builder {
 			error.popup();
 		}
 		pars = (SFParameters) param;
-		cellWidth = (double)width / numCols;
-		cellHeight = cellWidth;
 	}
 
 	@Override
