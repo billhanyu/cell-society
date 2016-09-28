@@ -78,8 +78,7 @@ public abstract class Builder {
 			neighborGrid[c.getGridPosition().getRow()][c.getGridPosition().getCol()]
 					= c;
 		}
-		neighborAdder = new NeighborAdder(neighborGrid, numRows, numCols, 
-				top, right, left, bottom);
+		neighborAdder = new NeighborAdder(neighborGrid, top, right, left, bottom);
 		for (Cell c: cells) {
 			addAllNeighbors(c);
 		}
