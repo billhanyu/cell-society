@@ -18,8 +18,6 @@ public class WaTorCell extends Cell{
 	}
 
 	public static State empty = new State(Color.GRAY, "EMPTY");
-	public static State test = new State(Color.PURPLE, "TEST");
-
 
 	@Override
 	public void checkChangeState() {
@@ -76,7 +74,6 @@ public class WaTorCell extends Cell{
 		for(Cell neighbor : shuffledNeighbors)
 			if(neighbor.getFutureState() instanceof WaTorFishState){
 				((WaTorSharkState) getCurrState()).increaseEnergy(params.getEnergyFromEating());
-				System.out.println(params.getSharkStarve());
 				neighbor.setFutureState(this.getCurrState());
 				neighbor.setCurrState(empty);
 				return true;
