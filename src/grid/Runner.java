@@ -45,7 +45,7 @@ public abstract class Runner {
 		cellGrid = list;
 	}
 
-	private void updateAllCellStates(){
+	protected void updateAllCellStates(){
 		for(Cell c : cells)
 			c.checkChangeState();
 		for(Cell c : cells)

@@ -18,12 +18,14 @@ public class WaTorCell extends Cell{
 	}
 
 	public static State empty = new State(Color.GRAY, "EMPTY");
+	public static State test = new State(Color.PURPLE, "TEST");
+
 
 	@Override
 	public void checkChangeState() {
 		if (getCurrState() instanceof WaTorFishState)
 			fishSwim();
-		if(getCurrState() instanceof WaTorSharkState)
+		if (getCurrState() instanceof WaTorSharkState)
 			sharkSwim();
 	}
 
@@ -37,7 +39,7 @@ public class WaTorCell extends Cell{
 				this.setFutureState(empty);	}
 
 	private void sharkSwim(){
-		if(isDead()){
+		if(!isDead()){
 			if(canReproduce(params.getSharkRate())){
 				if(canMoveLikeShark())
 					this.setFutureState(new WaTorSharkState(params));
@@ -51,10 +53,10 @@ public class WaTorCell extends Cell{
 	private boolean isDead(){
 		if( ((WaTorSharkState) getCurrState()).energy == 0){
 			setFutureState(empty);
-			return false;
+			return true;
 		}
 		((WaTorSharkState) getCurrState()).loseEnergy();
-		return true;
+		return false;
 	}
 
 	private boolean canReproduce(int reproductionRate){
@@ -70,8 +72,9 @@ public class WaTorCell extends Cell{
 		ArrayList<Cell> shuffledNeighbors = new ArrayList<Cell>(getNeighbors());
 		Collections.shuffle(shuffledNeighbors);
 		for(Cell neighbor : shuffledNeighbors)
-			if(neighbor.getFutureState().equals(new WaTorFishState())){
+			if(neighbor.getFutureState() instanceof WaTorFishState){
 				((WaTorSharkState) getCurrState()).increaseEnergy(params.getEnergyFromEating());
+				System.out.println(params.getSharkStarve());
 				neighbor.setFutureState(this.getCurrState());
 				return true;
 			}
