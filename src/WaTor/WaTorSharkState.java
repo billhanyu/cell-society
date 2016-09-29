@@ -17,6 +17,7 @@ public class WaTorSharkState extends WaTorState{
 	public WaTorSharkState(WTParameters p) {
 		super(myColor, myName, 0);
 		energy = p.getSharkStarve();
+		chrononsSinceReproduction = 0;
 	}
 
 

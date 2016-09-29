@@ -48,7 +48,7 @@ public class WaTorControls extends Controls {
 		ChangeListener<Number> listener = new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
 				int energy = new_val.intValue();
-				((WTParameters) initializer.getParameters()).setSharkRate(energy);
+				((WTParameters) initializer.getParameters()).setEnergyFromEating(energy);
 			}
 		};
 		return new SliderBox(myResource.getString("SharkGain"), 0, 25, rate, 5, listener).getBox();
