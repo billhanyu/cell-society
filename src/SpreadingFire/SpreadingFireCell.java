@@ -20,12 +20,12 @@ public class SpreadingFireCell extends Cell{
 	@Override
 	public void checkChangeState() {
 		if(this.getCurrState().equals(burning)) {
-			futureState = empty;
+			this.setFutureState(empty);
 		}
 		else if (this.getCurrState().equals(tree)){
 			for(Cell neighbor : getNeighbors()) {
 				if (neighbor.getCurrState().equals(burning) && checkIfFlamable()) {
-					this.futureState = burning;
+					this.setFutureState(burning);
 				}
 			}
 		}

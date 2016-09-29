@@ -29,7 +29,7 @@ public class GameOfLifeCell extends Cell{
 			if (numLivingNeighbors > overPopulation)
 				this.setFutureState(dead);
 		}
-		if(this.currState.equals(dead)){
+		if(this.getCurrState().equals(dead)){
 			if (numLivingNeighbors == reproduction){
 				this.setFutureState(alive);
 			}
