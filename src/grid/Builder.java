@@ -13,27 +13,27 @@ import global.Initializer;
 import ui.SimulationPane;
 
 public abstract class Builder {
-	protected double width;
-	protected double height;
-	protected double squareUnit;
-	protected double triangleUnit;
-	protected double hexagonUnit;
-	protected int numRows;
-	protected int numCols;
-	protected Parameters param;
+	private double width;
+	private double height;
+	private double squareUnit;
+	private double triangleUnit;
+	private double hexagonUnit;
+	private int numRows;
+	private int numCols;
+	private Parameters param;
 
 	private int top = 0;
 	private int bottom;// = numRows - 1;
 	private int left = 0;
 	private int right;// = numCols - 1;
-	protected GraphicType graphicType;
+	private GraphicType graphicType;
 
-	protected List<Cell> cells;
-	protected Map<Cell, CellGraphic> cellGrid;
+	private List<Cell> cells;
+	private Map<Cell, CellGraphic> cellGrid;
 
 	private Cell[][] neighborGrid;
 	private State[][] copy;
-	
+
 	private NeighborAdder neighborAdder;
 	private GraphicBuilder graphicBuilder;
 
@@ -41,7 +41,7 @@ public abstract class Builder {
 
 	public Builder(Parameters param) {
 		initHolders();
-		this.param = param;
+		this.setParam(param);
 		this.graphicType = param.getGraphicType();
 		readGridSize();
 		width = Initializer.SCENE_HEIGHT - 20;
@@ -50,7 +50,7 @@ public abstract class Builder {
 	}
 
 	public void setParameters(Parameters param) {
-		this.param = param;
+		this.setParam(param);
 	}
 
 	public Runner init() {
@@ -67,20 +67,20 @@ public abstract class Builder {
 
 	public SimulationPane getSimulationPane() {
 		SimulationPane pane = new SimulationPane(width, height);
-		for (CellGraphic graphic: cellGrid.values()) {
+		for (CellGraphic graphic: getCellGrid().values()) {
 			pane.addShape(graphic.getGraphic());
 		}
 		return pane;
 	};
 
 	public void giveAllCellsNeighbors(){
-		for (Cell c: cells) {
+		for (Cell c: getCells()) {
 			neighborGrid[c.getGridPosition().getRow()][c.getGridPosition().getCol()]
 					= c;
 		}
 		neighborAdder = new NeighborAdder(neighborGrid, top, right, left, bottom);
-		for (Cell c: cells) {
-			switch (param.getGraphicType()) {
+		for (Cell c: getCells()) {
+			switch (getParam().getGraphicType()) {
 			case Rectangle:
 				addRectNeighbors(c);
 			case Triangle:
@@ -93,12 +93,12 @@ public abstract class Builder {
 	}
 
 	public void reset() {
-		for (Cell c: cells) {
+		for (Cell c: getCells()) {
 			c.setCurrState(copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()]);
 			c.setFutureState(copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()]);
 		}
 	}
-	
+
 	protected NeighborAdder getNeighborAdder() {
 		return neighborAdder;
 	}
@@ -117,8 +117,8 @@ public abstract class Builder {
 				GridPosition gp = new GridPosition(r, c);
 				Cell cell = initCell(gp);
 				CellGraphic g = initCellGraphic(cell, gp);
-				cells.add(cell);
-				cellGrid.put(cell, g);
+				getCells().add(cell);
+				getCellGrid().put(cell, g);
 			}
 		}
 	};
@@ -141,13 +141,13 @@ public abstract class Builder {
 	protected abstract void addRectNeighbors(Cell c);
 
 	private void initHolders() {
-		cells = new ArrayList<Cell>();
-		cellGrid = new HashMap<Cell, CellGraphic>();
+		setCells(new ArrayList<Cell>());
+		setCellGrid(new HashMap<Cell, CellGraphic>());
 	}
 
 	private void readGridSize() {
-		numRows = param.getRows();
-		numCols = param.getCols();
+		numRows = getParam().getRows();
+		numCols = getParam().getCols();
 		switch (graphicType) {
 		case Rectangle:
 			squareUnit = (double)width / numCols;
@@ -168,7 +168,7 @@ public abstract class Builder {
 
 	private void keepCopy() {
 		copy = new State[numRows][numCols];
-		for (Cell c: cells) {
+		for (Cell c: getCells()) {
 			State currState = c.getCurrState();
 			if (currState instanceof WaTorState) {
 				copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()] = ((WaTorState) currState).copy();
@@ -177,5 +177,37 @@ public abstract class Builder {
 				copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()] = currState;
 			}
 		}
+	}
+
+	protected int getNumRows() {
+		return this.numRows;
+	}
+
+	protected int getNumCols() {
+		return this.numCols;
+	}
+
+	protected List<Cell> getCells() {
+		return cells;
+	}
+
+	protected void setCells(List<Cell> cells) {
+		this.cells = cells;
+	}
+
+	protected Map<Cell, CellGraphic> getCellGrid() {
+		return cellGrid;
+	}
+
+	protected void setCellGrid(Map<Cell, CellGraphic> cellGrid) {
+		this.cellGrid = cellGrid;
+	}
+
+	protected Parameters getParam() {
+		return param;
+	}
+
+	protected void setParam(Parameters param) {
+		this.param = param;
 	}
 }
