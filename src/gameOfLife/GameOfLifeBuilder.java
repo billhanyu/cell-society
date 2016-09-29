@@ -24,16 +24,16 @@ public class GameOfLifeBuilder extends Builder{
 
 	@Override
 	protected Runner initRunner() {
-		return new GameOfLifeRunner(cells, cellGrid);
+		return new GameOfLifeRunner(this.getCells(), this.getCellGrid());
 	}
 
 	@Override
 	protected void readParameters() {
-		if (!(param instanceof GLParameters)) {
+		if (!(this.getParam() instanceof GLParameters)) {
 			ErrorPop error = new ErrorPop(300, 200, myResource.getString("LifeError"), myResource);
 			error.popup();
 		}
-		pars = (GLParameters) param;
+		pars = (GLParameters) this.getParam();
 	}
 	
 	@Override

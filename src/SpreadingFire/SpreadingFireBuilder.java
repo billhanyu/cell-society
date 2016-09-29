@@ -21,7 +21,7 @@ public class SpreadingFireBuilder extends Builder {
 
 	@Override
 	public Runner initRunner() {
-		return new SpreadingFireRunner(cells, cellGrid);
+		return new SpreadingFireRunner(this.getCells(), this.getCellGrid());
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class SpreadingFireBuilder extends Builder {
 			}
 		}
 		else{
-			if (r == (numRows / 2) && c == (numCols / 2) ) {
+			if (r == (this.getNumRows() / 2) && c == (this.getNumCols() / 2) ) {
 				sfCell = new SpreadingFireCell(gp, SpreadingFireCell.burning);
 			}
 			else{
@@ -56,11 +56,11 @@ public class SpreadingFireBuilder extends Builder {
 
 	@Override
 	protected void readParameters() {
-		if (!(param instanceof SFParameters)) {
+		if (!(this.getParam() instanceof SFParameters)) {
 			ErrorPop error = new ErrorPop(300, 200, myResource.getString("FireError"), myResource);
 			error.popup();
 		}
-		pars = (SFParameters) param;
+		pars = (SFParameters) this.getParam();
 	}
 
 	@Override

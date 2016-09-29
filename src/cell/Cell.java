@@ -5,10 +5,10 @@ import java.util.List;
 
 public abstract class Cell {
 	
-	protected List<Cell> neighbors;
-	protected State currState;
-	protected State futureState;
-	protected GridPosition gridPos;
+	private List<Cell> neighbors;
+	private State currState;
+	private State futureState;
+	private GridPosition gridPos;
 	
 	public Cell(GridPosition gp, State s){
 		this(s);

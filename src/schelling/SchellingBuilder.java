@@ -23,7 +23,7 @@ public class SchellingBuilder extends Builder {
 
 	@Override
 	protected Runner initRunner() {
-		return new SchellingRunner(cells, cellGrid);
+		return new SchellingRunner(this.getCells(), this.getCellGrid());
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class SchellingBuilder extends Builder {
 		else {
 			slCell = new SchellingCell(gp, SchellingCell.personX);
 		}
-		slCell.setCellsPointer(cells);
+		slCell.setCellsPointer(this.getCells());
 		return slCell;
 	}
 
@@ -51,12 +51,12 @@ public class SchellingBuilder extends Builder {
 
 	@Override
 	protected void readParameters() {
-		if (!(param instanceof SLParameters)) {
+		if (!(this.getParam() instanceof SLParameters)) {
 			// not supposed to happen
 			ErrorPop error = new ErrorPop(300, 200, myResource.getString("SchellingError"), myResource);
 			error.popup();
 		}
-		pars = (SLParameters) param;
+		pars = (SLParameters) this.getParam();
 		emptyRatio = pars.getEmptyRatio();
 		ratio = pars.getRatio();
 	}

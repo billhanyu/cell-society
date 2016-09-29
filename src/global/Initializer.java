@@ -35,7 +35,7 @@ public class Initializer {
 	public static final String SEGREGATION = "Segregation";
 	public static final String PRED_PREY = "Predator-Prey";
 	public static final String FIRE = "Fire";
-	public static final String LIFE = "Game of Life";
+	public static final String LIFE = "GameOfLife";
 	private static final String RESOURCE_PATH = "resource/";
 
 	private Builder builder;
