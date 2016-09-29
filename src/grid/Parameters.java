@@ -13,7 +13,7 @@ public class Parameters {
 		this.author = author;
 		this.rows = Integer.parseInt(rows);
 		this.cols = Integer.parseInt(cols);
-		this.type = GraphicType.Triangle;
+		this.type = GraphicType.Hexagon;
 	}
 
 	public Parameters (Parameters p) {
