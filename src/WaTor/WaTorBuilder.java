@@ -23,16 +23,16 @@ public class WaTorBuilder extends Builder {
 
 	@Override
 	protected Runner initRunner() {
-		return new WaTorRunner(cells, cellGrid);
+		return new WaTorRunner(this.getCells(), this.getCellGrid());
 	}
 
 	@Override
 	protected void readParameters() {
-		if (!(param instanceof WTParameters)) {
+		if (!(this.getParam() instanceof WTParameters)) {
 			ErrorPop error = new ErrorPop(300, 200, myResource.getString("WaTorError"), myResource);
 			error.popup();
 		}
-		pars = (WTParameters) param;
+		pars = (WTParameters) this.getParam();
 		emptyRatio = pars.getEmptyRatio();
 		ratio = pars.getRatio();
 	}
