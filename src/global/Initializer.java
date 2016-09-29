@@ -99,9 +99,9 @@ public class Initializer {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle(myResources.getString("FileChooser"));
 		xmlFile = fileChooser.showOpenDialog(stage);
-		GeneralSimulationFactory test = 
+		GeneralSimulationFactory generalSimulation = 
 				new GeneralSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
-		String simType = test.getSimulationName();
+		String simType = generalSimulation.getSimulationName();
 		switch (simType){
 		case "Schelling":
 			initSchelling(xmlFile.toString());

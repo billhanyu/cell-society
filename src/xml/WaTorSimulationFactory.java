@@ -25,7 +25,7 @@ public class WaTorSimulationFactory extends SimulationFactory{
 
     @Override
     public String getSimulationType () {
-        return "WaTor";
+        return getSimulationType();
     }
 
 }

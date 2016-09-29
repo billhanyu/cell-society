@@ -6,9 +6,16 @@ import org.w3c.dom.Element;
 
 import grid.Parameters;
 public abstract class SimulationFactory extends XMLFactory {
+    
+        private String simulationType;
 
 	public SimulationFactory(Element rootElement) {
 		super(rootElement);
+	}
+	
+	public SimulationFactory(Element rootElement, String simType) {
+	    super(rootElement);
+	    this.simulationType = simType;
 	}
 
 	public String getSimulationName(){
@@ -33,5 +40,7 @@ public abstract class SimulationFactory extends XMLFactory {
 
 	public abstract Parameters getSimulationParameters();
 
-	public abstract String getSimulationType();
+	public String getSimulationType(){
+	    return this.simulationType;
+	}
 }

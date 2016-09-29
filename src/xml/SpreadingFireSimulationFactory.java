@@ -10,6 +10,7 @@ public class SpreadingFireSimulationFactory extends SimulationFactory {
     public SpreadingFireSimulationFactory(Element rootElement) {
         super(rootElement);
     }
+    
 
     @Override
     public SFParameters getSimulationParameters(){
@@ -26,9 +27,5 @@ public class SpreadingFireSimulationFactory extends SimulationFactory {
         return new SFParameters(basicParams, probCatch);
     }
     
-    @Override
-    public String getSimulationType () {
-        // TODO Auto-generated method stub
-        return "Spreading Fire";
-    }
+    
 }
