@@ -83,10 +83,13 @@ public abstract class Builder {
 			switch (getParam().getGraphicType()) {
 			case Rectangle:
 				addRectNeighbors(c);
+				break;
 			case Triangle:
 				this.getNeighborAdder().addTriangleNeighbors(c);
+				break;
 			case Hexagon:
 				this.getNeighborAdder().addHexagonNeighbors(c);
+				break;
 			}
 		}
 		neighborGrid = null;
