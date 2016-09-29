@@ -5,18 +5,13 @@ import cell.Cell;
 public class NeighborAdder {
 	
 	private Cell[][] neighborGrid;
-	private int numRows;
-	private int numCols;
 	private int top;
 	private int right;
 	private int left;
 	private int bottom;
 	
-	public NeighborAdder(Cell[][] neighborGrid, int numRows, int numCols,
-			int top, int right, int left, int bottom) {
+	public NeighborAdder(Cell[][] neighborGrid, int top, int right, int left, int bottom) {
 		this.neighborGrid = neighborGrid;
-		this.numRows = numRows;
-		this.numCols = numCols;
 		this.top = top;
 		this.right = right;
 		this.left = left;
@@ -26,52 +21,36 @@ public class NeighborAdder {
 	public void addSidesAsNeighbors(Cell c){
 		int row = c.getGridPosition().getRow();
 		int col = c.getGridPosition().getCol();
-		if (row > 0) {
-			c.addNeighbor(neighborGrid[row - 1][col]);
-		}
-		if (row < numRows - 1) {
-			c.addNeighbor(neighborGrid[row + 1][col]);
-		}
-		if (col > 0) {
-			c.addNeighbor(neighborGrid[row][col - 1]);
-		}
-		if (col < numCols - 1) {
-			c.addNeighbor(neighborGrid[row][col + 1]);
-		}
+		checkAddNeighbor(c, row - 1, col);
+		checkAddNeighbor(c, row + 1, col);
+		checkAddNeighbor(c, row, col - 1);
+		checkAddNeighbor(c, row, col + 1);
 	}
 
 	public void addSidesAcrossBoardAsNeighbors(Cell c){
 		int row = c.getGridPosition().getRow();
 		int col = c.getGridPosition().getCol();
-		if (row == 0) {
-			c.addNeighbor(neighborGrid[numRows - 1][col]);
+		if (row == top) {
+			c.addNeighbor(neighborGrid[bottom][col]);
 		}
-		if (row == numRows - 1) {
-			c.addNeighbor(neighborGrid[0][col]);
+		if (row == bottom) {
+			c.addNeighbor(neighborGrid[top][col]);
 		}
-		if (col == 0) {
-			c.addNeighbor(neighborGrid[row][numCols - 1]);
+		if (col == left) {
+			c.addNeighbor(neighborGrid[row][right]);
 		}
-		if (col == numCols - 1) {
-			c.addNeighbor(neighborGrid[row][0]);
+		if (col == right) {
+			c.addNeighbor(neighborGrid[row][left]);
 		}
 	}
 
 	public void addCornersAsNeighbors(Cell c){
 		int row = c.getGridPosition().getRow();
 		int col = c.getGridPosition().getCol();
-		if (row > 0 && col > 0) {
-			c.addNeighbor(neighborGrid[row - 1][col - 1]);
-		}
-		if (row < numRows - 1 && col < numCols - 1) {
-			c.addNeighbor(neighborGrid[row + 1][col + 1]);
-		}
-		if (col > 0 && row < numRows - 1) {
-			c.addNeighbor(neighborGrid[row + 1][col - 1]);
-		}
-		if (col < numCols - 1 && row > 0) {
-			c.addNeighbor(neighborGrid[row - 1][col + 1]);
-		}
+		checkAddNeighbor(c, row - 1, col - 1);
+		checkAddNeighbor(c, row + 1, col + 1);
+		checkAddNeighbor(c, row + 1, col - 1);
+		checkAddNeighbor(c, row - 1, col + 1);
 	}
 
 	public void addCornersAcrossBoardAsNeighbors(Cell c){
@@ -120,5 +99,37 @@ public class NeighborAdder {
 			if(row != bottom)
 				c.addNeighbor(neighborGrid[row + 1][left]);
 		}
+	}
+	
+	public void addTriangleNeighbors(Cell c) {
+		int row = c.getGridPosition().getRow();
+		int col = c.getGridPosition().getCol();
+		checkAddNeighbor(c, row - 1, col - 1);
+		checkAddNeighbor(c, row - 1, col);
+		checkAddNeighbor(c, row - 1, col + 1);
+		checkAddNeighbor(c, row, col - 1);
+		checkAddNeighbor(c, row, col + 1);
+		checkAddNeighbor(c, row + 1, col - 1);
+		checkAddNeighbor(c, row + 1, col);
+		checkAddNeighbor(c, row + 1, col + 1);
+	}
+	
+	public void addHexagonNeighbors(Cell c) {
+		int row = c.getGridPosition().getRow();
+		int col = c.getGridPosition().getCol();
+		int offset = row % 2 == 0 ? -1 : 1;
+		checkAddNeighbor(c, row, col - 1);
+		checkAddNeighbor(c, row, col + 1);
+		checkAddNeighbor(c, row - 1, col);
+		checkAddNeighbor(c, row + 1, col);
+		checkAddNeighbor(c, row - 1, col + offset);
+		checkAddNeighbor(c, row + 1, col + offset);
+	}
+	
+	private void checkAddNeighbor(Cell cell, int r, int c) {
+		if (r < top || r > bottom || c < left || c > right) {
+			return;
+		}
+		cell.addNeighbor(neighborGrid[r][c]);
 	}
 }

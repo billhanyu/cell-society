@@ -6,14 +6,14 @@ public class Parameters {
 	protected String author;
 	protected int rows;
 	protected int cols;
-	protected GraphicType type;
+	private GraphicType type;
 
 	public Parameters(String title, String author, String rows, String cols){
 		this.title = title;
 		this.author = author;
 		this.rows = Integer.parseInt(rows);
 		this.cols = Integer.parseInt(cols);
-		this.type = GraphicType.Hexagon;
+		this.type = GraphicType.Triangle;
 	}
 
 	public Parameters (Parameters p) {
@@ -47,7 +47,7 @@ public class Parameters {
 	public void setCols(int cols) {
 		this.cols = cols;
 	}
-	
+
 	public GraphicType getGraphicType() {
 		return type;
 	}

@@ -2,12 +2,12 @@
 <Simulation SimulationType="WaTor">
 	<title>WaTor Simulation</title>
 	<author>Addison and Bill</author>
-	<numRows>15</numRows>
-	<numCols>15</numCols>
-	<sharkStarve>15</sharkStarve>
-	<fishRate>4</fishRate>
-	<sharkRate>18</sharkRate>
+	<numRows>30</numRows>
+	<numCols>30</numCols>
+	<sharkStarve>12</sharkStarve>
+	<fishRate>23</fishRate>
+	<sharkRate>2</sharkRate>
 	<energyFromEating>25</energyFromEating>
 	<emptyRatio>.2</emptyRatio>
-	<ratio>25</ratio>
+	<ratio>0.1</ratio>
 </Simulation>
