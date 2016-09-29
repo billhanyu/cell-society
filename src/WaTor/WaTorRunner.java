@@ -13,4 +13,18 @@ public class WaTorRunner extends Runner {
 		super(cells, cellGrid);
 	}
 
+	@Override
+	protected void updateAllCellStates(){
+		for(Cell c : cells)
+			if (c.getCurrState() instanceof WaTorSharkState)
+				c.checkChangeState();
+		for(Cell c : cells)
+			c.updateState();
+		for(Cell c : cells)
+			if (c.getCurrState() instanceof WaTorFishState)
+				c.checkChangeState();
+		for(Cell c : cells)
+			c.updateState();
+	}
+
 }
