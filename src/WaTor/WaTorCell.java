@@ -32,9 +32,11 @@ public class WaTorCell extends Cell{
 			if(canMoveLikeFish())
 				this.setFutureState(new WaTorFishState());
 		}
-		else
+		else {
 			if(canMoveLikeFish())
-				this.setFutureState(empty);	}
+				this.setFutureState(empty);	
+		}
+	}
 
 	private void sharkSwim(){
 		if(isDead()){
@@ -58,7 +60,7 @@ public class WaTorCell extends Cell{
 	}
 
 	private boolean canReproduce(int reproductionRate){
-		if(((WaTorState) getCurrState()).getChrononsSinceReproduction() == reproductionRate){
+		if(((WaTorState) getCurrState()).getChrononsSinceReproduction() == 25 - reproductionRate){
 			((WaTorState) getCurrState()).zeroChrononsSinceReproduction();
 			return true;
 		}
@@ -70,9 +72,10 @@ public class WaTorCell extends Cell{
 		ArrayList<Cell> shuffledNeighbors = new ArrayList<Cell>(getNeighbors());
 		Collections.shuffle(shuffledNeighbors);
 		for(Cell neighbor : shuffledNeighbors)
-			if(neighbor.getFutureState().equals(new WaTorFishState())){
-				((WaTorSharkState) getCurrState()).increaseEnergy(params.getEnergyFromEating());
+			if(neighbor.getCurrState() instanceof WaTorFishState){
+				((WaTorSharkState) this.getCurrState()).increaseEnergy(params.getEnergyFromEating());
 				neighbor.setFutureState(this.getCurrState());
+				neighbor.setCurrState(empty);
 				return true;
 			}
 		return canMoveLikeFish();
@@ -82,8 +85,9 @@ public class WaTorCell extends Cell{
 		ArrayList<Cell> shuffledNeighbors = new ArrayList<Cell>(getNeighbors());
 		Collections.shuffle(shuffledNeighbors);
 		for(Cell neighbor : shuffledNeighbors)
-			if(neighbor.getFutureState().equals(empty)){
+			if (neighbor.getFutureState().equals(empty)){
 				neighbor.setFutureState(this.getCurrState());
+				this.setCurrState(empty);
 				return true;
 			}
 		return false;
