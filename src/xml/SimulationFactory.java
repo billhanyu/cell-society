@@ -29,7 +29,7 @@ public abstract class SimulationFactory extends XMLFactory {
 	public Parameters returnBasicParameters(){
 		// throw error/exception here
 		if(!isValidFile()){
-			return null;
+			//return null;
 		}
 		String title = getTextValue("title");
 		String author = getTextValue("author");
