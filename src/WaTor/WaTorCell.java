@@ -18,8 +18,6 @@ public class WaTorCell extends Cell{
 	}
 
 	public static State empty = new State(Color.GRAY, "EMPTY");
-	public static State test = new State(Color.PURPLE, "TEST");
-
 
 	@Override
 	public void checkChangeState() {

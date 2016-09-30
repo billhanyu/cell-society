@@ -15,18 +15,17 @@ public class SpreadingFireControls extends Controls {
 	public SpreadingFireControls(Initializer initializer, ResourceBundle myResources) {
 		super(initializer, myResources);
 	}
-	
-	public Node flamabilitySlider(double empty) {
-		ChangeListener<Number> listener = new ChangeListener<Number>() {
-			public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
-				int flamabilityPercent = new_val.intValue();
-				double flamability = flamabilityPercent / 100.0;
-				List<Cell> cells = initializer.getRunner().getCells();
-				for (Cell c: cells) {
-					((SpreadingFireCell)c).setProbCatch(flamability);
-				}
-			}
-		};
-		return new SliderBox(myResource.getString("FireChance"), 0, 100, (int) (empty*100), 5, listener).getBox();
+
+	public Node flamabilitySlider(double flamInput) {
+		int input = (int) (flamInput*100);
+		return makeSliderBox(input, 0, 100, "FireChance",
+				(observable, old_val, new_val) -> {
+					int flamabilityPercent = new_val.intValue();
+					double flamability = flamabilityPercent / 100.0;
+					List<Cell> cells = initializer.getRunner().getCells();
+					for (Cell c: cells) {
+						((SpreadingFireCell)c).setProbCatch(flamability);
+					}
+				});
 	}
 }

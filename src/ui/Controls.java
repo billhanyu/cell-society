@@ -3,7 +3,9 @@ package ui;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+
 import java.util.ResourceBundle;
+
 import global.Initializer;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Node;
@@ -19,28 +21,26 @@ public class Controls {
 		this.myResource = myResource;
 	}
 	
+	public Node makeSliderBox(int input, int min, int max, String resourceName, ChangeListener<Number> listener){
+		return new SliderBox(myResource.getString(resourceName), min, max, input, 5, listener).getBox();
+	}
+	
 	public Node initSizeSlider(int size) {
-		ChangeListener<Number> listener = new ChangeListener<Number>() {
-            public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
-            	int newSize = new_val.intValue();
-            	initializer.getParameters().setRows(newSize);
-            	initializer.getParameters().setCols(newSize);
-            	initializer.update();
-            }
-		};
-		return new SliderBox(myResource.getString("Size"), 10, 50, size, 5, listener).getBox();
+		return makeSliderBox(size, 10, 50, "Size", 
+				(observable, old_val, new_val) -> {
+					int newSize = new_val.intValue();
+					initializer.getParameters().setRows(newSize);
+					initializer.getParameters().setCols(newSize);
+					initializer.update();
+				});
 	}
 	
 	public Node initSpeedSlider() {
-		ChangeListener<Number> listener = new ChangeListener<Number>() {
-            public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
-            	int newSpeed = 100 - new_val.intValue();
-            	initializer.getRunner().setSpeed(newSpeed);
-            }
-		};
-		return new SliderBox(myResource.getString("Speed"), 0, 100, 90, 5, listener).getBox();
-	}
-	
+		return makeSliderBox(90, 0, 100, "Speed", (observable, old_val, new_val) -> {            	
+			int newSpeed = 100 - new_val.intValue();
+			initializer.getRunner().setSpeed(newSpeed);
+		});
+	}	
 	public Node initActionButtons() {
 		Button start = initStartButton();
 		Button step = initStepButton();
