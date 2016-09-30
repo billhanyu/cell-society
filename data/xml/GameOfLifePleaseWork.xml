@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><Simulation SimulationType="GameOfLife">
 <title>Game Of Life Simulation</title>
 <author>Bill and Addison</author>
-<numRows>20</numRows>
-<numCols>20</numCols>
-<Alive>5 5</Alive><Alive>6 6</Alive><Alive>7 4</Alive><Alive>7 5</Alive><Alive>7 6</Alive></Simulation>
+<numRows>40</numRows>
+<numCols>40</numCols>
+<Alive>5 1</Alive><Alive>5 2</Alive><Alive>6 1</Alive><Alive>6 2</Alive><Alive>5 11</Alive><Alive>6 11</Alive><Alive>7 11</Alive><Alive>4 12</Alive><Alive>8 12</Alive><Alive>3 13</Alive><Alive>9 13</Alive><Alive>3 14</Alive><Alive>9 14</Alive><Alive>6 15</Alive><Alive>4 16</Alive><Alive>8 16</Alive><Alive>5 17</Alive><Alive>6 17</Alive><Alive>7 17</Alive><Alive>6 18</Alive><Alive>3 21</Alive><Alive>4 21</Alive><Alive>5 21</Alive><Alive>3 22</Alive><Alive>4 22</Alive><Alive>5 22</Alive><Alive>2 23</Alive><Alive>6 23</Alive><Alive>1 25</Alive><Alive>2 25</Alive><Alive>6 25</Alive><Alive>7 25</Alive><Alive>3 35</Alive><Alive>4 35</Alive><Alive>3 36</Alive><Alive>4 36</Alive></Simulation>
