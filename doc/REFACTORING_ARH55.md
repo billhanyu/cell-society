@@ -1,0 +1,3 @@
+## Refactoring changes
+
+I thought that the code our group was using to create new sliders for each model was incredibly repetitive and difficult to understand. Personally when I had to add new sliders to the already existing slider set, I was really confused about how to do it. I extracted the basics out each slider instantiation and replaced it with a lambda function for each that does the same job. I think this code is much easier to read and replicate and has far less repetition. It also allows for the method to create a new slider be changed across the entire project for any slider. Refactoring for this can be seen in "commit 6ff23a2c5585aedd0fc156cb138cdb8330dac826 Refactoring sliders to..."
