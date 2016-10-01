@@ -6,7 +6,7 @@ import cell.Cell;
 import cell.GridPosition;
 import cell.State;
 
-public class SugarscapeCell extends Cell{
+public class SugarscapeCell extends Cell {
 
 	public static PatchState empty = new PatchState(Color.ORANGE.darker().darker().darker().darker(), "0/4 FULL", 0);
 	public static PatchState oneFourthsFull = new PatchState(Color.ORANGE.darker().darker().darker(), "1/4 QUARTER FULL", 1);
@@ -29,7 +29,7 @@ public class SugarscapeCell extends Cell{
 	public void checkChangeState() {
 		growBack();
 		// if the cell is occupied by an agent
-		if( ! agent.equals(noAgent) ){
+		if( ! agent.equals(noAgent) ) {
 			if( ! checkIfDead())
 				moveToNewCell();
 		}
@@ -39,23 +39,23 @@ public class SugarscapeCell extends Cell{
 			setFutureState(noAgent);
 	}
 
-	protected PatchState getPatchState(){
+	protected PatchState getPatchState() {
 		return patch;
 	}
 
-	protected void setPatchState(PatchState ps){
+	protected void setPatchState(PatchState ps) {
 		patch = ps;
 	}
 
-	protected AgentState getAgentState(){
+	protected AgentState getAgentState() {
 		return agent;
 	}
 
-	protected void setAgentState(AgentState as){
+	protected void setAgentState(AgentState as) {
 		agent = as;
 	}
 
-	private void growBack(){
+	private void growBack() {
 		if(getCurrState().equals(empty))
 			setFutureState(oneFourthsFull);
 		if(getCurrState().equals(oneFourthsFull))
@@ -66,7 +66,7 @@ public class SugarscapeCell extends Cell{
 			setFutureState(fourFourthsFull);
 	}
 
-	private boolean checkIfDead(){
+	private boolean checkIfDead() {
 		if (agent.getSugar() <= 0){
 			agent = noAgent;
 			return true;
@@ -75,14 +75,14 @@ public class SugarscapeCell extends Cell{
 		return false;
 	}
 
-	private void moveToNewCell(){
+	private void moveToNewCell() {
 		SugarscapeCell bestNeighborOption = this;
 		int maxHowFull = -1;
-		for(int i = 0; i < getNeighbors().size(); i++){
+		for(int i = 0; i < getNeighbors().size(); i++) {
 			SugarscapeCell currNeighbor = (SugarscapeCell) getNeighbors().get(i);
-			for(int v = 0; v < agent.getVisibility(); v++){
+			for(int v = 0; v < agent.getVisibility(); v++) {
 				PatchState ps = currNeighbor.getPatchState();
-				if (ps.getHowFull() > maxHowFull){
+				if (ps.getHowFull() > maxHowFull) {
 					bestNeighborOption = currNeighbor;
 					maxHowFull = ps.getHowFull();
 				}

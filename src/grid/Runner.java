@@ -8,7 +8,7 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 import cell.Cell;
 
-public abstract class Runner {
+public class Runner {
 
 	protected List<Cell> cells;
 	protected Map<Cell, CellGraphic> cellGrid;
