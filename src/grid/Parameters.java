@@ -6,13 +6,14 @@ public class Parameters {
 	protected String author;
 	protected int rows;
 	protected int cols;
+	private boolean setByLocations;
 	private GraphicType type;
 
-	public Parameters(String title, String author, String rows, String cols){
-		this.title = title;
+	public Parameters(String title, String author, int rows, int cols, String shape){
+	        this.title = title;
 		this.author = author;
-		this.rows = Integer.parseInt(rows);
-		this.cols = Integer.parseInt(cols);
+		this.rows = rows;
+		this.cols = cols;
 		this.type = GraphicType.Rectangle;
 	}
 
@@ -50,5 +51,13 @@ public class Parameters {
 
 	public GraphicType getGraphicType() {
 		return type;
+	}
+	
+	public void setByLocations(boolean isSet){
+	        this.setByLocations = isSet;
+	}
+	
+	public boolean isSetByLocations(){
+	        return setByLocations;
 	}
 }

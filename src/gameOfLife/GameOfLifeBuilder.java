@@ -47,7 +47,7 @@ public class GameOfLifeBuilder extends Builder{
 	@Override
 	protected Cell initCell(GridPosition gp) {
 		GameOfLifeCell glCell;
-		if (pars.isModifiedStart()) {
+		if (pars.isSetByLocations()) {
 			if (predefinedAlives.contains(gp)) {
 				glCell = new GameOfLifeCell(gp, GameOfLifeCell.alive);
 			}
@@ -69,7 +69,7 @@ public class GameOfLifeBuilder extends Builder{
 
 	@Override
 	protected void prepareForInitCells() {
-		if (pars.isModifiedStart()){
+		if (pars.isSetByLocations()){
 			predefinedAlives = new HashSet<GridPosition>(pars.getListOfAlive());
 		}
 	}

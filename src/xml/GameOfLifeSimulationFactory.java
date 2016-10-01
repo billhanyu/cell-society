@@ -1,15 +1,14 @@
 package xml;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import cell.GridPosition;
 import gameOfLife.GLParameters;
 import grid.Parameters;
 
 public class GameOfLifeSimulationFactory extends SimulationFactory {
     
-    private List<String> listOfAlive;
     
     public GameOfLifeSimulationFactory(Element rootElement) {
         super(rootElement);
@@ -20,25 +19,17 @@ public class GameOfLifeSimulationFactory extends SimulationFactory {
         return "GameOfLife";
     }
 
+
     @Override
-    public GLParameters getSimulationParameters () {
-        
-        listOfAlive = new ArrayList<String>();
-        Parameters basicParams = returnBasicParameters();
-        NodeList hello = rootElement.getChildNodes();
-        for (int i = 0; i < hello.getLength(); i++){
-            if (hello.item(i).getNodeName().equals("Alive")){
-                String alivePos = new String(hello.item(i).getTextContent());
-                listOfAlive.add(alivePos);
-            }
-        }
-        if (listOfAlive.size() > 1){
+    public Parameters createParameters (Parameters basicParams, NodeList listOfNodes) {
+        Collection<GridPosition> listOfAlive = createListOfLocations("Alive", listOfNodes);
+        if (listOfAlive.size() > 0){
             return new GLParameters(basicParams, listOfAlive);
         }
         else{
-            return new GLParameters(basicParams, ".4");
+            double ratioOfAlive = getDoubleValue("ratioOfAlive");
+            return new GLParameters(basicParams, ratioOfAlive);
         }
-        
     }
 
 }

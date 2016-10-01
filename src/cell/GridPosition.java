@@ -1,5 +1,6 @@
 package cell;
 
+
 public class GridPosition {
 	
 	private int gridRow;
@@ -42,6 +43,6 @@ public class GridPosition {
 	public int getCol(){
 		return gridCol;
 	}
-	
+    
 
 }
