@@ -1,6 +1,6 @@
 package xml;
 import org.w3c.dom.Element;
-
+import org.w3c.dom.NodeList;
 import grid.Parameters;
 import schelling.SLParameters;
 public class SchellingSimulationFactory extends SimulationFactory {
@@ -10,20 +10,13 @@ public class SchellingSimulationFactory extends SimulationFactory {
     }
 
     @Override
-    public String getSimulationType () {
-        return "Segregation";
+    public Parameters createParameters (Parameters basicParams, NodeList listOfNodes) {
+        double idealRatio = getDoubleValue("idealRatio");
+        double redBlueRatio = getDoubleValue("redBlueRatio");
+        double emptyRatio = getDoubleValue("emptyRatio");
+        return new SLParameters(basicParams, idealRatio, redBlueRatio, emptyRatio);
     }
 
-    @Override
-    public SLParameters getSimulationParameters () {
-        Parameters basicParams = returnBasicParameters();
-        
-        //NodeList listTagNames = rootElement.getElementsByTagName("*");
-        String idealRatio = getTextValue("idealRatio");
-        String redBlueRatio = getTextValue("redBlueRatio");
-        String emptyRatio = getTextValue("emptyRatio");
-        return new SLParameters(basicParams, idealRatio, redBlueRatio, emptyRatio);
-        
-    }
+    
 
 }

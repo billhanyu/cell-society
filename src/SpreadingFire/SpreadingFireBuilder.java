@@ -1,7 +1,8 @@
 package SpreadingFire;
 
+import java.util.HashSet;
 import java.util.ResourceBundle;
-
+import java.util.Set;
 import cell.Cell;
 import cell.GridPosition;
 import grid.Builder;
@@ -11,13 +12,13 @@ import ui.ErrorPop;
 
 public class SpreadingFireBuilder extends Builder {
 
+	SFParameters pars;
+	Set<GridPosition> predefinedFire;
+
 	public SpreadingFireBuilder(Parameters param, ResourceBundle myResource) {
 		super(param, myResource);
 	}
 
-	SFParameters pars;
-	ResourceBundle myResource;
-	
 	@Override
 	public Runner initRunner() {
 		return new SpreadingFireRunner(this.getCells(), this.getCellGrid());
@@ -28,8 +29,8 @@ public class SpreadingFireBuilder extends Builder {
 		int r = gp.getRow();
 		int c = gp.getCol();
 		SpreadingFireCell sfCell;
-		if (pars.isModified()){
-			if (pars.getExtendedParams().getRowStart() == r && pars.getExtendedParams().getColStart() == c){
+		if (pars.isSetByLocations()){
+			if (pars.getFireCells().contains(gp)){
 				sfCell = new SpreadingFireCell(gp, SpreadingFireCell.burning);
 			}
 			else{
@@ -64,5 +65,9 @@ public class SpreadingFireBuilder extends Builder {
 
 	@Override
 	protected void prepareForInitCells() {
+	    if (pars.isSetByLocations()){
+                predefinedFire = new HashSet<GridPosition>(pars.getFireCells());
+            }
+	    
 	}
 }

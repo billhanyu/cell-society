@@ -1,5 +1,7 @@
 package WaTor;
 
+import java.util.Collection;
+import cell.GridPosition;
 import grid.Parameters;
 
 public class WTParameters extends Parameters {
@@ -11,23 +13,30 @@ public class WTParameters extends Parameters {
         private double emptyRatio;
         private double ratio;
     
-        public WTParameters(){
-            super("WaTor", "Bill", "10", "10");
-        }
-        
         public WTParameters (Parameters p) {
             super(p);
         }
         
-        public WTParameters(Parameters p, String sharkRate, String fishRate, String emptyRatio, String ratio,
-                            String sharkStarve, String energyFromEating){
+        public WTParameters(Parameters p, int sharkRate, int fishRate,
+                            int sharkStarve, int energyFromEating){
             super(p);
-            this.sharkStarve = Integer.parseInt(sharkStarve);
-            this.fishRate = Integer.parseInt(fishRate);
-            this.sharkRate = Integer.parseInt(sharkRate);
-            this.setEnergyFromEating(Integer.parseInt(energyFromEating));
-            this.emptyRatio = Double.parseDouble(emptyRatio);
-            this.ratio = Double.parseDouble(ratio);
+            this.sharkRate = sharkRate;
+            this.fishRate = fishRate;
+            this.sharkStarve = sharkStarve;
+            this.energyFromEating = energyFromEating;
+            
+        }
+        
+        public WTParameters(Parameters p, int sharkRate, int fishRate, double emptyRatio, double ratio,
+                            int sharkStarve, int energyFromEating){
+            super(p);
+            this.sharkStarve = sharkStarve;
+            this.fishRate = fishRate;
+            this.sharkRate = sharkRate;
+            this.energyFromEating = energyFromEating;
+            this.emptyRatio = emptyRatio;
+            this.ratio = ratio;
+            setByLocations(false);
             
         }
     	
@@ -79,8 +88,5 @@ public class WTParameters extends Parameters {
             this.energyFromEating = energyFromEating;
         }
 
-        public boolean isModified () {
-            // TODO Auto-generated method stub
-            return false;
-        }
+        
 }
