@@ -34,7 +34,6 @@ public class StartScene extends ProgScene {
 
 	public Scene initScene(int size, ResourceBundle myResource) {
 		this.myResource = myResource;
-		//VBox selectionBox = initCombinedSelectionBox();
 		Button exitButton = initExitButton();
 		Button chooseFile = initFileButton();
 		VBox box = new VBox();
@@ -47,22 +46,22 @@ public class StartScene extends ProgScene {
 		return new Scene(root, width, height);
 	}
 
-	private ComboBox<String> initComboBox() {
-		ObservableList<String> options = 
-				FXCollections.observableArrayList(
-						Initializer.SEGREGATION,
-						Initializer.PRED_PREY,
-						Initializer.FIRE,
-						Initializer.LIFE
-						);
-		comboBox = new ComboBox<String>(options);
-		comboBox.setPromptText("Select a Simulation");
-		comboBox.setPrefWidth(200);
-		comboBox.setOnAction((e) -> {
-			algorithm =  comboBox.getSelectionModel().getSelectedItem().toString();    
-		});
-		return comboBox;
-	}
+//	private ComboBox<String> initComboBox() {
+//		ObservableList<String> options = 
+//				FXCollections.observableArrayList(
+//						Initializer.SEGREGATION,
+//						Initializer.PRED_PREY,
+//						Initializer.FIRE,
+//						Initializer.LIFE
+//						);
+//		comboBox = new ComboBox<String>(options);
+//		comboBox.setPromptText("Select a Simulation");
+//		comboBox.setPrefWidth(200);
+//		comboBox.setOnAction((e) -> {
+//			algorithm =  comboBox.getSelectionModel().getSelectedItem().toString();    
+//		});
+//		return comboBox;
+//	}
 
 //	private VBox initCombinedSelectionBox(){
 //		VBox box = new VBox(10);

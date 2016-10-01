@@ -9,7 +9,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import cell.GridPosition;
 import grid.Parameters;
-import javafx.scene.shape.Shape;
+import xmlExceptions.InvalidSimulationTypeException;
 
 public abstract class SimulationFactory extends XMLFactory {
     
@@ -35,7 +35,7 @@ public abstract class SimulationFactory extends XMLFactory {
 	public Parameters getBasicParameters() {
 		// throw error/exception here
 		if(!isValidFile()){
-			//return null;
+			
 		}
 		String title = getTextValue("title");
 		String author = getTextValue("author");
@@ -59,7 +59,7 @@ public abstract class SimulationFactory extends XMLFactory {
 	    return listOfCells;
 	}
 
-	public Parameters getSimulationParameters(){
+	public Parameters getSimulationParameters() {
 	    Parameters basicParameters = getBasicParameters();
 	    NodeList listOfNodes = rootElement.getChildNodes();
 	    Parameters parameters = createParameters(basicParameters, listOfNodes);

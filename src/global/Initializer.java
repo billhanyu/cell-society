@@ -128,6 +128,7 @@ public class Initializer {
 		    builder = new SchellingBuilder(param, myResources);
 		}
 		
+		
 		runner = builder.init();
 		scn = new SimulationScene(builder.getSimulationPane(), controls);
                 stage.setScene(scn.initScene(param.getRows(), param));
