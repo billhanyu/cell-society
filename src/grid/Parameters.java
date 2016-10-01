@@ -1,7 +1,5 @@
 package grid;
 
-import javafx.scene.shape.Shape;
-
 public class Parameters {
 
 	protected String title;
