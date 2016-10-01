@@ -13,17 +13,14 @@ public class SpreadingFireSimulationFactory extends SimulationFactory {
         super(rootElement);
     }
     
-
-
-
     @Override
     public Parameters createParameters (Parameters basicParams, NodeList listOfNodes) {
+        double probCatch = getDoubleValue("probCatch");
         Collection<GridPosition> listOfFireCells = createListOfLocations("FireCell", listOfNodes);
         if (listOfFireCells.size() > 0){
-            return new SFParameters(basicParams, listOfFireCells);
+            return new SFParameters(basicParams, probCatch, listOfFireCells);
         }
         else {
-            double probCatch = getDoubleValue("probCatch");
             return new SFParameters(basicParams, probCatch);
         }
     }

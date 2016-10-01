@@ -9,6 +9,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import cell.GridPosition;
 import grid.Parameters;
+import javafx.scene.shape.Shape;
 
 public abstract class SimulationFactory extends XMLFactory {
     
@@ -31,7 +32,7 @@ public abstract class SimulationFactory extends XMLFactory {
 		return Objects.equals(getAttribute("SimulationType"), getSimulationType());
 	}
 
-	public Parameters getBasicParameters(){
+	public Parameters getBasicParameters() {
 		// throw error/exception here
 		if(!isValidFile()){
 			//return null;

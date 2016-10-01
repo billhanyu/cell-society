@@ -20,8 +20,8 @@ public class SFParameters extends Parameters {
 	setByLocations(false);
     }
     
-    public SFParameters(Parameters p, Collection<GridPosition> fireCells){
-        super(p);
+    public SFParameters(Parameters p, double probCatch, Collection<GridPosition> fireCells){
+        this(p, probCatch);
         this.listOfFire = fireCells;        
         setByLocations(true);
     }

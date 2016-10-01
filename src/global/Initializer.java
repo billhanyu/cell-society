@@ -28,6 +28,7 @@ import xml.SchellingSimulationFactory;
 import xml.SimulationFactory;
 import xml.SpreadingFireSimulationFactory;
 import xml.WaTorSimulationFactory;
+import xmlExceptions.InvalidSimulationTypeException;
 
 public class Initializer {
 	private Stage stage;
@@ -42,8 +43,6 @@ public class Initializer {
 	private Builder builder;
 	private Parameters param;
 	private Runner runner;
-	private String algorithm;
-	private AlgorithmType type;
 	private SimulationScene scn;
 	private Controls controls;
 	private File xmlFile;
@@ -134,8 +133,5 @@ public class Initializer {
                 stage.setScene(scn.initScene(param.getRows(), param));
 		stage.setTitle(myResources.getString(simType));
 	}
-
-	
-
 	
 }

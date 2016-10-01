@@ -10,11 +10,6 @@ public class SchellingSimulationFactory extends SimulationFactory {
     }
 
     @Override
-    public String getSimulationType () {
-        return "Segregation";
-    }
-
-    @Override
     public Parameters createParameters (Parameters basicParams, NodeList listOfNodes) {
         double idealRatio = getDoubleValue("idealRatio");
         double redBlueRatio = getDoubleValue("redBlueRatio");

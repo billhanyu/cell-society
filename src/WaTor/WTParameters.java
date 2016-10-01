@@ -13,10 +13,6 @@ public class WTParameters extends Parameters {
         private double emptyRatio;
         private double ratio;
     
-        public WTParameters(){
-            super("WaTor", "Bill", 10, 10, "Square");
-        }
-        
         public WTParameters (Parameters p) {
             super(p);
         }

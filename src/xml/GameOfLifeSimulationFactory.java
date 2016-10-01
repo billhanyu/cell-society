@@ -14,11 +14,6 @@ public class GameOfLifeSimulationFactory extends SimulationFactory {
         super(rootElement);
     }
 
-    @Override
-    public String getSimulationType () {
-        return "GameOfLife";
-    }
-
 
     @Override
     public Parameters createParameters (Parameters basicParams, NodeList listOfNodes) {
