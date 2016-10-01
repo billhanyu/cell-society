@@ -7,22 +7,26 @@ import cell.GridPosition;
 import cell.State;
 
 public class SugarscapeCell extends Cell {
+	
+	// DEFAULT PATCH STATES
+	public static State empty = new PatchState(Color.ORANGE.darker().darker().darker().darker(), "0/4 FULL", 0);
+	public static State oneFourthsFull = new PatchState(Color.ORANGE.darker().darker().darker(), "1/4 QUARTER FULL", 1);
+	public static State twoFourthsFull = new PatchState(Color.ORANGE.darker().darker(), "2/4 HALF FULL", 2);
+	public static State threeFourthsFull = new PatchState(Color.ORANGE.darker(), "3/4 FULL", 3);
+	public static State fourFourthsFull = new PatchState(Color.ORANGE, "4/4 FULL", 4);
 
-	public static PatchState empty = new PatchState(Color.ORANGE.darker().darker().darker().darker(), "0/4 FULL", 0);
-	public static PatchState oneFourthsFull = new PatchState(Color.ORANGE.darker().darker().darker(), "1/4 QUARTER FULL", 1);
-	public static PatchState twoFourthsFull = new PatchState(Color.ORANGE.darker().darker(), "2/4 HALF FULL", 2);
-	public static PatchState threeFourthsFull = new PatchState(Color.ORANGE.darker(), "3/4 FULL", 3);
-	public static PatchState fourFourthsFull = new PatchState(Color.ORANGE, "4/4 FULL", 4);
-
-	public static AgentState noAgent = new AgentState(Color.GRAY, "NO AGENT");
+	// DEFAULT AGENT STATE
+	public static State noAgent = new AgentState(Color.GRAY, "NO AGENT");
 
 	private PatchState patch;
 	private AgentState agent;
 
-	public SugarscapeCell(GridPosition gp, State s, PatchState ps, AgentState as) {
-		super(gp, s);
+	public SugarscapeCell(GridPosition gp, PatchState ps, AgentState as) {
+		super(gp, as);
 		patch = ps;
 		agent = as;
+		if(! agent.equals(noAgent))
+			setFutureState(agent);
 	}
 
 	@Override
@@ -68,7 +72,7 @@ public class SugarscapeCell extends Cell {
 
 	private boolean checkIfDead() {
 		if (agent.getSugar() <= 0){
-			agent = noAgent;
+			agent = (AgentState) noAgent;
 			return true;
 		}
 		agent.decreaseMetabolism();
@@ -90,9 +94,9 @@ public class SugarscapeCell extends Cell {
 			}
 		}
 		this.agent.addSugar(bestNeighborOption.getPatchState().getHowFull());
-		bestNeighborOption.setPatchState(empty);
+		bestNeighborOption.setPatchState((PatchState) empty);
 		bestNeighborOption.setAgentState(this.getAgentState());
-		this.setAgentState(noAgent);
+		this.setAgentState((AgentState) noAgent);
 	}
 
 }
