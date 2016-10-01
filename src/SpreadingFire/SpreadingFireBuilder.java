@@ -11,14 +11,13 @@ import ui.ErrorPop;
 
 public class SpreadingFireBuilder extends Builder {
 
-	SFParameters pars;
-	ResourceBundle myResource;
-
 	public SpreadingFireBuilder(Parameters param, ResourceBundle myResource) {
-		super(param);
-		this.myResource = myResource;
+		super(param, myResource);
 	}
 
+	SFParameters pars;
+	ResourceBundle myResource;
+	
 	@Override
 	public Runner initRunner() {
 		return new SpreadingFireRunner(this.getCells(), this.getCellGrid());

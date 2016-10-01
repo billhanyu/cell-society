@@ -13,14 +13,13 @@ import ui.ErrorPop;
 
 public class GameOfLifeBuilder extends Builder{
 
+	public GameOfLifeBuilder(Parameters param, ResourceBundle myResource) {
+		super(param, myResource);
+	}
+
 	private GLParameters pars;
 	private Set<GridPosition> predefinedAlives;
 	private ResourceBundle myResource;
-
-	public GameOfLifeBuilder(Parameters param, ResourceBundle myResource) {
-		super(param);
-		this.myResource = myResource;
-	}
 
 	@Override
 	protected Runner initRunner() {

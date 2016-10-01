@@ -1,16 +1,17 @@
 package langton;
 
+import java.util.ResourceBundle;
+
 import cell.Cell;
 import cell.GridPosition;
 import grid.Builder;
 import grid.Parameters;
 import grid.Runner;
 
-public class LangtonBuilder extends Builder{
+public class LangtonBuilder extends Builder {
 
-	public LangtonBuilder(Parameters param) {
-		super(param);
-		// TODO Auto-generated constructor stub
+	public LangtonBuilder(Parameters param, ResourceBundle myResource) {
+		super(param, myResource);
 	}
 
 	@Override
