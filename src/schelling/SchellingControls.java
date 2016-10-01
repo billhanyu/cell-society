@@ -16,7 +16,7 @@ public class SchellingControls extends Controls {
 
 	public Node initRatioSlider(double ratio) {
 		int input = (int) (ratio/(ratio + 1) * 100);
-		return makeSliderBox(input, 0, 100, "RedBlue", 
+		return makeSliderBox(input, 0, 100, this.getResource().getString("RedBlue"), 
 				(observable, old_val, new_val) -> {
 					int newNumX = new_val.intValue();
 					int newNumO = 100 - newNumX;
@@ -34,7 +34,7 @@ public class SchellingControls extends Controls {
 
 	public Node initEmptySlider(double empty) {
 		int input = (int) (empty*100);
-		return makeSliderBox(input, 0, 100, "Empty",
+		return makeSliderBox(input, 0, 100, this.getResource().getString("Empty"),
 				(observable, old_val, new_val) -> {
 					int newEmptyPercent = new_val.intValue();
 					double newEmpty = newEmptyPercent / 100.0;
@@ -45,7 +45,7 @@ public class SchellingControls extends Controls {
 
 	public Node initIdealSlider(double ideal) {
 		int input = (int) (ideal * 100);
-		return makeSliderBox(input, 0, 100, "Ideal", 
+		return makeSliderBox(input, 0, 100, this.getResource().getString("Ideal"), 
 				(observable, old_val, new_val) -> {
 					int newIdealPercent = new_val.intValue();
 					double newIdeal = newIdealPercent / 100.0;

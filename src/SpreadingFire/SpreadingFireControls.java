@@ -16,7 +16,7 @@ public class SpreadingFireControls extends Controls {
 
 	public Node flamabilitySlider(double flamInput) {
 		int input = (int) (flamInput*100);
-		return makeSliderBox(input, 0, 100, "FireChance",
+		return makeSliderBox(input, 0, 100, this.getResource().getString("FireChance"),
 				(observable, old_val, new_val) -> {
 					int flamabilityPercent = new_val.intValue();
 					double flamability = flamabilityPercent / 100.0;

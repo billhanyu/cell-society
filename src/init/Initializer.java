@@ -35,12 +35,17 @@ public class Initializer {
 	private Stage stage;
 	public static final int SCENE_WIDTH = 800;
 	public static final int SCENE_HEIGHT = 500;
+	
 	public static final String SEGREGATION = "Segregation";
 	public static final String PRED_PREY = "Predator-Prey";
 	public static final String FIRE = "Fire";
 	public static final String LIFE = "GameOfLife";
 	public static final String LANGTON = "Langton";
+	
 	private static final String RESOURCE_PATH = "resource/";
+	public static final String ENGLISH_FILE = "GUItext-English";
+	public static final String CHINESE_FILE = "GUItext-Chinese";
+	private String currentLanguage = ENGLISH_FILE;
 
 	private Builder builder;
 	private Parameters param;
@@ -64,7 +69,7 @@ public class Initializer {
 	}
 
 	public void start(){
-		myResources = ResourceBundle.getBundle(RESOURCE_PATH + "GUItext");
+		myResources = ResourceBundle.getBundle(RESOURCE_PATH + currentLanguage);
 		stage.setTitle(myResources.getString("Title"));
 		StartScene start = new StartScene(new ExitAction(), this);
 		stage.setScene(start.initScene(0, myResources));
@@ -92,6 +97,14 @@ public class Initializer {
 
 	public Runner getRunner() {
 		return runner;
+	}
+	
+	public String getCurrentLanguage() {
+		return this.currentLanguage;
+	}
+	
+	public void setCurrentLanguage(String languageFileName) {
+		this.currentLanguage = languageFileName;
 	}
 
 	/*
@@ -135,7 +148,6 @@ public class Initializer {
 			param = mySimulation.getSimulationParameters();
 			builder = new LangtonBuilder(param, myResources);
 		}
-		
 		
 		runner = builder.init();
 		scn = new SimulationScene(builder.getSimulationPane(), controls);

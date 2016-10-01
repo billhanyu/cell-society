@@ -25,7 +25,7 @@ public class Controls {
 			pop.popup();
 			throw new IllegalArgumentException(this.myResource.getString("SliderRangeError"));
 		}
-		return new SliderBox(myResource.getString(resourceName), min, max, input, 5, listener).getBox();
+		return new SliderBox(resourceName, min, max, input, 5, listener).getBox();
 	}
 	
 	public Node initSizeSlider(int size) {
