@@ -23,6 +23,10 @@ public class AntState extends State {
 		age ++;
 	}
 	
+	/**
+	 * increments age and returns true if ant
+	 * is too old and should die
+	 */
 	public boolean isTooOld(){
 		getOlder();
 		return age >= maxAge;
