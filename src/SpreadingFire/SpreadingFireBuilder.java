@@ -12,13 +12,11 @@ import ui.ErrorPop;
 
 public class SpreadingFireBuilder extends Builder {
 
-	SFParameters pars;
-	Set<GridPosition> predefinedFire;
-	ResourceBundle myResource;
+	private SFParameters pars;
+	private Set<GridPosition> predefinedFire;
 
 	public SpreadingFireBuilder(Parameters param, ResourceBundle myResource) {
-		super(param);
-		this.myResource = myResource;
+		super(param, myResource);
 	}
 
 	@Override
@@ -31,8 +29,8 @@ public class SpreadingFireBuilder extends Builder {
 		int r = gp.getRow();
 		int c = gp.getCol();
 		SpreadingFireCell sfCell;
-		if (pars.isSetByLocations()){
-			if (pars.getFireCells().contains(gp)){
+		if (pars.isSetByLocations()) {
+			if (pars.getFireCells().contains(gp))  {
 				sfCell = new SpreadingFireCell(gp, SpreadingFireCell.burning);
 			}
 			else{
@@ -43,7 +41,7 @@ public class SpreadingFireBuilder extends Builder {
 			if (r == (this.getNumRows() / 2) && c == (this.getNumCols() / 2) ) {
 				sfCell = new SpreadingFireCell(gp, SpreadingFireCell.burning);
 			}
-			else{
+			else {
 				sfCell = new SpreadingFireCell(gp, SpreadingFireCell.tree);
 			}
 		}
@@ -59,7 +57,7 @@ public class SpreadingFireBuilder extends Builder {
 	@Override
 	protected void readParameters() {
 		if (!(this.getParam() instanceof SFParameters)) {
-			ErrorPop error = new ErrorPop(300, 200, myResource.getString("FireError"), myResource);
+			ErrorPop error = new ErrorPop(300, 200, this.getResource().getString("FireError"), this.getResource());
 			error.popup();
 		}
 		pars = (SFParameters) this.getParam();
@@ -67,9 +65,8 @@ public class SpreadingFireBuilder extends Builder {
 
 	@Override
 	protected void prepareForInitCells() {
-	    if (pars.isSetByLocations()){
-                predefinedFire = new HashSet<GridPosition>(pars.getFireCells());
-            }
-	    
+		if (pars.isSetByLocations()) {
+			predefinedFire = new HashSet<GridPosition>(pars.getFireCells());
+		}
 	}
 }

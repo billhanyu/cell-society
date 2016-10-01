@@ -2,13 +2,11 @@ package SpreadingFire;
 
 import java.util.List;
 import java.util.ResourceBundle;
+
 import cell.Cell;
 import global.Initializer;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import ui.Controls;
-import ui.SliderBox;
 
 public class SpreadingFireControls extends Controls {
 

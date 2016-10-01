@@ -11,15 +11,14 @@ import ui.ErrorPop;
 
 public class WaTorBuilder extends Builder {
 
+	public WaTorBuilder(Parameters param, ResourceBundle myResource) {
+		super(param, myResource);
+	}
+
 	private WTParameters pars;
 	private double emptyRatio;
 	private double ratio;
 	private ResourceBundle myResource;
-
-	public WaTorBuilder(Parameters param, ResourceBundle myResource) {
-		super(param);
-		this.myResource = myResource;
-	}
 
 	@Override
 	protected Runner initRunner() {

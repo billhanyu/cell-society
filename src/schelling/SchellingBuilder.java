@@ -11,15 +11,13 @@ import ui.ErrorPop;
 
 public class SchellingBuilder extends Builder {
 
+	public SchellingBuilder(Parameters param, ResourceBundle myResource) {
+		super(param, myResource);
+	}
+
 	private SLParameters pars;
 	private double emptyRatio;
 	private double ratio;
-	private ResourceBundle myResource;
-
-	public SchellingBuilder(Parameters param, ResourceBundle myResource) {
-		super(param);
-		this.myResource = myResource;
-	}
 
 	@Override
 	protected Runner initRunner() {
@@ -53,7 +51,7 @@ public class SchellingBuilder extends Builder {
 	protected void readParameters() {
 		if (!(this.getParam() instanceof SLParameters)) {
 			// not supposed to happen
-			ErrorPop error = new ErrorPop(300, 200, myResource.getString("SchellingError"), myResource);
+			ErrorPop error = new ErrorPop(300, 200, this.getResource().getString("SchellingError"), this.getResource());
 			error.popup();
 		}
 		pars = (SLParameters) this.getParam();

@@ -2,9 +2,9 @@ package langton;
 
 import grid.Parameters;
 
-public class LangtonParameters extends Parameters{
+public class LTParameters extends Parameters{
 
-	public LangtonParameters(Parameters p) {
+	public LTParameters(Parameters p) {
 		super(p);
 		// TODO Auto-generated constructor stub
 	}

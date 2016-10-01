@@ -1,15 +1,14 @@
 package xml;
 
 import java.util.ArrayList;
-
 import java.util.Collection;
 import java.util.Objects;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+
 import cell.GridPosition;
 import grid.Parameters;
-import xmlExceptions.InvalidSimulationTypeException;
 
 public abstract class SimulationFactory extends XMLFactory {
     
