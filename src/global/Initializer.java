@@ -30,7 +30,6 @@ import xml.SchellingSimulationFactory;
 import xml.SimulationFactory;
 import xml.SpreadingFireSimulationFactory;
 import xml.WaTorSimulationFactory;
-import xmlExceptions.InvalidSimulationTypeException;
 
 public class Initializer {
 	private Stage stage;
