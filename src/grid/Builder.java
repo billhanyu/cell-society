@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import WaTor.WaTorState;
 import cell.Cell;
@@ -20,7 +21,9 @@ public abstract class Builder {
 	private double hexagonUnit;
 	private int numRows;
 	private int numCols;
+	
 	private Parameters param;
+	private ResourceBundle myResource;
 
 	private int top = 0;
 	private int bottom;// = numRows - 1;
@@ -47,6 +50,11 @@ public abstract class Builder {
 		width = Initializer.SCENE_HEIGHT - 20;
 		height = width;
 		//TODO change this height = width relationship later
+	}
+	
+	public Builder(Parameters param, ResourceBundle myResource) {
+		this(param);
+		this.myResource = myResource;
 	}
 
 	public void setParameters(Parameters param) {
@@ -212,5 +220,9 @@ public abstract class Builder {
 
 	protected void setParam(Parameters param) {
 		this.param = param;
+	}
+	
+	protected ResourceBundle getResource() {
+		return this.myResource;
 	}
 }

@@ -3,14 +3,10 @@ package schelling;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import WaTor.WTParameters;
 import cell.Cell;
 import global.Initializer;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import ui.Controls;
-import ui.SliderBox;
 
 public class SchellingControls extends Controls {
 

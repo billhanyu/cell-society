@@ -15,20 +15,21 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import langton.LangtonBuilder;
+import langton.LangtonControls;
 import schelling.SchellingBuilder;
 import schelling.SchellingControls;
 import ui.Controls;
-import ui.ErrorPop;
 import ui.SimulationScene;
 import ui.StartScene;
 import xml.Decoder;
 import xml.GameOfLifeSimulationFactory;
 import xml.GeneralSimulationFactory;
+import xml.LangtonSimulationFactory;
 import xml.SchellingSimulationFactory;
 import xml.SimulationFactory;
 import xml.SpreadingFireSimulationFactory;
 import xml.WaTorSimulationFactory;
-import xmlExceptions.InvalidSimulationTypeException;
 
 public class Initializer {
 	private Stage stage;
@@ -38,6 +39,7 @@ public class Initializer {
 	public static final String PRED_PREY = "Predator-Prey";
 	public static final String FIRE = "Fire";
 	public static final String LIFE = "GameOfLife";
+	public static final String LANGTON = "Langton";
 	private static final String RESOURCE_PATH = "resource/";
 
 	private Builder builder;
@@ -126,6 +128,12 @@ public class Initializer {
 		    controls = new SchellingControls(this, myResources);
 		    param = mySimulation.getSimulationParameters();
 		    builder = new SchellingBuilder(param, myResources);
+		}
+		else if (simType.equals(LANGTON)) {
+			mySimulation = new LangtonSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
+			controls = new LangtonControls(this, myResources);
+			param = mySimulation.getSimulationParameters();
+			builder = new LangtonBuilder(param, myResources);
 		}
 		
 		runner = builder.init();

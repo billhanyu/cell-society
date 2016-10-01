@@ -3,11 +3,8 @@ package WaTor;
 import java.util.ResourceBundle;
 
 import global.Initializer;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import ui.Controls;
-import ui.SliderBox;
 
 public class WaTorControls extends Controls {
 
