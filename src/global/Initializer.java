@@ -25,6 +25,7 @@ import xml.Decoder;
 import xml.GameOfLifeSimulationFactory;
 import xml.GeneralSimulationFactory;
 import xml.SchellingSimulationFactory;
+import xml.SimulationFactory;
 import xml.SpreadingFireSimulationFactory;
 import xml.WaTorSimulationFactory;
 
@@ -48,6 +49,7 @@ public class Initializer {
 	private File xmlFile;
 	private Decoder xmlParser;
 	private ResourceBundle myResources;
+	private SimulationFactory mySimulation;
 
 	class ExitAction implements EventHandler<ActionEvent> {
 		@Override
@@ -99,131 +101,41 @@ public class Initializer {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle(myResources.getString("FileChooser"));
 		xmlFile = fileChooser.showOpenDialog(stage);
-		GeneralSimulationFactory test = 
+		GeneralSimulationFactory generalSimulation = 
 				new GeneralSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
-		String simType = test.getSimulationName();
-		switch (simType){
-		case "Schelling":
-			initSchelling(xmlFile.toString());
-			this.algorithm = SEGREGATION;
-			stage.setTitle(myResources.getString(SEGREGATION));
-			break;
-		case "WaTor":
-			initWaTor(xmlFile.toString());
-			this.algorithm = PRED_PREY;
-			stage.setTitle(myResources.getString(PRED_PREY));
-			break;
-		case "GameOfLife":
-			initLife(xmlFile.toString());
-			this.algorithm = LIFE;
-			stage.setTitle(myResources.getString("GameOfLife"));
-			break;
-		case "Spreading Fire":
-			initFire(xmlFile.toString());
-			this.algorithm = FIRE;
-			stage.setTitle(myResources.getString(FIRE));
-			break;
+		String simType = generalSimulation.getSimulationName();
+		if (simType.equals(FIRE)){
+		    mySimulation = new SpreadingFireSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
+		    controls = new SpreadingFireControls(this, myResources);
+		    param = mySimulation.getSimulationParameters();
+		    builder = new SpreadingFireBuilder(param, myResources);
 		}
-		getType();
-		initSimulationScene();
-	}
-
-	/*
-	 * This method is used to pick a default simulation from the combobox
-	 */
-	public void initSimulation(String algorithm) {
-		this.algorithm = algorithm;
-		getType();
-		switch (type) { // these are default test files
-		case Schelling:
-			initSchelling("data/xml/Schelling.xml");
-			stage.setTitle(myResources.getString(SEGREGATION));
-			break;
-		case WaTor:
-			initWaTor("data/xml/WaTor.xml");
-			stage.setTitle(myResources.getString(PRED_PREY));
-			break;
-		case SpreadingFire:
-			initFire("data/xml/SpreadingFire.xml");
-			stage.setTitle(myResources.getString(FIRE));
-			break;
-		case Life:
-			initLife("data/xml/GameOfLifePleaseWork.xml");
-			stage.setTitle(myResources.getString(LIFE));
-			break;
+		else if (simType.equals(LIFE)){
+		    mySimulation = new GameOfLifeSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
+		    controls = new Controls(this, myResources);
+		    param = mySimulation.getSimulationParameters();
+		    builder = new GameOfLifeBuilder(param, myResources);
 		}
-		initSimulationScene();
-	}
-
-	private void initFire(String file) {
-		SpreadingFireSimulationFactory fireSimulation = 
-				new SpreadingFireSimulationFactory(xmlParser.getRootElement(file));
-		param = fireSimulation.getSimulationParameters();
-		builder = new SpreadingFireBuilder(param, myResources);
-		runner = builder.init();
-	}
-
-	private void initSchelling(String file) {
-		SchellingSimulationFactory schellingSimulation = 
-				new SchellingSimulationFactory(xmlParser.getRootElement(file));
-		param = schellingSimulation.getSimulationParameters();
-		builder = new SchellingBuilder(param, myResources);
-		runner = builder.init();
-	}
-
-	private void initWaTor(String file) {
-		WaTorSimulationFactory waTorSimulation = 
-				new WaTorSimulationFactory(xmlParser.getRootElement(file));
-		param = waTorSimulation.getSimulationParameters();
-		builder = new WaTorBuilder(param, myResources);
-		runner = builder.init();
-	}
-
-	private void initLife(String file) {
-		GameOfLifeSimulationFactory gameSimulation = 
-				new GameOfLifeSimulationFactory(xmlParser.getRootElement(file));
-		param = gameSimulation.getSimulationParameters();
-		builder = new GameOfLifeBuilder(param, myResources);
-		runner = builder.init();
-	}
-
-	private void initSimulationScene() {
-		switch (type) {
-		case Schelling:
-			controls = new SchellingControls(this, myResources);
-			break;
-		case WaTor:
-			controls = new WaTorControls(this, myResources);
-			break;
-		case SpreadingFire:
-			controls = new SpreadingFireControls(this, myResources);
-			break;
-		case Life:
-			//break;
-		default:
-			controls = new Controls(this, myResources);
-			break;
+		else if (simType.equals(PRED_PREY)){
+		    mySimulation = new WaTorSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
+		    controls = new WaTorControls(this, myResources);
+		    param = mySimulation.getSimulationParameters();
+		    builder = new WaTorBuilder(param, myResources);
 		}
+		else if (simType.equals(SEGREGATION)){
+		    mySimulation = new SchellingSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
+		    controls = new SchellingControls(this, myResources);
+		    param = mySimulation.getSimulationParameters();
+		    builder = new SchellingBuilder(param, myResources);
+		}
+		
+		runner = builder.init();
 		scn = new SimulationScene(builder.getSimulationPane(), controls);
-		stage.setScene(scn.initScene(param.getRows(), param));
+                stage.setScene(scn.initScene(param.getRows(), param));
+		stage.setTitle(myResources.getString(simType));
 	}
 
-	private void getType() {
-		if (algorithm.equals(SEGREGATION)) {
-			type = AlgorithmType.Schelling;
-		}
-		else if (algorithm.equals(PRED_PREY)) {
-			type = AlgorithmType.WaTor;
-		}
-		else if (algorithm.equals(FIRE)) {
-			type = AlgorithmType.SpreadingFire;
-		}
-		else if (algorithm.equals(LIFE)) {
-			type = AlgorithmType.Life;
-		}
-		else {
-			ErrorPop error = new ErrorPop(300, 200, myResources.getString("ErrorMessage"), myResources);
-			error.popup();
-		}
-	}
+	
+
+	
 }

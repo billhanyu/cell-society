@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Simulation SimulationType="WaTor">
+<Simulation SimulationType="Predator-Prey">
 	<title>WaTor Simulation</title>
 	<author>Addison and Bill</author>
 	<numRows>30</numRows>

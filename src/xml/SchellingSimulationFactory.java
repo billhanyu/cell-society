@@ -11,7 +11,7 @@ public class SchellingSimulationFactory extends SimulationFactory {
 
     @Override
     public String getSimulationType () {
-        return "Schelling";
+        return "Segregation";
     }
 
     @Override
