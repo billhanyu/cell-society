@@ -2,7 +2,7 @@ package ui;
 
 import java.util.ResourceBundle;
 
-import global.Initializer;
+import init.Initializer;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

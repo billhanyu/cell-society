@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import cell.Cell;
-import global.Initializer;
+import init.Initializer;
 import javafx.scene.Node;
 import ui.Controls;
 

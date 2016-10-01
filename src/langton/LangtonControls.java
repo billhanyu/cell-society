@@ -2,7 +2,7 @@ package langton;
 
 import java.util.ResourceBundle;
 
-import global.Initializer;
+import init.Initializer;
 import ui.Controls;
 
 public class LangtonControls extends Controls {

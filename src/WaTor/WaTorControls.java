@@ -2,7 +2,7 @@ package WaTor;
 
 import java.util.ResourceBundle;
 
-import global.Initializer;
+import init.Initializer;
 import javafx.scene.Node;
 import ui.Controls;
 
