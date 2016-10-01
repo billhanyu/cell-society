@@ -13,11 +13,12 @@ public class InvalidSimulationTypeException extends Exception {
     public InvalidSimulationTypeException(String message, Throwable cause) {
         super(message, cause);
     }
-    public InvalidSimulationTypeException(Throwable cause){
+    
+    public InvalidSimulationTypeException(Throwable cause) {
         super(cause);
     }
     
-    public InvalidSimulationTypeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace){
+    public InvalidSimulationTypeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

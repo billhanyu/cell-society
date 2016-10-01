@@ -1,6 +1,6 @@
 import javax.xml.parsers.ParserConfigurationException;
 
-import global.Initializer;
+import init.Initializer;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

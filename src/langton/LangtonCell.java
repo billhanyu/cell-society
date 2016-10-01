@@ -12,9 +12,9 @@ public class LangtonCell extends Cell{
 
 	@Override
 	public void checkChangeState() {
-		if(getCurrState() instanceof LangtonState)
-			if(((LangtonState) getCurrState()).getInstruction );
-		
+//		if(getCurrState() instanceof LangtonState)
+//			if(((LangtonState) getCurrState()).getInstruction );
+//		
 	}
 
 }
