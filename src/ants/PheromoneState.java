@@ -5,42 +5,44 @@ import cell.State;
 
 public class PheromoneState extends State {
 
-	private int foodPheromone = 0;
-	private int homePheromone = 0;
+	private double foodPheromone = 0;
+	private double homePheromone = 0;
+	public static Color myColor = Color.GREEN;
+	public static String myName = "PHEROMONE";
 
-	public PheromoneState(Color c, String n) {
-		super(c, n);
-		// TODO Auto-generated constructor stub
+
+	public PheromoneState() {
+		super(myColor, myName);
 	}
 
-	public int getFoodPheromone() {
+	public double getFoodPheromone() {
 		return foodPheromone;
 	}
 
-	public void setFoodPheromone(int foodPheromone) {
+	public void setFoodPheromone(double foodPheromone) {
 		this.foodPheromone = foodPheromone;
 	}
 	
-	public void addFoodPheromone(int toAdd) {
+	public void addFoodPheromone(double toAdd) {
 		this.foodPheromone += toAdd;
 	}
 
-	public int getHomePheromone() {
+	public double getHomePheromone() {
 		return homePheromone;
 	}
 
-	public void setHomePheromone(int homePheromone) {
+	public void setHomePheromone(double homePheromone) {
 		this.homePheromone = homePheromone;
 	}
 	
-	public void addHomePheromone(int toAdd) {
+	public void addHomePheromone(double toAdd) {
 		this.homePheromone += toAdd;
 	}
 
 	
 	public void evaporatePheromones(double evaporationRatio){
-		foodPheromone = (int) (evaporationRatio * foodPheromone);
-		homePheromone = (int) (evaporationRatio * homePheromone);
+		foodPheromone = (evaporationRatio * foodPheromone);
+		homePheromone = (evaporationRatio * homePheromone);
 	}
 
 }

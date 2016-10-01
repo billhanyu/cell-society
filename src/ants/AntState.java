@@ -8,7 +8,7 @@ public class AntState extends State {
 	
 	private int age;
 	private int maxAge;
-	public static Color myColor = Color.PURPLE;
+	public static Color myColor = Color.BLACK;
 	public static String myName = "ANT";
 	protected boolean hasFoodItem = false;
 	private Cell orientation;

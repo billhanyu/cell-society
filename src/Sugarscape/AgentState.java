@@ -9,12 +9,18 @@ public class AgentState extends State{
 	private int visibility; // between 1 and 6
 	private int metabolism; // between 1 and 4
 	
-	public Color occupied = Color.RED;
+	public static Color myColor = Color.RED;
+	public static String myName = "AGENT";
 	
+	public AgentState(int sugar, int visibility, int metabolism) {
+		super(myColor, myName);
+		this.sugar = sugar;
+		this.visibility = visibility;
+		this.metabolism = metabolism;
+	}
 
 	public AgentState(Color c, String n) {
 		super(c, n);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public int getVisibility(){
