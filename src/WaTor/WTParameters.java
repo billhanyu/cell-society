@@ -1,7 +1,5 @@
 package WaTor;
 
-import java.util.Collection;
-import cell.GridPosition;
 import grid.Parameters;
 
 public class WTParameters extends Parameters {

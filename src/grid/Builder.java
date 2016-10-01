@@ -10,7 +10,7 @@ import WaTor.WaTorState;
 import cell.Cell;
 import cell.GridPosition;
 import cell.State;
-import global.Initializer;
+import init.Initializer;
 import ui.SimulationPane;
 
 public abstract class Builder {

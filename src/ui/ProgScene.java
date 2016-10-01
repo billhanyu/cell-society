@@ -1,6 +1,6 @@
 package ui;
 
-import global.Initializer;
+import init.Initializer;
 
 public abstract class ProgScene {
 	protected double width;

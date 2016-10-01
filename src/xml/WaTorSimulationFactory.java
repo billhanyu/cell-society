@@ -23,8 +23,6 @@ public class WaTorSimulationFactory extends SimulationFactory{
         Collection<GridPosition> fishLocations = createListOfLocations("Fish", listOfNodes);
         Collection<GridPosition> emptyLocations = createListOfLocations("empty", listOfNodes);
         
-        
-        
         double emptyRatio = getDoubleValue("emptyRatio");
         double ratio = getDoubleValue("ratio");
         return new WTParameters(basicParams, sharkRate, fishRate, emptyRatio, ratio, sharkStarve, energyFromEating);

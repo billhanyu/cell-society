@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import cell.Cell;
-import global.Initializer;
+import init.Initializer;
 import javafx.scene.Node;
 import ui.Controls;
 
@@ -16,7 +16,7 @@ public class SchellingControls extends Controls {
 
 	public Node initRatioSlider(double ratio) {
 		int input = (int) (ratio/(ratio + 1) * 100);
-		return makeSliderBox(input, 0, 100, "RedBlue", 
+		return makeSliderBox(input, 0, 100, this.getResource().getString("RedBlue"), 
 				(observable, old_val, new_val) -> {
 					int newNumX = new_val.intValue();
 					int newNumO = 100 - newNumX;
@@ -27,29 +27,29 @@ public class SchellingControls extends Controls {
 					else {
 						newRatio = ((double)newNumX) / newNumO;
 					}
-					((SLParameters) initializer.getParameters()).setRatio(newRatio);
-					initializer.update();
+					((SLParameters) this.getInitializer().getParameters()).setRatio(newRatio);
+					this.getInitializer().update();
 				});
 	}
 
 	public Node initEmptySlider(double empty) {
 		int input = (int) (empty*100);
-		return makeSliderBox(input, 0, 100, "Empty",
+		return makeSliderBox(input, 0, 100, this.getResource().getString("Empty"),
 				(observable, old_val, new_val) -> {
 					int newEmptyPercent = new_val.intValue();
 					double newEmpty = newEmptyPercent / 100.0;
-					((SLParameters) initializer.getParameters()).setEmptyRatio(newEmpty);
-					initializer.update();
+					((SLParameters) this.getInitializer().getParameters()).setEmptyRatio(newEmpty);
+					this.getInitializer().update();
 				});
 	}
 
 	public Node initIdealSlider(double ideal) {
 		int input = (int) (ideal * 100);
-		return makeSliderBox(input, 0, 100, "Ideal", 
+		return makeSliderBox(input, 0, 100, this.getResource().getString("Ideal"), 
 				(observable, old_val, new_val) -> {
 					int newIdealPercent = new_val.intValue();
 					double newIdeal = newIdealPercent / 100.0;
-					List<Cell> cells = initializer.getRunner().getCells();
+					List<Cell> cells = this.getInitializer().getRunner().getCells();
 					for (Cell c: cells) {
 						((SchellingCell)c).setIdealRatio(newIdeal);
 					}
