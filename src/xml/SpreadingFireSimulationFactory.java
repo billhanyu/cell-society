@@ -1,8 +1,10 @@
 package xml;
 
+import java.util.Collection;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import SpreadingFire.SFParameters;
+import cell.GridPosition;
 import grid.Parameters;
 
 public class SpreadingFireSimulationFactory extends SimulationFactory {
@@ -11,21 +13,18 @@ public class SpreadingFireSimulationFactory extends SimulationFactory {
         super(rootElement);
     }
     
-
     @Override
-    public SFParameters getSimulationParameters(){
-        Parameters basicParams = returnBasicParameters();
-        NodeList listTagNames = rootElement.getElementsByTagName("*");
-        String probCatch = getTextValue("probCatch");
-        for (int i = 0; i < listTagNames.getLength(); i++){
-            if (listTagNames.item(i).getNodeName().equals("FireCell")){
-                String startingCell = getTextValue("FireCell");
-                return new SFParameters(basicParams, probCatch, startingCell);
-            }
+    public Parameters createParameters (Parameters basicParams, NodeList listOfNodes) {
+        double probCatch = getDoubleValue("probCatch");
+        Collection<GridPosition> listOfFireCells = createListOfLocations("FireCell", listOfNodes);
+        if (listOfFireCells.size() > 0){
+            return new SFParameters(basicParams, probCatch, listOfFireCells);
         }
-        
-        return new SFParameters(basicParams, probCatch);
+        else {
+            return new SFParameters(basicParams, probCatch);
+        }
     }
+    
     
     
 }
