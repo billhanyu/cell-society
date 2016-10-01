@@ -5,12 +5,12 @@ import javafx.scene.paint.Color;
 public class WaTorSharkState extends WaTorState{
 	
 	protected int energy;
-	private static Color myColor = Color.BLUE;
-	private static String myName = "SHARK";
+	public static Color myColor = Color.BLUE;
+	public static String myName = "SHARK";
 
 
 	public WaTorSharkState(int chrononsSinceReproduction, int energy) {
-		super(Color.BLUE, "Shark", chrononsSinceReproduction);
+		super(myColor, myName, chrononsSinceReproduction);
 		this.energy = energy;
 	}
 	
