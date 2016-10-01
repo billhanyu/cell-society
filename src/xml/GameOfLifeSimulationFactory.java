@@ -36,7 +36,6 @@ public class GameOfLifeSimulationFactory extends SimulationFactory {
             return new GLParameters(basicParams, listOfAlive);
         }
         else{
-            //String aliveRatio = getTextValue("aliveRatio");
             return new GLParameters(basicParams, ".4");
         }
         
