@@ -20,7 +20,7 @@ public class SpreadingFireControls extends Controls {
 				(observable, old_val, new_val) -> {
 					int flamabilityPercent = new_val.intValue();
 					double flamability = flamabilityPercent / 100.0;
-					List<Cell> cells = initializer.getRunner().getCells();
+					List<Cell> cells = this.getInitializer().getRunner().getCells();
 					for (Cell c: cells) {
 						((SpreadingFireCell)c).setProbCatch(flamability);
 					}

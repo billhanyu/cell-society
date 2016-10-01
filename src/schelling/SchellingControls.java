@@ -27,8 +27,8 @@ public class SchellingControls extends Controls {
 					else {
 						newRatio = ((double)newNumX) / newNumO;
 					}
-					((SLParameters) initializer.getParameters()).setRatio(newRatio);
-					initializer.update();
+					((SLParameters) this.getInitializer().getParameters()).setRatio(newRatio);
+					this.getInitializer().update();
 				});
 	}
 
@@ -38,8 +38,8 @@ public class SchellingControls extends Controls {
 				(observable, old_val, new_val) -> {
 					int newEmptyPercent = new_val.intValue();
 					double newEmpty = newEmptyPercent / 100.0;
-					((SLParameters) initializer.getParameters()).setEmptyRatio(newEmpty);
-					initializer.update();
+					((SLParameters) this.getInitializer().getParameters()).setEmptyRatio(newEmpty);
+					this.getInitializer().update();
 				});
 	}
 
@@ -49,7 +49,7 @@ public class SchellingControls extends Controls {
 				(observable, old_val, new_val) -> {
 					int newIdealPercent = new_val.intValue();
 					double newIdeal = newIdealPercent / 100.0;
-					List<Cell> cells = initializer.getRunner().getCells();
+					List<Cell> cells = this.getInitializer().getRunner().getCells();
 					for (Cell c: cells) {
 						((SchellingCell)c).setIdealRatio(newIdeal);
 					}

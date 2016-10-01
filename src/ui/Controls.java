@@ -11,20 +11,25 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
 public class Controls {
-	protected Initializer initializer;
-	protected ResourceBundle myResource;
+	private Initializer initializer;
+	private ResourceBundle myResource;
 	
 	public Controls(Initializer initializer, ResourceBundle myResource) {
 		this.initializer = initializer;
 		this.myResource = myResource;
 	}
 	
-	public Node makeSliderBox(int input, int min, int max, String resourceName, ChangeListener<Number> listener){
+	public Node makeSliderBox(int input, int min, int max, String resourceName, ChangeListener<Number> listener) {
+		if (input < min || input > max) {
+			ErrorPop pop = new ErrorPop(300, 200, this.myResource.getString("SliderRangeError"), this.myResource);
+			pop.popup();
+			throw new IllegalArgumentException(this.myResource.getString("SliderRangeError"));
+		}
 		return new SliderBox(myResource.getString(resourceName), min, max, input, 5, listener).getBox();
 	}
 	
 	public Node initSizeSlider(int size) {
-		return makeSliderBox(size, 10, 50, "Size", 
+		return makeSliderBox(size, 10, 50, this.myResource.getString("Size"), 
 				(observable, old_val, new_val) -> {
 					int newSize = new_val.intValue();
 					initializer.getParameters().setRows(newSize);
@@ -34,7 +39,7 @@ public class Controls {
 	}
 	
 	public Node initSpeedSlider() {
-		return makeSliderBox(90, 0, 100, "Speed", (observable, old_val, new_val) -> {            	
+		return makeSliderBox(90, 0, 100, this.myResource.getString("Speed"), (observable, old_val, new_val) -> {            	
 			int newSpeed = 100 - new_val.intValue();
 			initializer.getRunner().setSpeed(newSpeed);
 		});
@@ -51,7 +56,15 @@ public class Controls {
 	}
 	
 	public Node initBackButton() {
-		return makeButton("back", e->initializer.start());
+		return makeButton(this.myResource.getString("Back"), e->initializer.start());
+	}
+	
+	protected Initializer getInitializer() {
+		return this.initializer;
+	}
+	
+	protected ResourceBundle getResource() {
+		return this.myResource;
 	}
 	
 	private Button initStartButton() {
@@ -75,5 +88,4 @@ public class Controls {
 		btn.setOnAction(handler);
 		return btn;
 	}
-	
 }

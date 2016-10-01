@@ -15,7 +15,7 @@ public class WaTorControls extends Controls {
 	public Node sharkStarveRateSlider(int rate) {
 		return makeSliderBox(rate, 0, 25, "SharkStarve", 
 				(observable, old_val, new_val) -> {
-					((WTParameters) initializer.getParameters()).setSharkStarve(new_val.intValue());
+					((WTParameters) this.getInitializer().getParameters()).setSharkStarve(new_val.intValue());
 				});
 	}
 
@@ -23,7 +23,7 @@ public class WaTorControls extends Controls {
 		return makeSliderBox(rate, 0, 25, "FishRep", 
 				(observable, old_val, new_val) -> {
 					int fishReproductionRate = new_val.intValue();
-					((WTParameters) initializer.getParameters()).setFishRate(fishReproductionRate);
+					((WTParameters) this.getInitializer().getParameters()).setFishRate(fishReproductionRate);
 				});
 	}
 
@@ -32,7 +32,7 @@ public class WaTorControls extends Controls {
 		return makeSliderBox(rate, 0, 25, "SharkRep", 
 				(observable, old_val, new_val) -> {
 					int sharkReproductionRate = new_val.intValue();
-					((WTParameters) initializer.getParameters()).setSharkRate(sharkReproductionRate);
+					((WTParameters) this.getInitializer().getParameters()).setSharkRate(sharkReproductionRate);
 				});
 	}
 
@@ -40,7 +40,7 @@ public class WaTorControls extends Controls {
 		return makeSliderBox(rate, 0, 25, "SharkGain", 
 				(observable, old_val, new_val) -> {
 					int energy = new_val.intValue();
-					((WTParameters) initializer.getParameters()).setEnergyFromEating(energy);
+					((WTParameters) this.getInitializer().getParameters()).setEnergyFromEating(energy);
 
 				});
 	}
@@ -57,8 +57,8 @@ public class WaTorControls extends Controls {
 					else {
 						newRatio = ((double)newNumShark) / newNumFish;
 					}
-					((WTParameters) initializer.getParameters()).setRatio(newRatio);
-					initializer.update();
+					((WTParameters) this.getInitializer().getParameters()).setRatio(newRatio);
+					this.getInitializer().update();
 
 				});
 	}
@@ -68,8 +68,8 @@ public class WaTorControls extends Controls {
 				(observable, old_val, new_val) -> {
 					int newEmptyPercent = new_val.intValue();
 					double newEmpty = newEmptyPercent / 100.0;
-					((WTParameters) initializer.getParameters()).setEmptyRatio(newEmpty);
-					initializer.update();
+					((WTParameters) this.getInitializer().getParameters()).setEmptyRatio(newEmpty);
+					this.getInitializer().update();
 				});
 	}
 }
