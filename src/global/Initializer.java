@@ -136,6 +136,7 @@ public class Initializer {
 			builder = new LangtonBuilder(param, myResources);
 		}
 		
+		
 		runner = builder.init();
 		scn = new SimulationScene(builder.getSimulationPane(), controls);
                 stage.setScene(scn.initScene(param.getRows(), param));
