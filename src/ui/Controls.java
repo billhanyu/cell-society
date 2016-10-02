@@ -1,7 +1,7 @@
 package ui;
 
 import java.util.ResourceBundle;
-
+import javax.xml.parsers.ParserConfigurationException;
 import init.Initializer;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
@@ -87,7 +87,15 @@ public class Controls {
 	 * This method will be used to save current simulation parameters to an xml file
 	 */
 	public Button initXMLSaveButton(){
-		return makeButton(myResource.getString("SaveFile"), e->initializer.saveFile());
+	        return makeButton(myResource.getString("SaveFile"), e->{
+                try {
+                    initializer.saveFile();
+                }
+                catch (ParserConfigurationException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+            });
 	}
 	
 	private Button makeButton(String text, EventHandler<ActionEvent> handler) {

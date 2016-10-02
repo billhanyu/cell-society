@@ -2,7 +2,9 @@ package init;
 
 import java.io.File;
 import java.util.ResourceBundle;
-
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.xml.parsers.ParserConfigurationException;
 import SpreadingFire.SpreadingFireBuilder;
 import SpreadingFire.SpreadingFireControls;
 import Sugarscape.SugarscapeBuilder;
@@ -33,6 +35,8 @@ import xml.SimulationFactory;
 import xml.SpreadingFireSimulationFactory;
 import xml.SugarSimulationFactory;
 import xml.WaTorSimulationFactory;
+import xml.model.XMLSaveFile;
+import xmlExceptions.InvalidXMLFileException;
 
 public class Initializer {
 	private Stage stage;
@@ -57,6 +61,7 @@ public class Initializer {
 	private SimulationScene scn;
 	private Controls controls;
 	private File xmlFile;
+	private JFileChooser fileChooser;
 	private Decoder xmlParser;
 	private ResourceBundle myResources;
 	private SimulationFactory mySimulation;
@@ -90,9 +95,11 @@ public class Initializer {
 	
 	/**
 	 * This method will control the saving of the XML File
+	 * @throws ParserConfigurationException 
 	 */
-	public void saveFile(){
-	        
+	public void saveFile() throws ParserConfigurationException{
+	    int retrival = fileChooser.showSaveDialog(null);
+	    //    XMLSaveFile saveFile = new XMLSaveFile(param, runner, simType);
 	}
 
 	public void setParameters(Parameters param) {
