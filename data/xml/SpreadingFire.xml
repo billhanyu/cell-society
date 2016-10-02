@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Simulation SimulationType="Fire">
+<Simulation SimulationType="Spreading Fire">
 	<title>Spreading Fire Simulation</title>
 	<author>Addison and Bill have done everything so far</author>
 	<numRows>12</numRows>
 	<numCols>12</numCols>
-	<shape>Square</shape>
+	<shape>Triangle</shape>
 	<probCatch>.2</probCatch>
 	<FireCell>9 9</FireCell>
 </Simulation>

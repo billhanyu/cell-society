@@ -17,7 +17,8 @@ public class GameOfLifeSimulationFactory extends SimulationFactory {
 
     @Override
     public Parameters createParameters (Parameters basicParams, NodeList listOfNodes) {
-        Collection<GridPosition> listOfAlive = createListOfLocations("Alive", listOfNodes);
+        Collection<GridPosition> listOfAlive = createListOfLocations("ALIVE", listOfNodes);
+        Collection<GridPosition> listOfDead = createListOfLocations("DEAD", listOfNodes);
         if (listOfAlive.size() > 0){
             return new GLParameters(basicParams, listOfAlive);
         }
