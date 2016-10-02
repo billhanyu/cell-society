@@ -9,8 +9,8 @@
 	<maxAmountOfPheromone>1000</maxAmountOfPheromone>
 	<antsBornPerTimeStep>2</antsBornPerTimeStep>
 	<maxAntAge>500</maxAntAge>
-	<evaporationRatio>.99</evaporationRatio>
-	<diffusionRatio>.1</diffusionRatio>
+	<evaporationRatio>.01</evaporationRatio>
+	<diffusionRatio>.01</diffusionRatio>
 	<K>0.001</K>
 	<N>10.0</N>
 	<nestCell>45 45</nestCell>

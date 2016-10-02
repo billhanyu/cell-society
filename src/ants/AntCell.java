@@ -40,7 +40,7 @@ public class AntCell extends Cell{
 	public AntCell(GridPosition gp, State s, AntParameters params) {
 		super(gp, s);
 		this.params = params;
-		this.pheromoneState = new PheromoneState();
+		this.pheromoneState = new PheromoneState(1.0, 1.0, params);
 		antList = new ArrayList<AntState>();
 		if (s.equals(nest))
 			pheromoneState.setHomePheromone(params.getMaxAmountOfPheromone());
@@ -66,6 +66,8 @@ public class AntCell extends Cell{
 
 	@Override
 	public void checkChangeState() {
+		boolean hadAnt = (getNumAnts() > 0);
+
 		if(getCurrState().equals(nest) && getNumAnts() <= params.getMaxNumAnts())
 			birthAntsIfNest();
 		if(getNumAnts() > 0){
@@ -78,22 +80,24 @@ public class AntCell extends Cell{
 
 		// SET FUTURE / DISPLAY STATE
 		double totalPheromones = getPheromoneState().getFoodPheromone() + getPheromoneState().getHomePheromone();
-		System.out.println(totalPheromones);
+		//System.out.println(totalPheromones);
 		// if currState is obstacle, nest, or food, leave it be
 		if( ! (getCurrState().equals(nest) || getCurrState().equals(food) || getCurrState().equals(obstacle)) ){
 			// if there are ants, show it
-			if(getNumAnts() > 0)
+			if(hadAnt){
 				setFutureState(populatedByAnts);
+				System.out.println("populated");
+			}
 			// if not, show how many pheromones
 			else {
 				double max = params.getMaxAmountOfPheromone();
 				if(totalPheromones < LOW_CUTOFF * max)
 					setFutureState(empty);
-				else if(totalPheromones >= (LOW_CUTOFF * max))
+				if(totalPheromones >= (LOW_CUTOFF * max))
 					setFutureState(lowPheromoneConcentration);
-				else if(totalPheromones >= (MEDIUM_CUTOFF * max))
+				if(totalPheromones >= (MEDIUM_CUTOFF * max))
 					setFutureState(mediumPheromoneConcentration);
-				else if(totalPheromones >= (HIGH_CUTOFF * params.getMaxAmountOfPheromone()))
+				if(totalPheromones >= (HIGH_CUTOFF * params.getMaxAmountOfPheromone()))
 					setFutureState(highPheromoneConcentration);
 			}
 		}
@@ -123,6 +127,7 @@ public class AntCell extends Cell{
 	}
 
 	private void moveAnts() {
+		System.out.println("Move");
 		for(AntState ant: getAntList()){
 			if (ant.hasFoodItem)
 				antReturnToNest(ant);
@@ -174,9 +179,9 @@ public class AntCell extends Cell{
 	 * defined in selectWeightedRandomLocation
 	 */
 	private void antFindFoodSource(AntState ant){
-		if (getCurrState().equals(food))
+		if (getCurrState().equals(nest))
 			ant.setOrientation(cellWithMostFood(getNeighbors()));
-		if(getCurrState().equals(nest)){
+		if(getCurrState().equals(food)){
 			ant.hasFoodItem = true;
 			return;
 		}
@@ -212,16 +217,14 @@ public class AntCell extends Cell{
 	 */
 	private void diffusePheromones(double diffusionRatio) {
 		for(Cell n : getNeighbors()){
-//			double thisFood = this.getPheromoneState().getFoodPheromone();
-//			double nFood = ((AntCell) n).getPheromoneState().getFoodPheromone();
-//			if(thisFood > nFood)
-//				((AntCell) n).getPheromoneState().addFoodPheromone((thisFood * diffusionRatio));
-//			double thisHome = this.getPheromoneState().getHomePheromone();
-//			double nHome = ((AntCell) n).getPheromoneState().getHomePheromone();
-//			if(thisHome > nHome)
-//				((AntCell) n).getPheromoneState().addHomePheromone((thisHome * diffusionRatio));
-			((AntCell) n).getPheromoneState().setFoodPheromone(1000);
-			((AntCell) n).getPheromoneState().setHomePheromone(1000);
+			double thisFood = this.getPheromoneState().getFoodPheromone();
+			double nFood = ((AntCell) n).getPheromoneState().getFoodPheromone();
+			if(thisFood > nFood)
+				((AntCell) n).getPheromoneState().addFoodPheromone((thisFood * diffusionRatio));
+			double thisHome = this.getPheromoneState().getHomePheromone();
+			double nHome = ((AntCell) n).getPheromoneState().getHomePheromone();
+			if(thisHome > nHome)
+				((AntCell) n).getPheromoneState().addHomePheromone((thisHome * diffusionRatio));
 		}
 	}
 
@@ -246,6 +249,7 @@ public class AntCell extends Cell{
 		else
 			ant.setOrientation(acell.getNeighbors().get(acell.getNeighbors().size()));
 
+		System.out.println("does this even");
 		acell.getAntList().add(ant);
 		this.getAntList().remove(ant);
 	}
