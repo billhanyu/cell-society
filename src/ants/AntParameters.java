@@ -1,27 +1,32 @@
 package ants;
 
+import java.util.Collection;
+import cell.GridPosition;
 import grid.Parameters;
 
 public class AntParameters extends Parameters {
 	
 	private int maxNumAnts;
-	private int minAmountOfPheromone = 0;
-	private int maxAmountOfPheromone = 1000;
-	private int antsBornPerTimeStep = 2;
-	private int maxAntAge = 500;
-	private double evaporationRatio = 0.001;
-	private double diffusionRatio = 0.001;
-	private double K = 0.001;
-	private double N = 10.0;
+	private int maxAmountOfPheromone;
+	private int antsBornPerTimeStep;
+	private int maxAntAge;
+	private double evaporationRatio;
+	private double diffusionRatio;
+	private double K;
+	private double N;
+	
+	private Collection<GridPosition> nestCells;
+	private Collection<GridPosition> foodCells;
 
 
 	public AntParameters(Parameters p) {
 		super(p);
 	}
 
-	public AntParameters(Parameters p, int maxNumAnts, int minAmountOfPheromone,
-			int maxAmountOfPheromone, int antsBornPerTimeStep, int maxAntAge,
-			double evaporationRatio, double diffusionRatio) {
+	public AntParameters(Parameters p, int maxNumAnts, int maxAmountOfPheromone, 
+	                     int antsBornPerTimeStep, int maxAntAge, 
+	                     double evaporationRatio, double diffusionRatio, double K, double N,
+	                     Collection<GridPosition> nestCell, Collection<GridPosition> foodCell) {
 		super(p);
 		this.maxNumAnts = maxNumAnts;
 		this.maxAmountOfPheromone = maxAmountOfPheromone;
@@ -29,6 +34,11 @@ public class AntParameters extends Parameters {
 		this.setMaxAntAge(maxAntAge);
 		this.evaporationRatio = evaporationRatio;
 		this.diffusionRatio = diffusionRatio;
+		this.K = K;
+		this.N = N;
+		this.nestCells = nestCell;
+		this.foodCells = foodCell;
+		setByLocations(false);
 	}
 
 	public int getMaxNumAnts() {
@@ -39,13 +49,6 @@ public class AntParameters extends Parameters {
 		this.maxNumAnts = maxNumAnts;
 	}
 
-	public int getMinAmountOfPheromone() {
-		return minAmountOfPheromone;
-	}
-
-	public void setMinAmountOfPheromone(int minAmountOfPheromone) {
-		this.minAmountOfPheromone = minAmountOfPheromone;
-	}
 
 	public int getMaxAmountOfPheromone() {
 		return maxAmountOfPheromone;
@@ -101,6 +104,14 @@ public class AntParameters extends Parameters {
 
 	public void setN(double n) {
 		N = n;
+	}
+	
+	public Collection<GridPosition> getListOfNest(){
+	    return nestCells;
+	}
+	
+	public Collection<GridPosition> getListOfFood(){
+	    return foodCells;
 	}
 
 }
