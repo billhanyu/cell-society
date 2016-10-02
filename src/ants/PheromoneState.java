@@ -14,6 +14,12 @@ public class PheromoneState extends State {
 	public PheromoneState() {
 		super(myColor, myName);
 	}
+	
+	public PheromoneState(double foodPheromone, double homePheromone){
+		super(myColor, myName);
+		this.foodPheromone = foodPheromone;
+		this.homePheromone = homePheromone;
+	}
 
 	public double getFoodPheromone() {
 		return foodPheromone;
