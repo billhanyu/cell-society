@@ -1,22 +1,21 @@
 package Sugarscape;
 
 
-import javafx.scene.paint.Color;
 import cell.Cell;
 import cell.GridPosition;
-import cell.State;
+import javafx.scene.paint.Color;
 
-public class SugarscapeCell extends Cell{
+public class SugarscapeCell extends Cell {
 	
 	// DEFAULT PATCH STATES
-	public static State empty = new PatchState(Color.ORANGE.darker().darker().darker().darker(), "0/4 FULL", 0);
-	public static State oneFourthsFull = new PatchState(Color.ORANGE.darker().darker().darker(), "1/4 QUARTER FULL", 1);
-	public static State twoFourthsFull = new PatchState(Color.ORANGE.darker().darker(), "2/4 HALF FULL", 2);
-	public static State threeFourthsFull = new PatchState(Color.ORANGE.darker(), "3/4 FULL", 3);
-	public static State fourFourthsFull = new PatchState(Color.ORANGE, "4/4 FULL", 4);
+	public static PatchState empty = new PatchState(Color.web("#FFFFFF"), "0/4 FULL", 0);
+	public static PatchState oneFourthsFull = new PatchState(Color.web("#FFE4b7"), "1/4 QUARTER FULL", 1);
+	public static PatchState twoFourthsFull = new PatchState(Color.web("#FFCE7a"), "2/4 HALF FULL", 2);
+	public static PatchState threeFourthsFull = new PatchState(Color.web("#FFB942"), "3/4 FULL", 3);
+	public static PatchState fourFourthsFull = new PatchState(Color.web("#FFA100"), "4/4 FULL", 4);
 
 	// DEFAULT AGENT STATE
-	public static State noAgent = new AgentState(Color.GRAY, "NO AGENT");
+	public static AgentState noAgent = new AgentState(Color.GRAY, "NO AGENT");
 
 	private PatchState patch;
 	private AgentState agent;
@@ -33,7 +32,7 @@ public class SugarscapeCell extends Cell{
 	public void checkChangeState() {
 		growBack();
 		// if the cell is occupied by an agent
-		if( ! agent.equals(noAgent) ){
+		if( ! agent.equals(noAgent) ) {
 			if( ! checkIfDead())
 				moveToNewCell();
 		}
@@ -43,23 +42,23 @@ public class SugarscapeCell extends Cell{
 			setFutureState(noAgent);
 	}
 
-	protected PatchState getPatchState(){
+	protected PatchState getPatchState() {
 		return patch;
 	}
 
-	protected void setPatchState(PatchState ps){
+	protected void setPatchState(PatchState ps) {
 		patch = ps;
 	}
 
-	protected AgentState getAgentState(){
+	protected AgentState getAgentState() {
 		return agent;
 	}
 
-	protected void setAgentState(AgentState as){
+	protected void setAgentState(AgentState as) {
 		agent = as;
 	}
 
-	private void growBack(){
+	private void growBack() {
 		if(getCurrState().equals(empty))
 			setFutureState(oneFourthsFull);
 		if(getCurrState().equals(oneFourthsFull))
@@ -70,7 +69,7 @@ public class SugarscapeCell extends Cell{
 			setFutureState(fourFourthsFull);
 	}
 
-	private boolean checkIfDead(){
+	private boolean checkIfDead() {
 		if (agent.getSugar() <= 0){
 			agent = (AgentState) noAgent;
 			return true;
@@ -79,24 +78,27 @@ public class SugarscapeCell extends Cell{
 		return false;
 	}
 
-	private void moveToNewCell(){
-		SugarscapeCell bestNeighborOption = this;
-		int maxHowFull = -1;
-		for(int i = 0; i < getNeighbors().size(); i++){
-			SugarscapeCell currNeighbor = (SugarscapeCell) getNeighbors().get(i);
-			for(int v = 0; v < agent.getVisibility(); v++){
-				PatchState ps = currNeighbor.getPatchState();
-				if (ps.getHowFull() > maxHowFull){
-					bestNeighborOption = currNeighbor;
-					maxHowFull = ps.getHowFull();
-				}
-				currNeighbor = (SugarscapeCell) currNeighbor.getNeighbors().get(i);
-			}
-		}
+	private void moveToNewCell() {
+		SugarscapeCell bestNeighborOption = 
+				getBestNeighborOption(this, agent.getVisibility());
 		this.agent.addSugar(bestNeighborOption.getPatchState().getHowFull());
 		bestNeighborOption.setPatchState((PatchState) empty);
 		bestNeighborOption.setAgentState(this.getAgentState());
 		this.setAgentState((AgentState) noAgent);
+	}
+	
+	private SugarscapeCell getBestNeighborOption(SugarscapeCell current, int visibility) {
+		if (visibility <= 0) return current;
+		SugarscapeCell best = this;
+		for(int i = 0; i < current.getNeighbors().size(); i++) {
+			SugarscapeCell currNeighbor = (SugarscapeCell) current.getNeighbors().get(i);
+			SugarscapeCell nextBest = 
+					getBestNeighborOption(currNeighbor, visibility - 1);
+			if (nextBest.getPatchState().getHowFull() > best.getPatchState().getHowFull()) {
+				best = nextBest;
+			}
+		}
+		return best;
 	}
 
 }

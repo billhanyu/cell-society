@@ -34,8 +34,7 @@ public class WTParameters extends Parameters {
             this.energyFromEating = energyFromEating;
             this.emptyRatio = emptyRatio;
             this.ratio = ratio;
-            setByLocations(false);
-            
+            setByLocations(false); 
         }
     	
     	public int getSharkStarve() {

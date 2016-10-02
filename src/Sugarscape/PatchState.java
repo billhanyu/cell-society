@@ -12,7 +12,7 @@ public class PatchState extends State{
 		this.howFull = howFull;
 	}
 	
-	public int getHowFull(){
+	public int getHowFull() {
 		return howFull;
 	}
 
