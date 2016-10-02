@@ -1,6 +1,7 @@
 package init;
 
 import java.io.File;
+
 import java.util.ResourceBundle;
 import ants.AntBuilder;
 import javax.swing.JFileChooser;
@@ -38,7 +39,7 @@ import xml.SimulationFactory;
 import xml.SpreadingFireSimulationFactory;
 import xml.SugarSimulationFactory;
 import xml.WaTorSimulationFactory;
-import xml.model.XMLSaveFile;
+import xml.model.*;
 import xmlExceptions.InvalidXMLFileException;
 
 public class Initializer {
@@ -70,6 +71,7 @@ public class Initializer {
     private ResourceBundle myResources;
     private SimulationFactory mySimulation;
     private String simType;
+    private XMLSaveFile saveFile;
 
 
     class ExitAction implements EventHandler<ActionEvent> {
@@ -102,8 +104,8 @@ public class Initializer {
      * @throws ParserConfigurationException 
      */
     public void saveFile() throws ParserConfigurationException{
-        File xmlFile = fileChooser.showSaveDialog(stage);
-        //    XMLSaveFile saveFile = new XMLSaveFile(param, runner, simType);
+        File xmlFileLocation = fileChooser.showSaveDialog(stage);
+        saveFile.initializeSaveFile(param, runner, xmlFileLocation, myResources, simType);
     }
 
     public void setParameters(Parameters param) {
@@ -134,7 +136,7 @@ public class Initializer {
     /*
      * This method is used to initialize the simulation from an arbitrary XML file
      */
-    public void initSimulationFromFile(){
+    public void initSimulationFromFile() throws ParserConfigurationException{
         try{
             chooseFile();
             GeneralSimulationFactory generalSimulation = 
@@ -144,7 +146,7 @@ public class Initializer {
             runner = builder.init();
             scn = new SimulationScene(builder.getSimulationPane(), controls);
             stage.setScene(scn.initScene(param.getRows(), param));
-            stage.setTitle(myResources.getString(simType));
+            stage.setTitle(simType);
         } catch (InvalidXMLFileException e){
             ErrorPop fileError = new ErrorPop(300, 200, myResources.getString("FileChooserError"), myResources);
             fileError.popup();
@@ -155,48 +157,55 @@ public class Initializer {
         }
     }
 
-    private void initWithType(String simType) {
-        if (simType.equals(FIRE)){
+    private void initWithType(String simType) throws ParserConfigurationException {
+        if (simType.equals(myResources.getString(FIRE))){
             mySimulation = new SpreadingFireSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
             controls = new SpreadingFireControls(this, myResources);
             param = mySimulation.getSimulationParameters();
             builder = new SpreadingFireBuilder(param, myResources);
+            saveFile = new SpreadingFireXMLFileSaver();
         }
-        else if (simType.equals(LIFE)){
+        else if (simType.equals(myResources.getString(LIFE))){
             mySimulation = new GameOfLifeSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
             controls = new Controls(this, myResources);
             param = mySimulation.getSimulationParameters();
             builder = new GameOfLifeBuilder(param, myResources);
+            saveFile = new GameOfLifeXMLFileSaver();
         }
-        else if (simType.equals(PRED_PREY)){
+        else if (simType.equals(myResources.getString(PRED_PREY))){
             mySimulation = new WaTorSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
             controls = new WaTorControls(this, myResources);
             param = mySimulation.getSimulationParameters();
             builder = new WaTorBuilder(param, myResources);
+            saveFile = new WaTorXMLFileSaver();
         }
-        else if (simType.equals(SEGREGATION)){
+        else if (simType.equals(myResources.getString(SEGREGATION))){
             mySimulation = new SchellingSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
             controls = new SchellingControls(this, myResources);
             param = mySimulation.getSimulationParameters();
             builder = new SchellingBuilder(param, myResources);
+            saveFile = new SchellingXMLFileSaver();
         }
-        else if (simType.equals(LANGTON)) {
+        else if (simType.equals(myResources.getString(LANGTON))) {
             mySimulation = new LangtonSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
             controls = new LangtonControls(this, myResources);
             param = mySimulation.getSimulationParameters();
             builder = new LangtonBuilder(param, myResources);
+            saveFile = new LangtonXMLFileSaver();
         }
-        else if (simType.equals(ANT)){
+        else if (simType.equals(myResources.getString(ANT))){
             mySimulation = new AntSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
             controls = new Controls(this, myResources);
             param = mySimulation.getSimulationParameters();
             builder = new AntBuilder(param, myResources);
+            saveFile = new AntXMLFileSaver();
         }
-        else if (simType.equals(SUGARSCAPE)) {
+        else if (simType.equals(myResources.getString(SUGARSCAPE))) {
             mySimulation = new SugarSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
             controls = new Controls(this, myResources);
             param = mySimulation.getSimulationParameters();
             builder = new SugarscapeBuilder(param, myResources);
+            saveFile = new SugarscapeXMLFileSaver();
         }
     }
 

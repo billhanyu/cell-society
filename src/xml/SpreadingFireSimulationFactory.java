@@ -16,7 +16,9 @@ public class SpreadingFireSimulationFactory extends SimulationFactory {
     @Override
     public Parameters createParameters (Parameters basicParams, NodeList listOfNodes) {
         double probCatch = getDoubleValue("probCatch");
-        Collection<GridPosition> listOfFireCells = createListOfLocations("FireCell", listOfNodes);
+        Collection<GridPosition> listOfFireCells = createListOfLocations("BURNING", listOfNodes);
+        Collection<GridPosition> listOfTreeCells = createListOfLocations("TREE", listOfNodes);
+        Collection<GridPosition> listOfEmptyCells = createListOfLocations("EMPTY", listOfNodes);
         if (listOfFireCells.size() > 0){
             return new SFParameters(basicParams, probCatch, listOfFireCells);
         }
