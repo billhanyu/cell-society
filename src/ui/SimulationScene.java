@@ -37,6 +37,7 @@ public class SimulationScene extends ProgScene {
 		Node speed = controls.initSpeedSlider();
 		Node buttons = controls.initActionButtons();
 		Node back = controls.initBackButton();
+		Node saveFile = controls.initXMLSaveButton();
 		controlGroup = new VBox();
 		controlGroup.getChildren().addAll(slider);
 		controlGroup.setLayoutX(simu.getLayoutX() + pane.getWidth() + 20);
@@ -56,13 +57,16 @@ public class SimulationScene extends ProgScene {
 		buttons.setLayoutY(Initializer.SCENE_HEIGHT - 100);
 		speed.setLayoutX(controlGroup.getLayoutX());
 		speed.setLayoutY(Initializer.SCENE_HEIGHT - 150);
+		saveFile.setLayoutX(Initializer.SCENE_WIDTH - 300);
+		saveFile.setLayoutY(Initializer.SCENE_HEIGHT - 50);
 		back.setLayoutX(Initializer.SCENE_WIDTH - 80);
 		back.setLayoutY(Initializer.SCENE_HEIGHT - 50);
-		root.getChildren().addAll(controlGroup, buttons, speed, back);
+		root.getChildren().addAll(controlGroup, buttons, speed, back, saveFile);
 		Scene scn = new Scene(root, width, height);
 
 		return scn;
 	}
+	
 	private void addSchellingControls(SLParameters p){//double ratio, double empty, double ideal) {
 		controlGroup.getChildren().add(((SchellingControls) controls).initRatioSlider(p.getRatio()));
 		controlGroup.getChildren().add(((SchellingControls) controls).initEmptySlider(p.getEmptyRatio()));

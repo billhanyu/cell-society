@@ -4,6 +4,7 @@
 	<author>Addison and Bill</author>
 	<numRows>30</numRows>
 	<numCols>30</numCols>
+	<shape>Square</shape>
 	<sharkStarve>12</sharkStarve>
 	<fishRate>23</fishRate>
 	<sharkRate>2</sharkRate>

@@ -4,6 +4,7 @@
 	<author>Addison and Bill have done everything so far</author>
 	<numRows>12</numRows>
 	<numCols>12</numCols>
+	<shape>Square</shape>
 	<probCatch>.2</probCatch>
 	<FireCell>9 9</FireCell>
 </Simulation>
