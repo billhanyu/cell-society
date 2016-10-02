@@ -2,9 +2,8 @@ package init;
 
 import java.io.File;
 import java.util.ResourceBundle;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.xml.parsers.ParserConfigurationException;
+
+import ants.AntBuilder;
 import SpreadingFire.SpreadingFireBuilder;
 import SpreadingFire.SpreadingFireControls;
 import Sugarscape.SugarscapeBuilder;
@@ -26,6 +25,7 @@ import ui.Controls;
 import ui.ErrorPop;
 import ui.SimulationScene;
 import ui.StartScene;
+import xml.AntSimulationFactory;
 import xml.Decoder;
 import xml.GameOfLifeSimulationFactory;
 import xml.GeneralSimulationFactory;
@@ -48,6 +48,7 @@ public class Initializer {
 	public static final String FIRE = "Fire";
 	public static final String LIFE = "GameOfLife";
 	public static final String LANGTON = "Langton";
+	public static final String ANT = "Ant";
 	public static final String SUGARSCAPE = "Sugarscape";
 	
 	private static final String RESOURCE_PATH = "resource/";
@@ -182,12 +183,24 @@ public class Initializer {
 			param = mySimulation.getSimulationParameters();
 			builder = new LangtonBuilder(param, myResources);
 		}
+		else if (simType.equals(ANT)){
+			mySimulation = new AntSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
+			controls = new Controls(this, myResources);
+			param = mySimulation.getSimulationParameters();
+			builder = new AntBuilder(param, myResources);
+		}
 		else if (simType.equals(SUGARSCAPE)) {
 			mySimulation = new SugarSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
 			controls = new Controls(this, myResources);
 			param = mySimulation.getSimulationParameters();
 			builder = new SugarscapeBuilder(param, myResources);
 		}
+		
+		runner = builder.init();
+		scn = new SimulationScene(builder.getSimulationPane(), controls);
+                stage.setScene(scn.initScene(param.getRows(), param));
+		stage.setTitle(myResources.getString(simType));
+		
 	}
 	
 }

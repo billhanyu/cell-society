@@ -21,13 +21,13 @@ public class AntCell extends Cell{
 	public static State food = new State(Color.RED, "FOOD");
 	public static State empty = new State(Color.GRAY, "EMPTY");
 	public static State obstacle = new State(Color.PURPLE, "OBSTACLE");
-	
+
 	// ANT CELL DISPLAY STATES
 	public static State populatedByAnts = new State(AntState.myColor, "ANTS");
 	public static State lowPheromoneConcentration = new State(Color.LIGHTGREEN, "LOW PHEROMONE");
 	public static State mediumPheromoneConcentration = new State(Color.FORESTGREEN, "MEDIUM PHEROMONE");
 	public static State highPheromoneConcentration = new State(Color.DARKGREEN, "HIGH PHEROMONE");
-	
+
 	private final double LOW_CUTOFF= 0.05;
 	private final double MEDIUM_CUTOFF = 0.33;
 	private final double HIGH_CUTOFF = 0.67;
@@ -46,14 +46,6 @@ public class AntCell extends Cell{
 			pheromoneState.setHomePheromone(params.getMaxAmountOfPheromone());
 		if (s.equals(food))
 			pheromoneState.setFoodPheromone(params.getMaxAmountOfPheromone());
-	}
-	
-	/**
-	 * Default constructor if not given initial state
-	 * sets initial state to EMPTY
-	 */
-	public AntCell(GridPosition gp, AntParameters params){
-		this(gp, empty, params);
 	}
 
 	public PheromoneState getPheromoneState() {
@@ -74,17 +66,19 @@ public class AntCell extends Cell{
 
 	@Override
 	public void checkChangeState() {
-		birthAntsIfNest();
+		if(getCurrState().equals(nest) && getNumAnts() <= params.getMaxNumAnts())
+			birthAntsIfNest();
 		if(getNumAnts() > 0){
 			checkIfAnyDeadAnts();
 			moveAnts();
 		}
-		getPheromoneState().evaporatePheromones(params.getEvaporationRatio());
 		diffusePheromones(params.getDiffusionRatio());
+		getPheromoneState().evaporatePheromones(params.getEvaporationRatio());
 
 
 		// SET FUTURE / DISPLAY STATE
 		double totalPheromones = getPheromoneState().getFoodPheromone() + getPheromoneState().getHomePheromone();
+		System.out.println(totalPheromones);
 		// if currState is obstacle, nest, or food, leave it be
 		if( ! (getCurrState().equals(nest) || getCurrState().equals(food) || getCurrState().equals(obstacle)) ){
 			// if there are ants, show it
@@ -95,23 +89,23 @@ public class AntCell extends Cell{
 				double max = params.getMaxAmountOfPheromone();
 				if(totalPheromones < LOW_CUTOFF * max)
 					setFutureState(empty);
-				if(totalPheromones >= (LOW_CUTOFF * max))
+				else if(totalPheromones >= (LOW_CUTOFF * max))
 					setFutureState(lowPheromoneConcentration);
-				if(totalPheromones >= (MEDIUM_CUTOFF * max))
+				else if(totalPheromones >= (MEDIUM_CUTOFF * max))
 					setFutureState(mediumPheromoneConcentration);
-				if(totalPheromones >= (HIGH_CUTOFF * params.getMaxAmountOfPheromone()))
+				else if(totalPheromones >= (HIGH_CUTOFF * params.getMaxAmountOfPheromone()))
 					setFutureState(highPheromoneConcentration);
 			}
 		}
 	}
-	
+
 	public int getNumAnts(){
 		return getAntList().size();
 	}
 
 	private void birthAntsIfNest(){
 		for(int i = 0; i < params.getAntsBornPerTimeStep(); i++)
-			getAntList().add(new AntState(params.getMaxAntAge()));
+			getAntList().add(new AntState(params.getMaxAntAge(), getNeighbors().get((int) Math.random() * getNeighbors().size()) ));
 	}
 
 	/**
@@ -127,7 +121,7 @@ public class AntCell extends Cell{
 		}
 		getAntList().removeAll(toRemove);
 	}
-	
+
 	private void moveAnts() {
 		for(AntState ant: getAntList()){
 			if (ant.hasFoodItem)
@@ -210,7 +204,7 @@ public class AntCell extends Cell{
 				acell.getPheromoneState().addHomePheromone(deposit);
 		}
 	}
-	
+
 	/**
 	 * Both home and food pheromones diffuse from 
 	 * cells with higher concentration to lower concentration
@@ -218,14 +212,16 @@ public class AntCell extends Cell{
 	 */
 	private void diffusePheromones(double diffusionRatio) {
 		for(Cell n : getNeighbors()){
-			double thisFood = this.getPheromoneState().getFoodPheromone();
-			double nFood = ((AntCell) n).getPheromoneState().getFoodPheromone();
-			if(thisFood > nFood)
-				((AntCell) n).getPheromoneState().addFoodPheromone((thisFood * diffusionRatio));
-			double thisHome = this.getPheromoneState().getHomePheromone();
-			double nHome = ((AntCell) n).getPheromoneState().getHomePheromone();
-			if(thisHome > nHome)
-				((AntCell) n).getPheromoneState().addHomePheromone((thisHome * diffusionRatio));
+//			double thisFood = this.getPheromoneState().getFoodPheromone();
+//			double nFood = ((AntCell) n).getPheromoneState().getFoodPheromone();
+//			if(thisFood > nFood)
+//				((AntCell) n).getPheromoneState().addFoodPheromone((thisFood * diffusionRatio));
+//			double thisHome = this.getPheromoneState().getHomePheromone();
+//			double nHome = ((AntCell) n).getPheromoneState().getHomePheromone();
+//			if(thisHome > nHome)
+//				((AntCell) n).getPheromoneState().addHomePheromone((thisHome * diffusionRatio));
+			((AntCell) n).getPheromoneState().setFoodPheromone(1000);
+			((AntCell) n).getPheromoneState().setHomePheromone(1000);
 		}
 	}
 
@@ -349,6 +345,8 @@ public class AntCell extends Cell{
 	 * weighted by the equation given in caclculateProbability
 	 */
 	private Cell selectWeightedRandomLocation(List<Cell> possible){
+		if (possible == null || possible.size() == 0)
+			return null;
 		List<Cell> trulyPossible = new ArrayList<Cell>(possible);
 		double probabilitySum = 0.0;
 

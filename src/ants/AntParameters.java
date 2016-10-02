@@ -17,6 +17,7 @@ public class AntParameters extends Parameters {
 	
 	private Collection<GridPosition> nestCells;
 	private Collection<GridPosition> foodCells;
+	private Collection<GridPosition> obstacleCells;
 
 
 	public AntParameters(Parameters p) {
@@ -26,7 +27,8 @@ public class AntParameters extends Parameters {
 	public AntParameters(Parameters p, int maxNumAnts, int maxAmountOfPheromone, 
 	                     int antsBornPerTimeStep, int maxAntAge, 
 	                     double evaporationRatio, double diffusionRatio, double K, double N,
-	                     Collection<GridPosition> nestCell, Collection<GridPosition> foodCell) {
+	                     Collection<GridPosition> nestCells, Collection<GridPosition> foodCells,
+	                     Collection<GridPosition> obstacleCells) {
 		super(p);
 		this.maxNumAnts = maxNumAnts;
 		this.maxAmountOfPheromone = maxAmountOfPheromone;
@@ -36,8 +38,9 @@ public class AntParameters extends Parameters {
 		this.diffusionRatio = diffusionRatio;
 		this.K = K;
 		this.N = N;
-		this.nestCells = nestCell;
-		this.foodCells = foodCell;
+		this.nestCells = nestCells;
+		this.foodCells = foodCells;
+		this.obstacleCells = obstacleCells;
 		setByLocations(false);
 	}
 
@@ -112,6 +115,10 @@ public class AntParameters extends Parameters {
 	
 	public Collection<GridPosition> getListOfFood(){
 	    return foodCells;
+	}
+	
+	public Collection<GridPosition> getListOfObstacle(){
+		return obstacleCells;
 	}
 
 }

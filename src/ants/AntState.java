@@ -13,10 +13,11 @@ public class AntState extends State {
 	protected boolean hasFoodItem = false;
 	private Cell orientation;
 
-	public AntState(int maxAge) {
+	public AntState(int maxAge, Cell orientation) {
 		super(myColor, myName);
 		age = 0;
 		this.maxAge = maxAge;
+		this.orientation = orientation;
 	}
 	
 	private void getOlder(){
