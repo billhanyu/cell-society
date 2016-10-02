@@ -3,10 +3,10 @@ package init;
 import java.io.File;
 
 import java.util.ResourceBundle;
+import ants.AntBuilder;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.ParserConfigurationException;
-import ants.AntBuilder;
 import SpreadingFire.SpreadingFireBuilder;
 import SpreadingFire.SpreadingFireControls;
 import Sugarscape.SugarscapeBuilder;
