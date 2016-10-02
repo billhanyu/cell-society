@@ -36,6 +36,10 @@ public class GridPosition {
 	    return hashCode;
 	}
 	
+	@Override
+	public String toString(){
+	    return gridRow + " " + gridCol;
+	}
 	public int getRow(){
 		return gridRow;
 	}

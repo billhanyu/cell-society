@@ -1,7 +1,7 @@
 package ui;
 
 import java.util.ResourceBundle;
-
+import javax.xml.parsers.ParserConfigurationException;
 import init.Initializer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -51,7 +51,14 @@ public class StartScene extends ProgScene {
 		Button chooseFile = new Button(this.myResource.getString("ChooseFile"));
 		chooseFile.setPrefWidth(BUTTON_WIDTH);
 		chooseFile.setOnAction(e ->{
-			initializer.initSimulationFromFile();
+			try {
+			    initializer.initSimulationFromFile();
+                        }
+			catch (ParserConfigurationException e1) {
+                            ErrorPop parserError = new ErrorPop(300, 200, 
+                                                                this.myResource.getString("Error"), this.myResource);
+                            parserError.popup();
+			}
 		});
 		return chooseFile;
 	}
