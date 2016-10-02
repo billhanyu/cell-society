@@ -87,7 +87,7 @@ public class Controls {
 	 * This method will be used to save current simulation parameters to an xml file
 	 */
 	public Button initXMLSaveButton(){
-	        return makeButton(myResource.getString("SaveFile"), e->initializer.saveFile());
+		return makeButton(myResource.getString("SaveFile"), e->initializer.saveFile());
 	}
 	
 	private Button makeButton(String text, EventHandler<ActionEvent> handler) {

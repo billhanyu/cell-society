@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import WaTor.WaTorState;
 import cell.Cell;
 import cell.GridPosition;
 import cell.State;
@@ -181,12 +180,9 @@ public abstract class Builder {
 		copy = new State[numRows][numCols];
 		for (Cell c: getCells()) {
 			State currState = c.getCurrState();
-			if (currState instanceof WaTorState) {
-				copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()] = ((WaTorState) currState).copy();
-			}
-			else {
-				copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()] = currState;
-			}
+			int row = c.getGridPosition().getRow();
+			int col = c.getGridPosition().getCol();
+			copy[row][col] = currState.clone();
 		}
 	}
 

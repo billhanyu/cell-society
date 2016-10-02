@@ -24,22 +24,29 @@ public class SugarscapeCell extends Cell {
 		super(gp, as);
 		patch = ps;
 		agent = as;
-		if(! agent.equals(noAgent))
-			setFutureState(agent);
+		if(!agent.equals(noAgent)) {
+			setCurrState(agent);
+		}
+		else {
+			setCurrState(ps);
+		}
 	}
 
 	@Override
 	public void checkChangeState() {
 		growBack();
 		// if the cell is occupied by an agent
-		if( ! agent.equals(noAgent) ) {
-			if( ! checkIfDead())
+		if(!agent.equals(noAgent)) {
+			if( ! checkIfDead()) {
 				moveToNewCell();
+			}
 		}
-		if(agent.equals(noAgent))
+		if(agent.equals(noAgent)) {
 			setFutureState(patch);
-		else
-			setFutureState(noAgent);
+		}
+		else {
+			setFutureState(agent);
+		}
 	}
 
 	protected PatchState getPatchState() {

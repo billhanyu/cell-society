@@ -57,7 +57,7 @@ public class SimulationScene extends ProgScene {
 		buttons.setLayoutY(Initializer.SCENE_HEIGHT - 100);
 		speed.setLayoutX(controlGroup.getLayoutX());
 		speed.setLayoutY(Initializer.SCENE_HEIGHT - 150);
-		saveFile.setLayoutX(Initializer.SCENE_WIDTH - 300);
+		saveFile.setLayoutX(Initializer.SCENE_WIDTH - 290);
 		saveFile.setLayoutY(Initializer.SCENE_HEIGHT - 50);
 		back.setLayoutX(Initializer.SCENE_WIDTH - 80);
 		back.setLayoutY(Initializer.SCENE_HEIGHT - 50);

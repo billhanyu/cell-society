@@ -35,7 +35,13 @@ public class SugarscapeBuilder extends Builder {
 		int sugar = (int)(Math.random() * 21 + 5);
 		int visibility = (int)(Math.random() * 6 + 1);
 		int metabolism = (int)(Math.random() * 4 + 1);
-		AgentState agent = new AgentState(sugar, visibility, metabolism);
+		AgentState agent;
+		if (Math.random() < 0.8) {
+			agent = SugarscapeCell.noAgent;
+		}
+		else {
+			agent = new AgentState(sugar, visibility, metabolism);
+		}
 		if (rnd < prob) {
 			ssCell = new SugarscapeCell(gp, SugarscapeCell.empty, agent);
 		}
