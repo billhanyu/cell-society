@@ -56,6 +56,8 @@ public class Initializer {
 	private Decoder xmlParser;
 	private ResourceBundle myResources;
 	private SimulationFactory mySimulation;
+	private String simType;
+	
 
 	class ExitAction implements EventHandler<ActionEvent> {
 		@Override
@@ -80,6 +82,13 @@ public class Initializer {
 		builder.reset();
 		runner.pause();
 		runner.updateCellGrid();
+	}
+	
+	/**
+	 * This method will control the saving of the XML File
+	 */
+	public void saveFile(){
+	        
 	}
 
 	public void setParameters(Parameters param) {
@@ -117,7 +126,7 @@ public class Initializer {
 		xmlFile = fileChooser.showOpenDialog(stage);
 		GeneralSimulationFactory generalSimulation = 
 				new GeneralSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
-		String simType = generalSimulation.getSimulationName();
+		simType = generalSimulation.getSimulationName();
 		if (simType.equals(FIRE)){
 		    mySimulation = new SpreadingFireSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
 		    controls = new SpreadingFireControls(this, myResources);
