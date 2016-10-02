@@ -37,15 +37,12 @@ public class SugarscapeCell extends Cell {
 		growBack();
 		// if the cell is occupied by an agent
 		if(!agent.equals(noAgent)) {
-			if( ! checkIfDead()) {
+			if(!checkIfDead()) {
 				moveToNewCell();
 			}
 		}
-		if(agent.equals(noAgent)) {
-			setFutureState(patch);
-		}
 		else {
-			setFutureState(agent);
+			setFutureState(patch);
 		}
 	}
 
@@ -66,14 +63,18 @@ public class SugarscapeCell extends Cell {
 	}
 
 	private void growBack() {
-		if(getCurrState().equals(empty))
+		if(getCurrState().equals(empty)) {
 			setFutureState(oneFourthsFull);
-		if(getCurrState().equals(oneFourthsFull))
+		}
+		else if(getCurrState().equals(oneFourthsFull)) {
 			setFutureState(twoFourthsFull);
-		if(getCurrState().equals(twoFourthsFull))
+		}
+		else if(getCurrState().equals(twoFourthsFull)) {
 			setFutureState(threeFourthsFull);
-		if(getCurrState().equals(threeFourthsFull))
+		}
+		else if(getCurrState().equals(threeFourthsFull)) {
 			setFutureState(fourFourthsFull);
+		}
 	}
 
 	private boolean checkIfDead() {
@@ -88,10 +89,13 @@ public class SugarscapeCell extends Cell {
 	private void moveToNewCell() {
 		SugarscapeCell bestNeighborOption = 
 				getBestNeighborOption(this, agent.getVisibility());
+		if (bestNeighborOption == this) return;
 		this.agent.addSugar(bestNeighborOption.getPatchState().getHowFull());
 		bestNeighborOption.setPatchState((PatchState) empty);
 		bestNeighborOption.setAgentState(this.getAgentState());
+		bestNeighborOption.setFutureState(this.getAgentState());
 		this.setAgentState((AgentState) noAgent);
+		this.setFutureState(patch);
 	}
 	
 	private SugarscapeCell getBestNeighborOption(SugarscapeCell current, int visibility) {
@@ -101,7 +105,8 @@ public class SugarscapeCell extends Cell {
 			SugarscapeCell currNeighbor = (SugarscapeCell) current.getNeighbors().get(i);
 			SugarscapeCell nextBest = 
 					getBestNeighborOption(currNeighbor, visibility - 1);
-			if (nextBest.getPatchState().getHowFull() > best.getPatchState().getHowFull()) {
+			if (nextBest.getPatchState().getHowFull() > best.getPatchState().getHowFull()
+					&& nextBest.getAgentState().equals(noAgent)) {
 				best = nextBest;
 			}
 		}
