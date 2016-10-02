@@ -21,7 +21,6 @@ public class WaTorSimulationFactory extends SimulationFactory{
         int energyFromEating = getIntegerValue("energyFromEating");
         Collection<GridPosition> sharkLocations = createListOfLocations("Shark", listOfNodes);
         Collection<GridPosition> fishLocations = createListOfLocations("Fish", listOfNodes);
-        Collection<GridPosition> emptyLocations = createListOfLocations("empty", listOfNodes);
         
         double emptyRatio = getDoubleValue("emptyRatio");
         double ratio = getDoubleValue("ratio");

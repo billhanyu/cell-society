@@ -51,7 +51,7 @@ public class Controls {
 		Button reset = initResetButton();
 		HBox buttons = new HBox();
 		buttons.getChildren().addAll(start, step, stop, reset);
-		buttons.setSpacing(15);
+		buttons.setSpacing(10);
 		return buttons;
 	}
 	
@@ -81,6 +81,13 @@ public class Controls {
 	
 	private Button initResetButton() {
 		return makeButton(myResource.getString("Reset"), e->initializer.reset());
+	}
+	
+	/**
+	 * This method will be used to save current simulation parameters to an xml file
+	 */
+	public Button initXMLSaveButton(){
+	        return makeButton(myResource.getString("SaveFile"), e->initializer.saveFile());
 	}
 	
 	private Button makeButton(String text, EventHandler<ActionEvent> handler) {
