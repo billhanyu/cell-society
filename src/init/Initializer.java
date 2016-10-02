@@ -2,15 +2,15 @@ package init;
 
 import java.io.File;
 import java.util.ResourceBundle;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
+
 import javax.xml.parsers.ParserConfigurationException;
-import ants.AntBuilder;
+
 import SpreadingFire.SpreadingFireBuilder;
 import SpreadingFire.SpreadingFireControls;
 import Sugarscape.SugarscapeBuilder;
 import WaTor.WaTorBuilder;
 import WaTor.WaTorControls;
+import ants.AntBuilder;
 import gameOfLife.GameOfLifeBuilder;
 import grid.Builder;
 import grid.Parameters;
@@ -38,7 +38,6 @@ import xml.SimulationFactory;
 import xml.SpreadingFireSimulationFactory;
 import xml.SugarSimulationFactory;
 import xml.WaTorSimulationFactory;
-import xml.model.XMLSaveFile;
 import xmlExceptions.InvalidXMLFileException;
 
 public class Initializer {
@@ -69,6 +68,7 @@ public class Initializer {
     private Decoder xmlParser;
     private ResourceBundle myResources;
     private SimulationFactory mySimulation;
+    private String simType;
 
     class ExitAction implements EventHandler<ActionEvent> {
         @Override
