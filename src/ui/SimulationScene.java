@@ -1,6 +1,8 @@
 package ui;
 import SpreadingFire.SFParameters;
 import SpreadingFire.SpreadingFireControls;
+import Sugarscape.SugarParameters;
+import Sugarscape.SugarscapeControls;
 import WaTor.WTParameters;
 import WaTor.WaTorControls;
 import grid.Parameters;
@@ -52,6 +54,9 @@ public class SimulationScene extends ProgScene {
 		if (controls instanceof SpreadingFireControls){
 			addFireControls((SFParameters) p);
 		}
+		if (controls instanceof SugarscapeControls) {
+			addSugarControls((SugarParameters) p);
+		}
 
 		buttons.setLayoutX(controlGroup.getLayoutX());
 		buttons.setLayoutY(Initializer.SCENE_HEIGHT - 100);
@@ -84,6 +89,10 @@ public class SimulationScene extends ProgScene {
 
 	private void addFireControls(SFParameters p){
 		controlGroup.getChildren().add(((SpreadingFireControls) controls).flamabilitySlider(p.getProbCatch()));
+	}
+	
+	private void addSugarControls(SugarParameters p){
+		controlGroup.getChildren().add(((SugarscapeControls) controls).initAgentSlider(p.getAgentRatio()));
 	}
 
 	private void addSimulationView() {
