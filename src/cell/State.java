@@ -2,7 +2,7 @@ package cell;
 
 import javafx.scene.paint.Color;
 
-public class State {
+public class State implements Cloneable {
 	
 	private Color color;
 	private String stateName;	
@@ -27,7 +27,6 @@ public class State {
 	public void setStateName(String stateName) {
 		this.stateName = stateName;
 	}
-
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -39,5 +38,9 @@ public class State {
 			return false;
 		State other = (State) obj;
 		return(stateName != null && stateName.equals(other.stateName));
+	}
+	
+	public State clone() {
+		return this;
 	}
 }

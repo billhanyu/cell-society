@@ -30,7 +30,7 @@ public class WaTorSharkState extends WaTorState{
 	}
 
 	@Override
-	public WaTorState copy() {
+	public WaTorState clone() {
 		return new WaTorSharkState(chrononsSinceReproduction, energy);
 	}
 

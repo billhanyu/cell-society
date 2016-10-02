@@ -9,6 +9,8 @@ import grid.Parameters;
 import grid.Runner;
 
 public class SugarscapeBuilder extends Builder {
+	
+	private SugarParameters pars;
 
 	public SugarscapeBuilder(Parameters param, ResourceBundle myResource) {
 		super(param, myResource);
@@ -21,6 +23,7 @@ public class SugarscapeBuilder extends Builder {
 
 	@Override
 	protected void readParameters() {
+		pars = (SugarParameters)this.getParam();
 	}
 
 	@Override
@@ -30,26 +33,30 @@ public class SugarscapeBuilder extends Builder {
 	@Override
 	protected Cell initCell(GridPosition gp) {
 		SugarscapeCell ssCell;
-		double rnd = Math.random();
-		double prob = 1.0 / 5;
 		int sugar = (int)(Math.random() * 21 + 5);
 		int visibility = (int)(Math.random() * 6 + 1);
 		int metabolism = (int)(Math.random() * 4 + 1);
-		AgentState agent = new AgentState(sugar, visibility, metabolism);
-		if (rnd < prob) {
-			ssCell = new SugarscapeCell(gp, SugarscapeCell.empty, agent);
-		}
-		else if (rnd < 2 * prob) {
-			ssCell = new SugarscapeCell(gp, SugarscapeCell.oneFourthsFull, agent);
-		}
-		else if (rnd < 3 * prob) {
-			ssCell = new SugarscapeCell(gp, SugarscapeCell.twoFourthsFull, agent);
-		}
-		else if (rnd < 4 * prob) {
-			ssCell = new SugarscapeCell(gp, SugarscapeCell.threeFourthsFull, agent);
+		AgentState agent;
+		if (Math.random() < 0.95) {
+			agent = SugarscapeCell.noAgent;
 		}
 		else {
+			agent = new AgentState(sugar, visibility, metabolism);
+		}
+		if (pars.getOne().contains(gp)) {
+			ssCell = new SugarscapeCell(gp, SugarscapeCell.oneFourthsFull, agent);
+		}
+		else if (pars.getTwo().contains(gp)) {
+			ssCell = new SugarscapeCell(gp, SugarscapeCell.twoFourthsFull, agent);
+		}
+		else if (pars.getThree().contains(gp)) {
+			ssCell = new SugarscapeCell(gp, SugarscapeCell.threeFourthsFull, agent);
+		}
+		else if (pars.getFull().contains(gp)) {
 			ssCell = new SugarscapeCell(gp, SugarscapeCell.fourFourthsFull, agent);
+		}
+		else {
+			ssCell = new SugarscapeCell(gp, SugarscapeCell.empty, agent);
 		}
 		return ssCell;
 	}

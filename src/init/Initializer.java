@@ -3,6 +3,9 @@ package init;
 import java.io.File;
 
 import java.util.ResourceBundle;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import ants.AntBuilder;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -12,6 +15,7 @@ import SpreadingFire.SpreadingFireControls;
 import Sugarscape.SugarscapeBuilder;
 import WaTor.WaTorBuilder;
 import WaTor.WaTorControls;
+import ants.AntBuilder;
 import gameOfLife.GameOfLifeBuilder;
 import grid.Builder;
 import grid.Parameters;
@@ -72,7 +76,6 @@ public class Initializer {
     private SimulationFactory mySimulation;
     private String simType;
     private XMLSaveFile saveFile;
-
 
     class ExitAction implements EventHandler<ActionEvent> {
         @Override

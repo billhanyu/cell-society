@@ -1,8 +1,12 @@
 package xml;
 
+import java.util.Collection;
+
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import Sugarscape.SugarParameters;
+import cell.GridPosition;
 import grid.Parameters;
 
 public class SugarSimulationFactory extends SimulationFactory {
@@ -17,7 +21,11 @@ public class SugarSimulationFactory extends SimulationFactory {
 
 	@Override
 	public Parameters createParameters(Parameters basicParams, NodeList listOfNodes) {
-		return new Parameters(basicParams);
+		Collection<GridPosition> oneCell = createListOfLocations("one", listOfNodes);
+        Collection<GridPosition> twoCell = createListOfLocations("two", listOfNodes);
+        Collection<GridPosition> threeCell = createListOfLocations("three", listOfNodes);
+        Collection<GridPosition> fourCell = createListOfLocations("full", listOfNodes);
+		return new SugarParameters(basicParams, oneCell, twoCell, threeCell, fourCell);
 	}
 
 }

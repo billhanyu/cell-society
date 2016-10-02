@@ -38,5 +38,9 @@ public class AgentState extends State {
 	public int getSugar() {
 		return sugar;
 	}
+	
+	public AgentState clone() {
+		return new AgentState(sugar, visibility, metabolism);
+	}
 
 }
