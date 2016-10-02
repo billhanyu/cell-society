@@ -2,17 +2,18 @@
 <Simulation SimulationType="Ant">
 	<title>Ant</title>
 	<author>Addison</author>
-	<numRows>100</numRows>
-	<numCols>100</numCols>
+	<numRows>50</numRows>
+	<numCols>50</numCols>
 	<shape>Square</shape>
 	<maxNumAnts>10</maxNumAnts>
 	<maxAmountOfPheromone>1000</maxAmountOfPheromone>
 	<antsBornPerTimeStep>2</antsBornPerTimeStep>
-	<maxAntAge> = 500</maxAntAge>
+	<maxAntAge>500</maxAntAge>
 	<evaporationRatio>0.001</evaporationRatio>
 	<diffusionRatio>.001</diffusionRatio>
 	<K>0.001</K>
 	<N>10.0</N>
-	<nestCell>70 70</nestCell>
-	<foodCell>20 20</foodCell>
+	<nestCell>45 45</nestCell>
+	<foodCell>15 15</foodCell>
+	<obstacleCell>25 25</obstacleCell>
 </Simulation>

@@ -47,14 +47,6 @@ public class AntCell extends Cell{
 		if (s.equals(food))
 			pheromoneState.setFoodPheromone(params.getMaxAmountOfPheromone());
 	}
-	
-	/**
-	 * Default constructor if not given initial state
-	 * sets initial state to EMPTY
-	 */
-	public AntCell(GridPosition gp, AntParameters params){
-		this(gp, empty, params);
-	}
 
 	public PheromoneState getPheromoneState() {
 		return pheromoneState;
@@ -111,7 +103,7 @@ public class AntCell extends Cell{
 
 	private void birthAntsIfNest(){
 		for(int i = 0; i < params.getAntsBornPerTimeStep(); i++)
-			getAntList().add(new AntState(params.getMaxAntAge()));
+			getAntList().add(new AntState(params.getMaxAntAge(), getNeighbors().get((int) Math.random() * getNeighbors().size()) ));
 	}
 
 	/**

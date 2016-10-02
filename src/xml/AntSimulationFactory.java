@@ -25,9 +25,10 @@ public class AntSimulationFactory extends SimulationFactory{
         double N = getDoubleValue("N");
         Collection<GridPosition> nestCell = createListOfLocations("nestCell", listOfNodes);
         Collection<GridPosition> foodCell = createListOfLocations("foodCell", listOfNodes);
+        Collection<GridPosition> obstacleCell = createListOfLocations("obstacleCell", listOfNodes);
         
         return new AntParameters(basicParams, maxNumAnts, maxAmountOfPheromone, antsBornPerTimeStep,
-                                 maxAntAge, evaporationRatio, diffusionRatio, K, N, nestCell, foodCell);
+                                 maxAntAge, evaporationRatio, diffusionRatio, K, N, nestCell, foodCell, obstacleCell);
        
     }
 

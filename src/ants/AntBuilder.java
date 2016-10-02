@@ -40,9 +40,9 @@ public class AntBuilder extends Builder {
 
 	@Override
 	protected void prepareForInitCells() {
-//		predefinedNests = new HashSet<GridPosition>(params.getListOfNest());
-//		predefinedNests = new HashSet<GridPosition>(params.getListOfFood());
-//		predefinedNests = new HashSet<GridPosition>(params.getListOfObstacle());
+		predefinedNests = new HashSet<GridPosition>(params.getListOfNest());
+		predefinedFoods = new HashSet<GridPosition>(params.getListOfFood());
+		predefinedObstacles = new HashSet<GridPosition>(params.getListOfObstacle());
 	}
 
 	@Override
@@ -50,9 +50,9 @@ public class AntBuilder extends Builder {
 		AntCell acell;
 		if(predefinedNests.contains(gp))
 			acell = new AntCell(gp, AntCell.nest, params);
-		if(predefinedFoods.contains(gp))
+		else if(predefinedFoods.contains(gp))
 			acell = new AntCell(gp, AntCell.food, params);
-		if(predefinedObstacles.contains(gp))
+		else if(predefinedObstacles.contains(gp))
 			acell = new AntCell(gp, AntCell.obstacle, params);
 		else
 			acell = new AntCell(gp, AntCell.empty, params);
