@@ -55,9 +55,9 @@ public class Initializer {
     public static final int SCENE_HEIGHT = 500;
 
     public static final String SEGREGATION = "Segregation";
-    public static final String PRED_PREY = "Predator-Prey";
+    public static final String PRED_PREY = "WaTor";
     public static final String FIRE = "Fire";
-    public static final String LIFE = "GameOfLife";
+    public static final String LIFE = "Life";
     public static final String LANGTON = "Langton";
     public static final String ANT = "Ant";
     public static final String SUGARSCAPE = "Sugarscape";

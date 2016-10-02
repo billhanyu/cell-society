@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Simulation SimulationType="Ant Foraging">
+<Simulation SimulationType="Ant">
 	<title>Ant</title>
 	<author>Addison</author>
 	<numRows>50</numRows>

@@ -2,9 +2,9 @@
 <Simulation SimulationType="Segregation">
 	<title>Schelling Simulation</title>
 	<author>Addison and Bill</author>
-	<numRows>12</numRows>
-	<numCols>12</numCols>
-	<shape>Square</shape>
+	<numRows>32</numRows>
+	<numCols>32</numCols>
+	<shape>Hexagon</shape>
 	<redBlueRatio>2</redBlueRatio>
 	<idealRatio>.1</idealRatio>
 	<emptyRatio>.6</emptyRatio>
