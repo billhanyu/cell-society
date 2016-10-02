@@ -18,6 +18,7 @@ import grid.Runner;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import langton.LangtonBuilder;
 import langton.LangtonControls;
@@ -64,7 +65,7 @@ public class Initializer {
     private SimulationScene scn;
     private Controls controls;
     private File xmlFile;
-    private JFileChooser fileChooser;
+    private FileChooser fileChooser;
     private Decoder xmlParser;
     private ResourceBundle myResources;
     private SimulationFactory mySimulation;
@@ -99,7 +100,7 @@ public class Initializer {
      * @throws ParserConfigurationException 
      */
     public void saveFile() throws ParserConfigurationException{
-        int retrival = fileChooser.showSaveDialog(null);
+        File xmlFile = fileChooser.showSaveDialog(stage);
         //    XMLSaveFile saveFile = new XMLSaveFile(param, runner, simType);
     }
 
@@ -136,7 +137,7 @@ public class Initializer {
             chooseFile();
             GeneralSimulationFactory generalSimulation = 
                     new GeneralSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
-            String simType = generalSimulation.getSimulationName();
+            simType = generalSimulation.getSimulationName();
             initWithType(simType);
             runner = builder.init();
             scn = new SimulationScene(builder.getSimulationPane(), controls);
@@ -198,12 +199,12 @@ public class Initializer {
     }
 
     private void chooseFile() throws InvalidXMLFileException{
-        fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
-        fileChooser.setFileFilter(filter);
-        fileChooser.setDialogTitle(myResources.getString("FileChooser"));
-        int retrieval = fileChooser.showOpenDialog(null);
-        xmlFile = fileChooser.getSelectedFile();
+        fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                                                 new ExtensionFilter("xml files (*.xml)", "*.xml"),
+                                                 new ExtensionFilter("All files (*.)", "*."));
+        fileChooser.setTitle(myResources.getString("FileChooser"));
+        xmlFile = fileChooser.showOpenDialog(null);
         if (xmlFile == null){
             throw new InvalidXMLFileException();
         }
