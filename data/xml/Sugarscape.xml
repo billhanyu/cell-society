@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Simulation SimulationType="Sugarscape">
+	<title>Sugarscape Simulation</title>
+	<author>Addison and Bill</author>
+	<numRows>49</numRows>
+	<numCols>49</numCols>
+</Simulation>
