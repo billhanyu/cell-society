@@ -1,5 +1,6 @@
 package grid;
 
+
 public class Parameters {
 
 	protected String title;
@@ -7,14 +8,14 @@ public class Parameters {
 	protected int rows;
 	protected int cols;
 	private boolean setByLocations;
-	private GraphicType type;
+	private String type;
 
 	public Parameters(String title, String author, int rows, int cols, String shape){
 	        this.title = title;
 		this.author = author;
 		this.rows = rows;
 		this.cols = cols;
-		this.type = GraphicType.Rectangle;
+		this.type = shape;
 	}
 
 	public Parameters (Parameters p) {
@@ -49,7 +50,7 @@ public class Parameters {
 		this.cols = cols;
 	}
 
-	public GraphicType getGraphicType() {
+	public String getGraphicType() {
 		return type;
 	}
 	

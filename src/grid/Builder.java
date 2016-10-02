@@ -28,7 +28,7 @@ public abstract class Builder {
 	private int bottom;// = numRows - 1;
 	private int left = 0;
 	private int right;// = numCols - 1;
-	private GraphicType graphicType;
+	private String graphicType;
 
 	private List<Cell> cells;
 	private Map<Cell, CellGraphic> cellGrid;
@@ -87,14 +87,14 @@ public abstract class Builder {
 		}
 		neighborAdder = new NeighborAdder(neighborGrid, top, right, left, bottom);
 		for (Cell c: getCells()) {
-			switch (getParam().getGraphicType()) {
-			case Rectangle:
+			switch (graphicType) {
+			case "Square":
 				addRectNeighbors(c);
 				break;
-			case Triangle:
+			case "Triangle":
 				this.getNeighborAdder().addTriangleNeighbors(c);
 				break;
-			case Hexagon:
+			case "Hexagon":
 				this.getNeighborAdder().addHexagonNeighbors(c);
 				break;
 			}
@@ -137,11 +137,11 @@ public abstract class Builder {
 
 	private CellGraphic initCellGraphic(Cell cell, GridPosition gp) {
 		switch (graphicType) {
-		case Rectangle:
+		case "Square":
 			return graphicBuilder.initRectGraphic(cell, gp);
-		case Triangle:
+		case "Triangle":
 			return graphicBuilder.initTriangleGraphic(cell, gp);
-		case Hexagon:
+		case "Hexagon":
 			return graphicBuilder.initHexagonGraphic(cell, gp);
 		default:
 			return null;
@@ -159,14 +159,14 @@ public abstract class Builder {
 		numRows = getParam().getRows();
 		numCols = getParam().getCols();
 		switch (graphicType) {
-		case Rectangle:
+		case "Square":
 			squareUnit = (double)width / numCols;
 			break;
-		case Triangle:
+		case "Triangle":
 			triangleUnit = (double)height / numRows / sqrt3;
 			numCols = (int) (numRows * sqrt3);
 			break;
-		case Hexagon:
+		case "Hexagon":
 			hexagonUnit = (double)width / (numCols + 0.5) / sqrt3;
 			numRows = (int) ((height + hexagonUnit) / (1.5 * hexagonUnit) - 0.5);
 		default:
