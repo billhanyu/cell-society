@@ -68,8 +68,6 @@ public class Initializer {
     private Decoder xmlParser;
     private ResourceBundle myResources;
     private SimulationFactory mySimulation;
-    private String simType;
-
 
     class ExitAction implements EventHandler<ActionEvent> {
         @Override
