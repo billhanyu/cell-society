@@ -13,6 +13,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import schelling.SLParameters;
 import schelling.SchellingControls;
+/**
+ * @author billyu
+ * Simulation Scene
+ * presents the simulation with controls
+ */
 public class SimulationScene extends ProgScene {
 
 	private SimulationPane pane;
@@ -26,6 +31,10 @@ public class SimulationScene extends ProgScene {
 		this.controls = controls;
 	}
 
+	/**
+	 * @param pane SimulationPane that contains Shapes of cells
+	 * accept information of frontend
+	 */
 	public void setSimulationPane(SimulationPane pane) {
 		this.pane = pane;
 		root.getChildren().remove(simu);
@@ -95,6 +104,9 @@ public class SimulationScene extends ProgScene {
 		controlGroup.getChildren().add(((SugarscapeControls) controls).initAgentSlider(p.getAgentRatio()));
 	}
 
+	/**
+	 * add simulation view
+	 */
 	private void addSimulationView() {
 		simu = pane.getGroup();
 		simu.setLayoutX(10);

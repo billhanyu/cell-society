@@ -21,7 +21,7 @@ public class SpreadingFireBuilder extends Builder {
 
 	@Override
 	public Runner initRunner() {
-		return new SpreadingFireRunner(this.getCells(), this.getCellGrid());
+		return new Runner(this.getCells(), this.getCellGrid());
 	}
 
 	@Override

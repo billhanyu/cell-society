@@ -1,6 +1,11 @@
 package grid;
 
-
+/**
+ * @author billyu
+ * parameters for simulation
+ * include basic ones such as title, author, numRows, numCols
+ * subclasses include unique parameters for specific kinds of simulations
+ */
 public class Parameters {
 
 	protected String title;
@@ -11,7 +16,7 @@ public class Parameters {
 	private String type;
 
 	public Parameters(String title, String author, int rows, int cols, String shape){
-	        this.title = title;
+		this.title = title;
 		this.author = author;
 		this.rows = rows;
 		this.cols = cols;
@@ -53,12 +58,12 @@ public class Parameters {
 	public String getGraphicType() {
 		return type;
 	}
-	
+
 	public void setByLocations(boolean isSet){
-	        this.setByLocations = isSet;
+		this.setByLocations = isSet;
 	}
-	
+
 	public boolean isSetByLocations(){
-	        return setByLocations;
+		return setByLocations;
 	}
 }

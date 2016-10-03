@@ -2,6 +2,11 @@ package ui;
 
 import javafx.scene.control.Slider;
 
+/**
+ * @author billyu
+ * Slider for parameter control
+ * initSlider will return the slider
+ */
 public class ParamSlider {
 	
 	private int min, max, value, increment;

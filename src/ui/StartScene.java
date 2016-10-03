@@ -15,6 +15,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
+/**
+ * @author billyu
+ * Start Scene of the front end
+ */
 public class StartScene extends ProgScene {
 	
 	private EventHandler<ActionEvent> exitAction;
@@ -47,6 +51,9 @@ public class StartScene extends ProgScene {
 		return new Scene(root, width, height);
 	}
 
+	/**
+	 * @return button that lets user choose a file
+	 */
 	private Button initFileButton() {
 		Button chooseFile = new Button(this.myResource.getString("ChooseFile"));
 		chooseFile.setPrefWidth(BUTTON_WIDTH);
@@ -76,6 +83,9 @@ public class StartScene extends ProgScene {
 		return exit;
 	}
 	
+	/**
+	 * @return a box that contains language selection buttons
+	 */
 	private HBox initLanguageSelectionBox() {
 		HBox selections = new HBox();
 		Button englishButton = makeButton(

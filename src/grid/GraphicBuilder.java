@@ -6,6 +6,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * @author billyu
+ * build cell graphics
+ * three shapes: rectangle, triangle and hexagon
+ * called by Builder, which takes care of determining the shape
+ * use a LOT of math
+ */
 public class GraphicBuilder {
 	
 	private static final double sqrt3 = Math.pow(3, 0.5);

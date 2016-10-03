@@ -2,6 +2,12 @@ package grid;
 
 import cell.Cell;
 
+/**
+ * @author billyu
+ * helper class to add neighbors for cell
+ * include many rules: sides, corners, etc
+ * also take care of triangles and hexagons
+ */
 public class NeighborAdder {
 	
 	private Cell[][] neighborGrid;

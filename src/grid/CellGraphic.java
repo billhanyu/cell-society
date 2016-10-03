@@ -4,6 +4,14 @@ import cell.GridPosition;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
+/**
+ * @author billyu
+ * UI component of the cell
+ * actual displaying part is Shape
+ * grid position is composed of a row and a col
+ * positionX and positionY determines the shape's position on UI display
+ */
+
 public class CellGraphic {
 	
 	private Shape graphic;
