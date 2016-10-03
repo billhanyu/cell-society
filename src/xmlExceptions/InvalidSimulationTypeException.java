@@ -2,6 +2,11 @@ package xmlExceptions;
 
 public class InvalidSimulationTypeException extends Exception {
     
+    /**
+     * Serial ID
+     */
+    private static final long serialVersionUID = 1L;
+
     public InvalidSimulationTypeException(){
         super();
     }

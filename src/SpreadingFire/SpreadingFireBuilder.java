@@ -14,6 +14,7 @@ public class SpreadingFireBuilder extends Builder {
 
 	private SFParameters pars;
 	private Set<GridPosition> predefinedFire;
+	private Set<GridPosition> predefinedEmpty;
 
 	public SpreadingFireBuilder(Parameters param, ResourceBundle myResource) {
 		super(param, myResource);
@@ -30,12 +31,15 @@ public class SpreadingFireBuilder extends Builder {
 		int c = gp.getCol();
 		SpreadingFireCell sfCell;
 		if (pars.isSetByLocations()) {
-			if (pars.getFireCells().contains(gp))  {
+			if (predefinedFire.contains(gp))  {
 				sfCell = new SpreadingFireCell(gp, SpreadingFireCell.burning);
 			}
-			else{
-				sfCell = new SpreadingFireCell(gp, SpreadingFireCell.tree);
+			else if (predefinedEmpty.contains(gp)){
+			        sfCell = new SpreadingFireCell(gp, SpreadingFireCell.empty);
 			}
+			else {
+                            sfCell = new SpreadingFireCell(gp, SpreadingFireCell.tree);
+                        }
 		}
 		else{
 			if (r == (this.getNumRows() / 2) && c == (this.getNumCols() / 2) ) {
@@ -67,6 +71,7 @@ public class SpreadingFireBuilder extends Builder {
 	protected void prepareForInitCells() {
 		if (pars.isSetByLocations()) {
 			predefinedFire = new HashSet<GridPosition>(pars.getFireCells());
+			predefinedEmpty = new HashSet<GridPosition>(pars.getEmptyCells());
 		}
 	}
 }

@@ -99,7 +99,7 @@ public class Initializer {
         stage.setTitle(myResources.getString("Title"));
         StartScene start = new StartScene(new ExitAction(), this);
         stage.setScene(start.initScene(0, myResources));
-        xmlParser = new Decoder();
+        xmlParser = new Decoder(myResources);
     }
 
     public void reset() {
