@@ -14,6 +14,10 @@ import javafx.scene.shape.Shape;
 
 public class CellGraphic {
 	
+	public static final String SQUARE = "Square";
+	public static final String TRIANGLE = "Triangle";
+	public static final String HEXAGON = "Hexagon";
+	
 	private Shape graphic;
 	private double positionX;
 	private double positionY;

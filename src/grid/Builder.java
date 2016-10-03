@@ -134,6 +134,14 @@ public abstract class Builder {
 	protected NeighborAdder getNeighborAdder() {
 		return neighborAdder;
 	}
+	
+	public String getGraphicType() {
+		return this.graphicType;
+	}
+	
+	public void setGraphicType(String type) {
+		this.graphicType = type;
+	}
 
 	/**
 	 * @return runner, method to be overriden
@@ -181,11 +189,11 @@ public abstract class Builder {
 	 */
 	private CellGraphic initCellGraphic(Cell cell, GridPosition gp) {
 		switch (graphicType) {
-		case "Square":
+		case CellGraphic.SQUARE:
 			return graphicBuilder.initRectGraphic(cell, gp);
-		case "Triangle":
+		case CellGraphic.TRIANGLE:
 			return graphicBuilder.initTriangleGraphic(cell, gp);
-		case "Hexagon":
+		case CellGraphic.HEXAGON:
 			return graphicBuilder.initHexagonGraphic(cell, gp);
 		default:
 			return null;

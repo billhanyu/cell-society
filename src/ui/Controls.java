@@ -1,7 +1,10 @@
 package ui;
 
 import java.util.ResourceBundle;
+
 import javax.xml.parsers.ParserConfigurationException;
+
+import grid.CellGraphic;
 import init.Initializer;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
@@ -66,7 +69,35 @@ public class Controls {
 			int newSpeed = 100 - new_val.intValue();
 			initializer.getRunner().setSpeed(newSpeed);
 		});
-	}	
+	}
+	
+	public Node initShapeButtons() {
+		Button rectangle = initRectangleButton();
+		Button triangle = initTriangleButton();
+		Button hexagon = initHexagonButton();
+		HBox buttons = new HBox();
+		buttons.getChildren().addAll(rectangle, triangle, hexagon);
+		buttons.setSpacing(10);
+		return buttons;
+	}
+	
+	private Button initRectangleButton() {
+		return makeButton(myResource.getString(CellGraphic.SQUARE), e-> {
+			initializer.setGraphicType(CellGraphic.SQUARE);
+		});
+	}
+	
+	private Button initTriangleButton() {
+		return makeButton(myResource.getString(CellGraphic.TRIANGLE), e-> {
+			initializer.setGraphicType(CellGraphic.TRIANGLE);
+		});
+	}
+	
+	private Button initHexagonButton() {
+		return makeButton(myResource.getString(CellGraphic.HEXAGON), e-> {
+			initializer.setGraphicType(CellGraphic.HEXAGON);
+		});
+	}
 	
 	/**
 	 * @return an HBox that contains animation control buttons
