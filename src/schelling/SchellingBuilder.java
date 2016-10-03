@@ -21,7 +21,7 @@ public class SchellingBuilder extends Builder {
 
 	@Override
 	protected Runner initRunner() {
-		return new SchellingRunner(this.getCells(), this.getCellGrid());
+		return new Runner(this.getCells(), this.getCellGrid());
 	}
 
 	@Override

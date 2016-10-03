@@ -23,7 +23,7 @@ public class GameOfLifeBuilder extends Builder{
 
 	@Override
 	protected Runner initRunner() {
-		return new GameOfLifeRunner(this.getCells(), this.getCellGrid());
+		return new Runner(this.getCells(), this.getCellGrid());
 	}
 
 	@Override

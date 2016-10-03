@@ -22,7 +22,7 @@ public class WaTorBuilder extends Builder {
 
 	@Override
 	protected Runner initRunner() {
-		return new WaTorRunner(this.getCells(), this.getCellGrid());
+		return new Runner(this.getCells(), this.getCellGrid());
 	}
 
 	@Override

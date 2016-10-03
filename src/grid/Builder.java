@@ -12,6 +12,12 @@ import cell.State;
 import init.Initializer;
 import ui.SimulationPane;
 
+/**
+ * @author billyu
+ * builds data structures and UI grid for simulation
+ * called whenever initializer updates some parameter
+ */
+
 public abstract class Builder {
 	private double width;
 	private double height;
@@ -60,6 +66,9 @@ public abstract class Builder {
 		this.setParam(param);
 	}
 
+	/**
+	 * @return a Runner that takes care of simulation steps
+	 */
 	public Runner init() {
 		readGridSize();
 		initHolders();
@@ -72,6 +81,10 @@ public abstract class Builder {
 		return initRunner();
 	};
 
+	/**
+	 * generates the UI grid pane
+	 * @return a SimulationPane that contains the information of the UI components of cells
+	 */
 	public SimulationPane getSimulationPane() {
 		SimulationPane pane = new SimulationPane(width, height);
 		for (CellGraphic graphic: getCellGrid().values()) {
@@ -80,6 +93,9 @@ public abstract class Builder {
 		return pane;
 	};
 
+	/**
+	 * assign neighbors to all cells
+	 */
 	public void giveAllCellsNeighbors(){
 		for (Cell c: getCells()) {
 			neighborGrid[c.getGridPosition().getRow()][c.getGridPosition().getCol()]
@@ -102,6 +118,9 @@ public abstract class Builder {
 		neighborGrid = null;
 	}
 
+	/**
+	 * reset the simulation to what's in the copy
+	 */
 	public void reset() {
 		for (Cell c: getCells()) {
 			c.setCurrState(copy[c.getGridPosition().getRow()][c.getGridPosition().getCol()]);
@@ -109,16 +128,32 @@ public abstract class Builder {
 		}
 	}
 
+	/**
+	 * @return a helper object for adding neighbors
+	 */
 	protected NeighborAdder getNeighborAdder() {
 		return neighborAdder;
 	}
 
+	/**
+	 * @return runner, method to be overriden
+	 */
 	protected abstract Runner initRunner();
 
+	/**
+	 * to be overriden, read unique parameters for each kind of simulation
+	 */
 	protected abstract void readParameters();
 
+	/**
+	 * prep work before initializing cells, e.g. read predefined values in XML
+	 */
 	protected abstract void prepareForInitCells();
 
+	/**
+	 * initialize the grid of cells
+	 * for loop is extracted, each builder subclass only needs to worry about initializing one cell
+	 */
 	protected void initCells() {
 		graphicBuilder = new GraphicBuilder(squareUnit, triangleUnit, hexagonUnit);
 		// initialize grid of cells
@@ -133,8 +168,17 @@ public abstract class Builder {
 		}
 	};
 
+	/**
+	 * @param gp grid position of the cell to be initialized
+	 * @return a new cell
+	 */
 	protected abstract Cell initCell(GridPosition gp);
 
+	/**
+	 * @param cell cell to be assigned a UI graphic
+	 * @param gp grid position of the cell
+	 * @return Shape of the cell
+	 */
 	private CellGraphic initCellGraphic(Cell cell, GridPosition gp) {
 		switch (graphicType) {
 		case "Square":
@@ -148,6 +192,9 @@ public abstract class Builder {
 		}
 	};
 
+	/**
+	 * @param c cell to be added neighbors
+	 */
 	protected abstract void addRectNeighbors(Cell c);
 
 	private void initHolders() {
@@ -176,6 +223,9 @@ public abstract class Builder {
 		right = numCols - 1;
 	}
 
+	/**
+	 * keep a copy of the data structures to reset
+	 */
 	private void keepCopy() {
 		copy = new State[numRows][numCols];
 		for (Cell c: getCells()) {

@@ -25,7 +25,7 @@ public class AntBuilder extends Builder {
 
 	@Override
 	protected Runner initRunner() {
-		return new AntRunner(this.getCells(), this.getCellGrid());
+		return new Runner(this.getCells(), this.getCellGrid());
 	}
 
 	@Override
