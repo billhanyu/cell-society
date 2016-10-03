@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Simulation SimulationType="Life">
+<title>Game Of Life Simulation</title>
+<author>Bill and Addison</author>
+<numRows>28</numRows>
+<numCols>28</numCols>
+<shape>Square</shape>
+<ratioOfAlive>0.2</ratioOfAlive>
+</Simulation>
