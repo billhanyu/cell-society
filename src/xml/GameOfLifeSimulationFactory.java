@@ -26,7 +26,6 @@ public class GameOfLifeSimulationFactory extends SimulationFactory {
         else{
             double ratioOfAlive = getDoubleValue("ratioOfAlive");
             param = new GLParameters(basicParams, ratioOfAlive);
-            param.setByLocations(false);
         }
         return param;
     }
