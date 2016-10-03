@@ -4,11 +4,11 @@
 	<author>Addison and Bill</author>
 	<numRows>30</numRows>
 	<numCols>30</numCols>
-	<shape>Square</shape>
-	<sharkStarve>12</sharkStarve>
-	<fishRate>23</fishRate>
-	<sharkRate>2</sharkRate>
-	<energyFromEating>25</energyFromEating>
-	<emptyRatio>.2</emptyRatio>
+	<shape>Hexagon</shape>
+	<sharkStarve>1</sharkStarve>
+	<fishRate>5</fishRate>
+	<sharkRate>20</sharkRate>
+	<energyFromEating>15</energyFromEating>
+	<emptyRatio>.25</emptyRatio>
 	<ratio>0.1</ratio>
 </Simulation>

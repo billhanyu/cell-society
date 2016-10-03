@@ -80,13 +80,11 @@ public class AntCell extends Cell{
 
 		// SET FUTURE / DISPLAY STATE
 		double totalPheromones = getPheromoneState().getFoodPheromone() + getPheromoneState().getHomePheromone();
-		//System.out.println(totalPheromones);
 		// if currState is obstacle, nest, or food, leave it be
 		if( ! (getCurrState().equals(nest) || getCurrState().equals(food) || getCurrState().equals(obstacle)) ){
 			// if there are ants, show it
 			if(hadAnt){
 				setFutureState(populatedByAnts);
-				System.out.println("populated");
 			}
 			// if not, show how many pheromones
 			else {
@@ -127,7 +125,6 @@ public class AntCell extends Cell{
 	}
 
 	private void moveAnts() {
-		System.out.println("Move");
 		for(AntState ant: getAntList()){
 			if (ant.hasFoodItem)
 				antReturnToNest(ant);
@@ -249,7 +246,6 @@ public class AntCell extends Cell{
 		else
 			ant.setOrientation(acell.getNeighbors().get(acell.getNeighbors().size()));
 
-		System.out.println("does this even");
 		acell.getAntList().add(ant);
 		this.getAntList().remove(ant);
 	}

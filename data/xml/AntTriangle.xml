@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Simulation SimulationType="Ant">
+	<title>Ant</title>
+	<author>Addison</author>
+	<numRows>50</numRows>
+	<numCols>50</numCols>
+	<shape>Triangle</shape>
+	<maxNumAnts>10</maxNumAnts>
+	<maxAmountOfPheromone>1000</maxAmountOfPheromone>
+	<antsBornPerTimeStep>2</antsBornPerTimeStep>
+	<maxAntAge>500</maxAntAge>
+	<evaporationRatio>.01</evaporationRatio>
+	<diffusionRatio>.01</diffusionRatio>
+	<K>0.001</K>
+	<N>10.0</N>
+	<nestCell>45 45</nestCell>
+	<foodCell>15 15</foodCell>
+	<obstacleCell>25 25</obstacleCell>
+</Simulation>

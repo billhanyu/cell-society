@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Simulation SimulationType="Fire">
+	<title>Spreading Fire Simulation</title>
+	<author>Addison</author>
+	<numRows>50</numRows>
+	<numCols>50</numCols>
+	<shape>Square</shape>
+	<probCatch>.5</probCatch>
+	<FireCell>25 25</FireCell>
+</Simulation>
+	
