@@ -49,6 +49,13 @@ import xml.model.WaTorXMLFileSaver;
 import xml.model.XMLSaveFile;
 import xmlExceptions.InvalidXMLFileException;
 
+/**
+ * Master of the project
+ * Initializes builder, which returns a runner
+ * runner updates the simulation
+ * if a parameter is changed by user, initializer lets builder refresh
+ */
+
 public class Initializer {
     private Stage stage;
     public static final int SCENE_WIDTH = 800;
@@ -135,6 +142,10 @@ public class Initializer {
         return this.currentLanguage;
     }
 
+    /**
+     * @param languageFileName resource file name of the language
+     * sets currentLanguage to the name
+     */
     public void setCurrentLanguage(String languageFileName) {
         this.currentLanguage = languageFileName;
     }

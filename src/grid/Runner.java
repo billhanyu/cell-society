@@ -8,6 +8,10 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 import cell.Cell;
 
+/**
+ * @author Addison
+ * updates the simulation with a Timeline
+ */
 public class Runner {
 
 	protected List<Cell> cells;
@@ -45,6 +49,9 @@ public class Runner {
 		cellGrid = list;
 	}
 
+	/**
+	 * update cell states
+	 */
 	protected void updateAllCellStates(){
 		for(Cell c : cells)
 			c.checkChangeState();
@@ -52,6 +59,9 @@ public class Runner {
 			c.updateState();
 	}
 
+	/**
+	 * update the ui components of the cells
+	 */
 	public void updateCellGrid(){
 		for(Cell c: cells){
 			CellGraphic cg = cellGrid.get(c);
@@ -64,6 +74,9 @@ public class Runner {
 		updateCellGrid();
 	}
 
+	/**
+	 * start animation
+	 */
 	public void start(){
 		if(freshStart){
 			freshStart = false;
@@ -80,6 +93,9 @@ public class Runner {
 		inPlay = true;
 	}
 
+	/**
+	 * pause animation, if animation is not initialized yet, do nothing
+	 */
 	public void pause(){
 		if (currentAnimation != null) {
 			currentAnimation.pause();
@@ -87,6 +103,10 @@ public class Runner {
 		inPlay = false;
 	}
 	
+	/**
+	 * @param newSpeed speed to set
+	 * set the speed of animation
+	 */
 	public void setSpeed(int newSpeed){
 		this.speedOutOf100 = newSpeed;
 		if (inPlay) {

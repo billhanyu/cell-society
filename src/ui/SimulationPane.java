@@ -3,6 +3,10 @@ package ui;
 import javafx.scene.Group;
 import javafx.scene.shape.Shape;
 
+/**
+ * @author billyu
+ * UI grid of cells
+ */
 public class SimulationPane {
 	private Group root;
 	private double width;
@@ -18,6 +22,9 @@ public class SimulationPane {
 		root.getChildren().add(s);
 	}
 	
+	/**
+	 * @return a group of shapes that can be added to the simulation UI display
+	 */
 	public Group getGroup() {
 		return root;
 	}

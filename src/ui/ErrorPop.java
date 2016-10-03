@@ -11,6 +11,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+/**
+ * @author billyu
+ * Custom error popping view
+ * initialize it and call popup(), a new stage will be presented
+ * preferred size is 300*200
+ */
 public class ErrorPop {
 	
 	private double width;
@@ -26,6 +32,9 @@ public class ErrorPop {
 		this.myResources = myResource;
 	}
 	
+	/**
+	 * pop up the error to user
+	 */
 	public void popup() {
 		s = new Stage();
 		s.setTitle(myResources.getString("Title"));
