@@ -9,8 +9,8 @@ import javafx.scene.Node;
 import ui.Controls;
 
 public class SpreadingFireControls extends Controls {
-    
-        private double flamability;
+
+	private double flamability;
 
 	public SpreadingFireControls(Initializer initializer, ResourceBundle myResources) {
 		super(initializer, myResources);
@@ -28,8 +28,8 @@ public class SpreadingFireControls extends Controls {
 					}
 				});
 	}
-	
+
 	public double getFlamability(){
-	        return flamability;
+		return flamability;
 	}
 }

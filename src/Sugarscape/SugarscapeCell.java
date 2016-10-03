@@ -5,6 +5,15 @@ import cell.Cell;
 import cell.GridPosition;
 import javafx.scene.paint.Color;
 
+/**
+ * @author Addison Howenstine
+ * 
+ * Main cell implementation for Sugarscape
+ * Holds a patch state and an agent state,
+ * displays one or the other based on whether 
+ * cell is currently occupied by an agent
+ */
+
 public class SugarscapeCell extends Cell {
 	
 	// DEFAULT PATCH STATES
@@ -32,6 +41,10 @@ public class SugarscapeCell extends Cell {
 		}
 	}
 
+	/* 
+	 * If a cell is occupied by an agent, 
+	 * check if it wants to move
+	 */
 	@Override
 	public void checkChangeState() {
 		growBack();

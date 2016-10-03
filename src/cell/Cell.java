@@ -3,6 +3,17 @@ package cell;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Addison Howenstine
+ * 
+ * A Cell has a current state and a future state
+ * Models will use both current and future states
+ * to reason whether to make a change. A cell will never
+ * move in position on the screen—a cell can be thought of
+ * as a house that stays in one place while states that occupy
+ * the house/cell may change
+ */
+
 public abstract class Cell {
 	
 	private List<Cell> neighbors;

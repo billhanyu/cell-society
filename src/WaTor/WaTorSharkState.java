@@ -2,6 +2,13 @@ package WaTor;
 
 import javafx.scene.paint.Color;
 
+/**
+ * @author Addison Howenstine
+ * 
+ * Shark also has an energy value used to check
+ * whether it should die
+ */
+
 public class WaTorSharkState extends WaTorState{
 	
 	protected int energy;
@@ -19,7 +26,6 @@ public class WaTorSharkState extends WaTorState{
 		energy = p.getSharkStarve();
 		chrononsSinceReproduction = 0;
 	}
-
 
 	public void loseEnergy(){
 		energy--;

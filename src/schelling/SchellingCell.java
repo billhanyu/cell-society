@@ -9,9 +9,17 @@ import cell.Cell;
 import cell.GridPosition;
 import cell.State;
 
+/**
+ * @author Addison Howenstine
+ * 
+ * Main cell implementation for Schelling
+ */
+
 public class SchellingCell extends Cell{
 
-	private double idealRatio = 0.5; // between 0 and 1
+	private double idealRatio; // between 0 and 1
+	
+	// DEFAULT STATES
 	public static State personX = new State(Color.RED, "X");
 	public static State personO = new State(Color.BLUE, "O");
 	public static State vacant = new State(Color.GRAY, "VACANT");
@@ -22,6 +30,10 @@ public class SchellingCell extends Cell{
 		super(gridPosition, s);
 	}
 
+	/*
+	 * Moves to a vacant cell if unsatisfied 
+	 * with current location
+	 */
 	@Override
 	public void checkChangeState() {
 		if(!this.getCurrState().equals(vacant) && !checkSatisfied()){

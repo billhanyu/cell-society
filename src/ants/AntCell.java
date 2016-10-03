@@ -1,6 +1,16 @@
 package ants;
 
 import java.util.ArrayList;
+
+/**
+ * @author Addison Howenstine
+ * 
+ * Cell implementation for Ant model
+ * Holds a state for pheromones and a list of ants
+ * Displays various static states based on logic decided
+ * using parameters and pheromone values
+ */
+
 import java.util.List;
 
 import javafx.scene.paint.Color;

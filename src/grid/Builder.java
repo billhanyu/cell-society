@@ -31,9 +31,9 @@ public abstract class Builder {
 	private ResourceBundle myResource;
 
 	private int top = 0;
-	private int bottom;// = numRows - 1;
+	private int bottom;// = numRows - 1
 	private int left = 0;
-	private int right;// = numCols - 1;
+	private int right;// = numCols - 1
 	private String graphicType;
 
 	private List<Cell> cells;
@@ -54,7 +54,6 @@ public abstract class Builder {
 		readGridSize();
 		width = Initializer.SCENE_HEIGHT - 20;
 		height = width;
-		//TODO change this height = width relationship later
 	}
 	
 	public Builder(Parameters param, ResourceBundle myResource) {
