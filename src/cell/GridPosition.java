@@ -1,5 +1,12 @@
 package cell;
 
+/**
+ * @author Addison Howenstine
+ * 
+ * Row and column position of a cell within a grid. Because
+ * cells do not move themselves, this value will not change
+ * during a simulation
+ */
 
 public class GridPosition {
 	
@@ -15,6 +22,10 @@ public class GridPosition {
 		gridCol = c;
 	}
 	
+	/*
+	 * GridPositions equal if they
+	 * have the same row and column
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

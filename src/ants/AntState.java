@@ -4,6 +4,14 @@ import javafx.scene.paint.Color;
 import cell.Cell;
 import cell.State;
 
+/**
+ * @author Addison Howenstine
+ * 
+ * AntStates have an age and an orientation they
+ * point towards. They use this orientation to decide
+ * on possible cells to move to (not just where they are pointing)
+ */
+
 public class AntState extends State {
 	
 	private int age;
