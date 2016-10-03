@@ -58,8 +58,8 @@ import xmlExceptions.InvalidXMLFileException;
 
 public class Initializer {
     private Stage stage;
-    public static final int SCENE_WIDTH = 800;
-    public static final int SCENE_HEIGHT = 500;
+    public static final int SCENE_WIDTH = 900;
+    public static final int SCENE_HEIGHT = 600;
 
     public static final String SEGREGATION = "Segregation";
     public static final String PRED_PREY = "WaTor";
@@ -148,6 +148,12 @@ public class Initializer {
      */
     public void setCurrentLanguage(String languageFileName) {
         this.currentLanguage = languageFileName;
+    }
+    
+    public void setGraphicType(String type) {
+    	if (builder.getGraphicType().equals(type)) return;
+    	builder.setGraphicType(type);
+    	update();
     }
 
     /*

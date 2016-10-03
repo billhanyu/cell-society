@@ -45,8 +45,9 @@ public class SimulationScene extends ProgScene {
 		root = new Group();
 		addSimulationView();
 		Node slider = controls.initSizeSlider(size);
+		Node shapes = controls.initShapeButtons();
 		Node speed = controls.initSpeedSlider();
-		Node buttons = controls.initActionButtons();
+		Node actionButtons = controls.initActionButtons();
 		Node back = controls.initBackButton();
 		Node saveFile = controls.initXMLSaveButton();
 		controlGroup = new VBox();
@@ -67,15 +68,17 @@ public class SimulationScene extends ProgScene {
 			addSugarControls((SugarParameters) p);
 		}
 
-		buttons.setLayoutX(controlGroup.getLayoutX());
-		buttons.setLayoutY(Initializer.SCENE_HEIGHT - 100);
+		actionButtons.setLayoutX(controlGroup.getLayoutX());
+		actionButtons.setLayoutY(Initializer.SCENE_HEIGHT - 100);
 		speed.setLayoutX(controlGroup.getLayoutX());
 		speed.setLayoutY(Initializer.SCENE_HEIGHT - 150);
+		shapes.setLayoutX(speed.getLayoutX());
+		shapes.setLayoutY(Initializer.SCENE_HEIGHT - 200);
 		saveFile.setLayoutX(Initializer.SCENE_WIDTH - 290);
 		saveFile.setLayoutY(Initializer.SCENE_HEIGHT - 50);
 		back.setLayoutX(Initializer.SCENE_WIDTH - 80);
 		back.setLayoutY(Initializer.SCENE_HEIGHT - 50);
-		root.getChildren().addAll(controlGroup, buttons, speed, back, saveFile);
+		root.getChildren().addAll(controlGroup, actionButtons, shapes, speed, back, saveFile);
 		Scene scn = new Scene(root, width, height);
 
 		return scn;
