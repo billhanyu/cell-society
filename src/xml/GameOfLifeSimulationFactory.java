@@ -7,6 +7,13 @@ import cell.GridPosition;
 import gameOfLife.GLParameters;
 import grid.Parameters;
 
+/**
+ * 
+ * @author Brian
+ * Generate GameOfLife parameters based on XML File of Simulation Type "GameOfLife". Depending on format of
+ * XML file, can either randomly determine which cells are alive based on a ratio or set each cell to a 
+ * predefined state; returns an instance of GLParameters
+ */
 public class GameOfLifeSimulationFactory extends SimulationFactory {
     
     

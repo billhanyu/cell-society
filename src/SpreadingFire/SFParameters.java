@@ -4,10 +4,19 @@ import java.util.Collection;
 import cell.GridPosition;
 import grid.Parameters;
 
+/**
+ * 
+ * @author Brian
+ * Contains parameters for Spreading Fire Simulation. These parameters include:
+ * probCatch : the probability that an adjacent cell will catch on fire
+ * listOfFire : list of cells that begin initialized as fire
+ * listOfEmpty: list of cells that begin initialized as empty
+ */
 public class SFParameters extends Parameters {
         
     private double probCatch;
     private Collection<GridPosition> listOfFire;
+    private Collection<GridPosition> listOfEmpty;
       
       
     public SFParameters (Parameters p) {
@@ -20,9 +29,10 @@ public class SFParameters extends Parameters {
 	setByLocations(false);
     }
     
-    public SFParameters(Parameters p, double probCatch, Collection<GridPosition> fireCells){
+    public SFParameters(Parameters p, double probCatch, Collection<GridPosition> fireCells, Collection<GridPosition> emptyCells){
         this(p, probCatch);
-        this.listOfFire = fireCells;        
+        this.listOfFire = fireCells;
+        this.listOfEmpty = emptyCells;
         setByLocations(true);
     }
     
@@ -32,6 +42,10 @@ public class SFParameters extends Parameters {
     
     public Collection<GridPosition> getFireCells(){
         return listOfFire;
+    }
+        
+    public Collection<GridPosition> getEmptyCells(){
+        return listOfEmpty;
     }
     
     public void setProbCatch(double probCatch){

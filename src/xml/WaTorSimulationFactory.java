@@ -1,12 +1,17 @@
 package xml;
 
-import java.util.Collection;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import WaTor.WTParameters;
-import cell.GridPosition;
 import grid.Parameters;
 
+/**
+ * 
+ * @author Brian
+ * Generate WaTor parameters based on XML File of Simulation Type "WaTor". Cannot generate
+ * location-specific simulation currently, but reads general parameters/conditions from XML
+ * and returns an instance of WTParameters
+ */
 public class WaTorSimulationFactory extends SimulationFactory{
     
     public WaTorSimulationFactory(Element rootElement) {
@@ -19,8 +24,8 @@ public class WaTorSimulationFactory extends SimulationFactory{
         int fishRate = getIntegerValue("fishRate");
         int sharkStarve = getIntegerValue("sharkStarve");
         int energyFromEating = getIntegerValue("energyFromEating");
-        Collection<GridPosition> sharkLocations = createListOfLocations("Shark", listOfNodes);
-        Collection<GridPosition> fishLocations = createListOfLocations("Fish", listOfNodes);
+//        Collection<GridPosition> sharkLocations = createListOfLocations("Shark", listOfNodes);
+//        Collection<GridPosition> fishLocations = createListOfLocations("Fish", listOfNodes);
         
         double emptyRatio = getDoubleValue("emptyRatio");
         double ratio = getDoubleValue("ratio");

@@ -3,21 +3,27 @@ package xml;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
-
+import ui.ErrorPop;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 /**
  * Handles parsing XML files by returning the root elements.
  *
  * @author Rhondu Smithwick
+ * @author Brian (Small Addition)
  */
 public class Decoder {
 
     private final DocumentBuilder documentBuilder = getDocumentBuilder();
-
+    private static ResourceBundle myResources;
+    
+    public Decoder (ResourceBundle myResources){
+        Decoder.myResources = myResources;
+    }
     /**
      * A helper method to get a documentBuilder.
      * <p>
@@ -33,8 +39,8 @@ public class Decoder {
         try {
             documentBuilder = builderFactory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            // just swallow the except for demo purposes
-            e.printStackTrace();
+            ErrorPop error = new ErrorPop(300, 200, myResources.getString("ErrorMessage"), myResources);
+            error.popup();
         }
         return documentBuilder;
     }
@@ -53,8 +59,8 @@ public class Decoder {
             xmlElement = xmlDocument.getDocumentElement();
         } catch (SAXException
                 | IOException e) {
-            // just swallow the except for demo purposes
-            e.printStackTrace();
+            ErrorPop error = new ErrorPop(300, 200, myResources.getString("ErrorMessage"), myResources);
+            error.popup();
         }
         return xmlElement;
     }

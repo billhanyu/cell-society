@@ -4,6 +4,21 @@ import java.util.Collection;
 import cell.GridPosition;
 import grid.Parameters;
 
+/**
+ * 
+ * @author Brian
+ * Contains parameters for Ant Foraging Simulation. These parameters include:
+ * maxNumAnts : maximum number of ants
+ * maxAmountOfPheromone : maximum amount of pheromone per cell
+ * antsBornPerTimeStep : number of ants born during each time-step
+ * maxAntAge : maximum age that an ant can live to
+ * evaporationRatio : ratio of evaporation
+ * diffusionRatio : ratio of diffusion of ants
+ * K and N: parameters used to calculate the likelihood of movement
+ * nestCells : initial nest cells
+ * foodCells : initial food cells
+ * obstacleCells : initial obstacle cells
+ */
 public class AntParameters extends Parameters {
 	
 	private int maxNumAnts;

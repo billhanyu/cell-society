@@ -2,6 +2,17 @@ package WaTor;
 
 import grid.Parameters;
 
+/**
+ * 
+ * @author Brian
+ * Contains parameters for WaTor Simulation. Parameters include:
+ * sharkStarve  : determines how much energy sharks burn before they starve
+ * fishRate     : reproduction rate for fish
+ * sharkRate    : reproduction rate for sharks
+ * energyFromEating : amount of energy sharks increase by after eating a fish
+ * emptyRatio   : percentage of cells in the grid that are empty
+ * ratio        : ratio of sharks to fish
+ */
 public class WTParameters extends Parameters {
     
         private int sharkStarve;
