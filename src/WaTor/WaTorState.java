@@ -3,6 +3,13 @@ package WaTor;
 import javafx.scene.paint.Color;
 import cell.State;
 
+/**
+ * @author Addison Howenstine
+ * 
+ * WaTor states also have chronons since 
+ * reproducing, shark will have additional values
+ */
+
 public abstract class WaTorState extends State {
 	
 	protected int chrononsSinceReproduction;

@@ -5,8 +5,15 @@ import cell.Cell;
 import cell.GridPosition;
 import cell.State;
 
-public class GameOfLifeCell extends Cell{
+/**
+ * @author Addison Howenstine
+ * 
+ * Main cell for GameOfLife
+ */
 
+public class GameOfLifeCell extends Cell{
+	
+	// DEFAULT STATES
 	public static State alive = new State(Color.BLACK, "ALIVE");
 	public static State dead = new State(Color.WHITE, "DEAD");
 	private final int underPopulation = 2;
@@ -17,6 +24,10 @@ public class GameOfLifeCell extends Cell{
 		super(gp, s);
 	}
 
+	/* 
+	 * Set future state of cell to
+	 * alive or dead based on number of living neighbors
+	 */
 	@Override
 	public void checkChangeState() {
 		int numLivingNeighbors = 0;

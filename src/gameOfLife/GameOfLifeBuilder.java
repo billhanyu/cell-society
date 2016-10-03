@@ -35,6 +35,10 @@ public class GameOfLifeBuilder extends Builder{
 		pars = (GLParameters) this.getParam();
 	}
 	
+	/* 
+	 * Sides, corners, and sides/corners wrapped
+	 * around the board are added as neighbors
+	 */
 	@Override
 	protected void addRectNeighbors(Cell c) {
 		this.getNeighborAdder().addSidesAsNeighbors(c);

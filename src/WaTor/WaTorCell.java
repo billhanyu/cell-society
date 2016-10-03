@@ -8,6 +8,12 @@ import cell.Cell;
 import cell.GridPosition;
 import cell.State;
 
+/**
+ * @author Addison Howenstine
+ * 
+ * Main cell implementation for WaTor model
+ */
+
 public class WaTorCell extends Cell{
 
 	WTParameters params;

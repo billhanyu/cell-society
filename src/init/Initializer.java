@@ -21,8 +21,6 @@ import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
-import langton.LangtonBuilder;
-import langton.LangtonControls;
 import schelling.SchellingBuilder;
 import schelling.SchellingControls;
 import ui.Controls;
@@ -33,7 +31,6 @@ import xml.AntSimulationFactory;
 import xml.Decoder;
 import xml.GameOfLifeSimulationFactory;
 import xml.GeneralSimulationFactory;
-import xml.LangtonSimulationFactory;
 import xml.SchellingSimulationFactory;
 import xml.SimulationFactory;
 import xml.SpreadingFireSimulationFactory;
@@ -41,7 +38,6 @@ import xml.SugarSimulationFactory;
 import xml.WaTorSimulationFactory;
 import xml.model.AntXMLFileSaver;
 import xml.model.GameOfLifeXMLFileSaver;
-import xml.model.LangtonXMLFileSaver;
 import xml.model.SchellingXMLFileSaver;
 import xml.model.SpreadingFireXMLFileSaver;
 import xml.model.SugarscapeXMLFileSaver;
@@ -208,13 +204,6 @@ public class Initializer {
             param = mySimulation.getSimulationParameters();
             builder = new SchellingBuilder(param, myResources);
             saveFile = new SchellingXMLFileSaver();
-        }
-        else if (simType.equals(LANGTON)) {
-            mySimulation = new LangtonSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));
-            controls = new LangtonControls(this, myResources);
-            param = mySimulation.getSimulationParameters();
-            builder = new LangtonBuilder(param, myResources);
-            saveFile = new LangtonXMLFileSaver();
         }
         else if (simType.equals(ANT)){
             mySimulation = new AntSimulationFactory(xmlParser.getRootElement(xmlFile.toString()));

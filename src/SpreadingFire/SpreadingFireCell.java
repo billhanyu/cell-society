@@ -5,9 +5,17 @@ import cell.Cell;
 import cell.GridPosition;
 import cell.State;
 
+/**
+ * @author Addison Howenstine
+ * 
+ * Main cell implementation for SpreadingFire
+ */
+
 public class SpreadingFireCell extends Cell{
 
 	private double probCatch;
+	
+	// DEFAULT STATES
 	public static State burning = new State(Color.RED, "BURNING");
 	public static State tree = new State(Color.GREEN, "TREE");
 	public static State empty = new State(Color.YELLOW, "EMPTY");
@@ -16,6 +24,10 @@ public class SpreadingFireCell extends Cell{
 		super(gp, s);
 	}
 
+	/*
+	 * checks whether cell should catch fire
+	 * or be set to empty
+	 */
 	@Override
 	public void checkChangeState() {
 		if(this.getCurrState().equals(burning)) {
