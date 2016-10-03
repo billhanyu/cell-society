@@ -12,13 +12,19 @@ public class WaTorCell extends Cell{
 
 	WTParameters params;
 
+	// DEFAULT STATES
+	public static State empty = new State(Color.GRAY, "EMPTY");
+
+
 	public WaTorCell(GridPosition gp, State s, WTParameters p) {
 		super(gp, s);
 		this.params = p;
 	}
 
-	public static State empty = new State(Color.GRAY, "EMPTY");
-
+	/*
+	 * If current state of cell is a fish or shark,
+	 * move like one
+	 */
 	@Override
 	public void checkChangeState() {
 		if (getCurrState() instanceof WaTorFishState)
@@ -51,16 +57,18 @@ public class WaTorCell extends Cell{
 	}
 
 	private boolean isDead(){
-		if( ((WaTorSharkState) getCurrState()).energy == 0){
+		if( ((WaTorSharkState) getCurrState()).energy <= 0){
 			setFutureState(empty);
 			return true;
 		}
-		((WaTorSharkState) getCurrState()).loseEnergy();
-		return false;
+		else{
+			((WaTorSharkState) getCurrState()).loseEnergy();
+			return false;
+		}
 	}
 
 	private boolean canReproduce(int reproductionRate){
-		if(((WaTorState) getCurrState()).getChrononsSinceReproduction() == 25 - reproductionRate){
+		if(((WaTorState) getCurrState()).getChrononsSinceReproduction() == reproductionRate){
 			((WaTorState) getCurrState()).zeroChrononsSinceReproduction();
 			return true;
 		}
