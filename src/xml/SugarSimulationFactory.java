@@ -25,7 +25,8 @@ public class SugarSimulationFactory extends SimulationFactory {
         Collection<GridPosition> twoCell = createListOfLocations("two", listOfNodes);
         Collection<GridPosition> threeCell = createListOfLocations("three", listOfNodes);
         Collection<GridPosition> fourCell = createListOfLocations("full", listOfNodes);
-		return new SugarParameters(basicParams, oneCell, twoCell, threeCell, fourCell);
+        double ratio = getDoubleValue("agentRatio");
+		return new SugarParameters(basicParams, oneCell, twoCell, threeCell, fourCell, ratio);
 	}
 
 }

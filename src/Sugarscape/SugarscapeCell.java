@@ -105,7 +105,7 @@ public class SugarscapeCell extends Cell {
 			SugarscapeCell currNeighbor = (SugarscapeCell) current.getNeighbors().get(i);
 			SugarscapeCell nextBest = 
 					getBestNeighborOption(currNeighbor, visibility - 1);
-			if (nextBest.getPatchState().getHowFull() > best.getPatchState().getHowFull()
+			if (nextBest.getPatchState().getHowFull() >= best.getPatchState().getHowFull()
 					&& nextBest.getAgentState().equals(noAgent)) {
 				best = nextBest;
 			}
