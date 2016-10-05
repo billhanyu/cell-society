@@ -13,9 +13,9 @@ estimate of hours: 60h
 
 * roles:
 
-Addison: Backend implementation
+Addison: Backend implementation, Cell / grid structure, models
 Bill: User interface & frontend, Initialization
-Brian: XML Integratio
+Brian: XML Integration and simulation factories
 
 * resources:
 
