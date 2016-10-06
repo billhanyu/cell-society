@@ -103,13 +103,13 @@ public abstract class Builder {
 		neighborAdder = new NeighborAdder(neighborGrid, top, right, left, bottom);
 		for (Cell c: getCells()) {
 			switch (graphicType) {
-			case "Square":
+			case CellGraphic.SQUARE:
 				addRectNeighbors(c);
 				break;
-			case "Triangle":
+			case CellGraphic.TRIANGLE:
 				this.getNeighborAdder().addTriangleNeighbors(c);
 				break;
-			case "Hexagon":
+			case CellGraphic.HEXAGON:
 				this.getNeighborAdder().addHexagonNeighbors(c);
 				break;
 			}
